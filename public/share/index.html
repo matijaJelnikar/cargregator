@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cargregator</title>
+<script>
+  // Web Share Target (manifest share_target): forwards ?u, ?tx, ?ti to the import page in the user's language.
+  var lang = (navigator.language || "").toLowerCase().indexOf("sl") === 0 ? "sl" : "en";
+  location.replace("/" + lang + "/check/" + location.search);
+</script>
+</head>
+<body><a href="/sl/check/">Slovenščina</a> · <a href="/en/check/">English</a></body>
+</html>
