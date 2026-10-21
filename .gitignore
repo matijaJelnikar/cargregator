@@ -20,6 +20,16 @@
 # production
 /build
 
+# trims pipeline: raw EEA query results (docs/TRIMS.md)
+/data-raw/
+
+# design mockups and design-tool prompts
+/designs/
+/docs/*-PROMPT.md
+
+# Windows download metadata (WSL)
+*:Zone.Identifier
+
 # misc
 .DS_Store
 *.pem

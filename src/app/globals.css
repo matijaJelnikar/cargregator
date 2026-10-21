@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* Calm Automotive Intelligence (designs/calm_automotive_intelligence/DESIGN.md). */
+:root {
+  --background: #f8f9ff;
+  --foreground: #0b1c30;
+  --card: #ffffff;
+  --surface-low: #eff4ff;
+  --surface: #e5eeff;
+  --surface-high: #dce9ff;
+  --muted: #475467;
+  --subtle: #6e7977;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --input: #ffffff;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --accent-foreground: #ffffff;
+  --accent-soft: #dcf3ef;
+  --info: #006398;
+  --info-soft: #e0f0ff;
+  --success: #047857;
+  --success-soft: #d7f5e7;
+  --warning: #b45309;
+  --warning-soft: #fdf1dc;
+  --danger: #ba1a1a;
+  --danger-soft: #ffe7e4;
+  --shadow-overlay: 0 8px 24px -4px rgb(15 23 42 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --card: #1e293b;
+    --surface-low: #18233a;
+    --surface: #233149;
+    --surface-high: #2b3b57;
+    --muted: #aab6c6;
+    --subtle: #8392a6;
+    --border: #334155;
+    --border-strong: #475569;
+    --input: #1e293b;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --accent-foreground: #042f2e;
+    --accent-soft: #123b3a;
+    --info: #7cc4fa;
+    --info-soft: #102c45;
+    --success: #4ade80;
+    --success-soft: #11321f;
+    --warning: #f5b85b;
+    --warning-soft: #34270f;
+    --danger: #fca5a5;
+    --danger-soft: #3d1717;
+    --shadow-overlay: 0 8px 24px -4px rgb(0 0 0 / 0.4);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --surface-low: #18233a;
+  --surface: #233149;
+  --surface-high: #2b3b57;
+  --muted: #aab6c6;
+  --subtle: #8392a6;
+  --border: #334155;
+  --border-strong: #475569;
+  --input: #1e293b;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --accent-foreground: #042f2e;
+  --accent-soft: #123b3a;
+  --info: #7cc4fa;
+  --info-soft: #102c45;
+  --success: #4ade80;
+  --success-soft: #11321f;
+  --warning: #f5b85b;
+  --warning-soft: #34270f;
+  --danger: #fca5a5;
+  --danger-soft: #3d1717;
+  --shadow-overlay: 0 8px 24px -4px rgb(0 0 0 / 0.4);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-surface-low: var(--surface-low);
+  --color-surface: var(--surface);
+  --color-surface-high: var(--surface-high);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --shadow-overlay: var(--shadow-overlay);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Numbers line up in columns wherever they appear in running text. */
+.tabular-nums,
+input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
