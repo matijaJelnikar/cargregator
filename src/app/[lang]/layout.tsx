@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
   const { dict } = await getDictionary((await params).lang);
-  return { title: dict.meta.title, description: dict.meta.description };
+  return { metadataBase: new URL("https://cars.jelnikar.dev"), title: dict.meta.title, description: dict.meta.description };
 }
 
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {

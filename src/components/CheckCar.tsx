@@ -24,6 +24,7 @@ import { CARS_KEY, addCar, parseCars, updateCar, type SavedCar } from "@/lib/sto
 import { useStored } from "@/lib/useStored";
 import { MyCars } from "./MyCars";
 import { Checkbox, Eyebrow, Field, NumberInput, Pill, Segmented, Select, button, inputClass } from "./ui";
+import { CarInfoPanel } from "@/components/CarInfoCard";
 
 const YEAR_NOW = new Date().getFullYear();
 const YEARS = Array.from({ length: YEAR_NOW - 1989 }, (_, i) => YEAR_NOW - i);
@@ -608,6 +609,17 @@ function Form({
                   <p className="mt-0.5 text-muted">{c.dmvElectric}</p>
                 </div>
               </div>
+            )}
+            {s.makeId && s.modelId && (
+              <CarInfoPanel
+                lang={lang}
+                dict={dict}
+                makeId={s.makeId}
+                modelId={s.modelId}
+                year={s.isNew ? now.getFullYear() : s.regYear}
+                fuel={s.fuel}
+                kw={s.kw}
+              />
             )}
           </div>
         </aside>

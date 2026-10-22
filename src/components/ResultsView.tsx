@@ -16,6 +16,7 @@ import { OPENED_KEY, addOpened, addSaved, markRun, parseOpened, saveLastSearch }
 import { useStored } from "@/lib/useStored";
 import { summarize, summaryParts } from "@/lib/summary";
 import { Card, CountryCode, Eyebrow, FilterChip, Pill, Toast, button, inputClass } from "./ui";
+import { CarInfoCard } from "@/components/CarInfoCard";
 
 const countryNames = (r: SiteResult, dict: Dict) =>
   r.site.countries.length > 3 ? dict.results.europe : r.site.countries.map((c) => dict.countries[c as keyof Dict["countries"]]).join(", ");
@@ -138,6 +139,9 @@ export function ResultsView({ lang, dict }: { lang: Locale; dict: Dict }) {
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
         <div className="space-y-6">
+          {filters.makeId && filters.modelId && (
+            <CarInfoCard lang={lang} dict={dict} makeId={filters.makeId} modelId={filters.modelId} yearFrom={filters.yearFrom} yearTo={filters.yearTo} />
+          )}
           {active.length === 0 ? (
             <p className="rounded-xl border border-dashed border-border-strong p-8 text-center text-muted">{dict.results.nothing}</p>
           ) : (

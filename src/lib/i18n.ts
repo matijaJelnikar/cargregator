@@ -22,3 +22,9 @@ export function formatDate(iso: string, lang: Locale): string {
 export function formatEur(n: number, lang: Locale): string {
   return n.toLocaleString(lang === "sl" ? "sl-SI" : "en-GB", { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 }
+
+/** Canonical and per-language URLs of a page, for `metadata.alternates` (path starts and ends with "/"). */
+export const alternates = (lang: Locale, path: string) => ({
+  canonical: `/${lang}${path}`,
+  languages: Object.fromEntries(LOCALES.map((l) => [l, `/${l}${path}`])),
+});
