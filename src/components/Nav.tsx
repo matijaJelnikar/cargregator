@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bookmark, Calculator, CarFront, Info, Monitor, Moon, Search, Sun } from "lucide-react";
+import { Bookmark, BookOpen, Calculator, CarFront, Info, Monitor, Moon, Search, Sun } from "lucide-react";
 import { LOCALES, type Dict, type Locale } from "@/lib/i18n";
 import { SAVED_KEY, THEME_KEY, parseSaved, parseTheme, saveTheme } from "@/lib/storage";
 import { useStored } from "@/lib/useStored";
@@ -15,6 +15,7 @@ export function Nav({ lang, dict }: { lang: Locale; dict: Dict }) {
   const items = [
     { href: `/${lang}/`, label: dict.nav.search, icon: Search, active: rest === "" || rest === "/" || rest.startsWith("/results") },
     { href: `/${lang}/check/`, label: dict.nav.check, icon: Calculator, active: rest.startsWith("/check") },
+    { href: `/${lang}/avti/`, label: dict.nav.cars, icon: BookOpen, active: rest.startsWith("/avti") },
     { href: `/${lang}/saved/`, label: dict.nav.saved, icon: Bookmark, active: rest.startsWith("/saved"), count: savedCount },
     { href: `/${lang}/about/`, label: dict.nav.about, icon: Info, active: rest.startsWith("/about") },
   ];
@@ -55,7 +56,7 @@ export function Nav({ lang, dict }: { lang: Locale; dict: Dict }) {
         </div>
       </header>
       <nav className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-card/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden">
-        <div className="mx-auto grid max-w-md grid-cols-4">
+        <div className="mx-auto grid max-w-md grid-cols-5">
           {items.map((i) => (
             <Link
               key={i.href}

@@ -18,6 +18,7 @@ import { LAST_KEY, addSaved, parseLastSearch, saveLastSearch } from "@/lib/stora
 import { useStored } from "@/lib/useStored";
 import { summarize } from "@/lib/summary";
 import { Card, Chip, CountryCode, Eyebrow, Field, NumberInput, Pill, Segmented, Select, Toast, button } from "./ui";
+import { CarInfoHint } from "@/components/CarInfoCard";
 
 const COUNTRY_ORDER = ["SI", "AT", "DE", "HR", "IT", "HU", "BE", "NL", "LU", "FR", "ES"];
 const YEAR_NOW = new Date().getFullYear();
@@ -142,6 +143,7 @@ function Form({ initial, lang, dict }: { initial: SearchFilters; lang: Locale; d
                     <option key={m.id} value={m.id}>{m.name}</option>
                   ))}
                 </Select>
+                {f.makeId && f.modelId && <CarInfoHint lang={lang} dict={dict} makeId={f.makeId} modelId={f.modelId} />}
               </Field>
               <RangeField label={dict.search.year}
                 from={<NumberInput aria-label={`${dict.search.year} ${dict.search.from}`} placeholder={dict.search.from} min={1950} max={YEAR_NOW} value={f.yearFrom} onValue={(v) => set("yearFrom", v)} />}
