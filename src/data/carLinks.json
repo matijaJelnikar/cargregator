@@ -1,0 +1,1530 @@
+{
+ "alfa-romeo-147": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/alfa-romeo/147/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/147/"
+ },
+ "alfa-romeo-156": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/alfa-romeo/156/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/156/"
+ },
+ "alfa-romeo-159": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/alfa-romeo/159/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/159/"
+ },
+ "alfa-romeo-giulia": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/alfa-romeo/giulia/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/giulia/"
+ },
+ "alfa-romeo-giulietta": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/alfa-romeo/giulietta/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/giulietta/"
+ },
+ "alfa-romeo-mito": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/alfa-romeo/mito/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/mito/"
+ },
+ "alfa-romeo-stelvio": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/alfa-romeo/stelvio/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/stelvio/"
+ },
+ "alfa-romeo-tonale": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/alfa-romeo/tonale/"
+ },
+ "audi-a1": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a1/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a1/"
+ },
+ "audi-a2": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a2/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a2/"
+ },
+ "audi-a3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a3/"
+ },
+ "audi-a4": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a4/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a4/"
+ },
+ "audi-a4-allroad": {},
+ "audi-a5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a5/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a5/"
+ },
+ "audi-a6": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a6/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a6/"
+ },
+ "audi-a6-allroad": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a6-allroad/"
+ },
+ "audi-a7": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a7/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a7/"
+ },
+ "audi-a8": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a8/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a8/"
+ },
+ "audi-e-tron": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/e-tron/"
+ },
+ "audi-e-tron-gt": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/e-tron-gt/"
+ },
+ "audi-q2": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/q2/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/q2/"
+ },
+ "audi-q3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/q3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/q3/"
+ },
+ "audi-q4-e-tron": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/q4-e-tron/"
+ },
+ "audi-q5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/q5/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/q5/"
+ },
+ "audi-q7": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/q7/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/q7/"
+ },
+ "audi-q8": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/q8/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/q8/"
+ },
+ "audi-rs3": {},
+ "audi-rs4": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/rs4/"
+ },
+ "audi-rs6": {},
+ "audi-s3": {},
+ "audi-tt": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/tt/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/tt/"
+ },
+ "bmw-1-series": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/serija-1/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/1er-reihe/"
+ },
+ "bmw-2-series": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/serija-2/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/2er-reihe/"
+ },
+ "bmw-3-series": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/serija-3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/3er-reihe/"
+ },
+ "bmw-4-series": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/4er-reihe/"
+ },
+ "bmw-5-series": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/5er-reihe/"
+ },
+ "bmw-6-series": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/6er-reihe/"
+ },
+ "bmw-7-series": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/7er-reihe/"
+ },
+ "bmw-8-series": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/8er-reihe/"
+ },
+ "bmw-i3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/i3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/i3/"
+ },
+ "bmw-i4": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/i4/"
+ },
+ "bmw-ix": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/ix/"
+ },
+ "bmw-ix3": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/ix3/"
+ },
+ "bmw-m3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/m3/"
+ },
+ "bmw-m5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/m5/"
+ },
+ "bmw-x1": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/x1/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x1/"
+ },
+ "bmw-x2": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/x2/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x2/"
+ },
+ "bmw-x3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/x3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x3/"
+ },
+ "bmw-x4": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/x4/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x4/"
+ },
+ "bmw-x5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/x5/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x5/"
+ },
+ "bmw-x6": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/x6/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x6/"
+ },
+ "bmw-x7": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x7/"
+ },
+ "bmw-z4": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/bmw/z4/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/z4/"
+ },
+ "byd-atto-3": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/byd/atto-3/"
+ },
+ "byd-dolphin": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/byd/dolphin/"
+ },
+ "byd-seal": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/byd/seal/"
+ },
+ "byd-seal-u": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/byd/seal-u/"
+ },
+ "chevrolet-aveo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/chevrolet/aveo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/chevrolet/aveo/"
+ },
+ "chevrolet-camaro": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/chevrolet/camaro/"
+ },
+ "chevrolet-captiva": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/chevrolet/captiva/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/chevrolet/captiva/"
+ },
+ "chevrolet-corvette": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/chevrolet/corvette/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/chevrolet/corvette/"
+ },
+ "chevrolet-cruze": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/chevrolet/cruze/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/chevrolet/cruze/"
+ },
+ "chevrolet-spark": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/chevrolet/spark/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/chevrolet/spark/"
+ },
+ "citroen-berlingo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/berlingo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/berlingo/"
+ },
+ "citroen-c1": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/c1/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c1/"
+ },
+ "citroen-c3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/c3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c3/"
+ },
+ "citroen-c3-aircross": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/c3-aircross/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c3-aircross/"
+ },
+ "citroen-c4": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/c4/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c4/"
+ },
+ "citroen-c4-picasso": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c4-picasso/"
+ },
+ "citroen-c5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/c5/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c5/"
+ },
+ "citroen-c5-aircross": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/c5-aircross/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c5-aircross/"
+ },
+ "citroen-c5-x": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/c5-x/"
+ },
+ "citroen-ds3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/ds3/"
+ },
+ "citroen-jumper": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/jumper/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/jumper/"
+ },
+ "citroen-jumpy": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/jumpy/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/jumpy/"
+ },
+ "citroen-spacetourer": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/citroen/spacetourer/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/citroen/spacetourer/"
+ },
+ "cupra-ateca": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/cupra/ateca/"
+ },
+ "cupra-born": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/cupra/born/"
+ },
+ "cupra-formentor": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/cupra/formentor/"
+ },
+ "cupra-leon": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/cupra/leon/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/cupra/leon/"
+ },
+ "cupra-tavascan": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/cupra/tavascan/"
+ },
+ "dacia-duster": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/dacia/duster/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/dacia/duster/"
+ },
+ "dacia-jogger": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/dacia/jogger/"
+ },
+ "dacia-lodgy": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/dacia/lodgy/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/dacia/lodgy/"
+ },
+ "dacia-logan": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/dacia/logan/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/dacia/logan/"
+ },
+ "dacia-sandero": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/dacia/sandero/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/dacia/sandero/"
+ },
+ "dacia-spring": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/dacia/spring/"
+ },
+ "ds-ds-3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ds/ds-3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ds-automobiles/ds-3/"
+ },
+ "ds-ds-4": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ds-automobiles/ds-4/"
+ },
+ "ds-ds-7": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ds-automobiles/ds-7/"
+ },
+ "fiat-500": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/500/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/500/"
+ },
+ "fiat-500l": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/500l/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/500l/"
+ },
+ "fiat-500x": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/500x/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/500x/"
+ },
+ "fiat-bravo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/bravo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/bravo/"
+ },
+ "fiat-doblo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/doblo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/doblo/"
+ },
+ "fiat-ducato": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/ducato/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/ducato/"
+ },
+ "fiat-grande-punto": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/grande-punto/"
+ },
+ "fiat-panda": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/panda/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/panda/"
+ },
+ "fiat-punto": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/punto/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/punto/"
+ },
+ "fiat-qubo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/qubo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/qubo/"
+ },
+ "fiat-stilo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/stilo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/stilo/"
+ },
+ "fiat-tipo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/fiat/tipo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/fiat/tipo/"
+ },
+ "ford-b-max": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/b-max/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/b-max/"
+ },
+ "ford-c-max": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/c-max/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/c-max/"
+ },
+ "ford-ecosport": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/ecosport/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/ecosport/"
+ },
+ "ford-edge": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/edge/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/edge/"
+ },
+ "ford-explorer": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/explorer/"
+ },
+ "ford-fiesta": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/fiesta/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/fiesta/"
+ },
+ "ford-focus": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/focus/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/focus/"
+ },
+ "ford-galaxy": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/galaxy/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/galaxy/"
+ },
+ "ford-ka": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/ka/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/ka/"
+ },
+ "ford-kuga": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/kuga/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/kuga/"
+ },
+ "ford-mondeo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/mondeo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/mondeo/"
+ },
+ "ford-mustang": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/mustang/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/mustang/"
+ },
+ "ford-mustang-mach-e": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/mustang-mach-e/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/mustang-mach-e/"
+ },
+ "ford-puma": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/puma/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/puma/"
+ },
+ "ford-ranger": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/ranger/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/ranger/"
+ },
+ "ford-s-max": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/s-max/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/s-max/"
+ },
+ "ford-tourneo-connect": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/tourneo-connect/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/tourneo-connect/"
+ },
+ "ford-tourneo-custom": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/tourneo-custom/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/tourneo-custom/"
+ },
+ "ford-transit": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/transit/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/transit/"
+ },
+ "ford-transit-connect": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/transit-connect/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/transit-connect/"
+ },
+ "ford-transit-custom": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/ford/transit-custom/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/ford/transit-custom/"
+ },
+ "honda-accord": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/honda/accord/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/honda/accord/"
+ },
+ "honda-civic": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/honda/civic/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/honda/civic/"
+ },
+ "honda-cr-v": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/honda/cr-v/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/honda/cr-v/"
+ },
+ "honda-e": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/honda/e/"
+ },
+ "honda-hr-v": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/honda/hr-v/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/honda/hr-v/"
+ },
+ "honda-jazz": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/honda/jazz/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/honda/jazz/"
+ },
+ "honda-zr-v": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/honda/zr-v/"
+ },
+ "hyundai-bayon": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/bayon/"
+ },
+ "hyundai-getz": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/getz/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/getz/"
+ },
+ "hyundai-i10": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/i10/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/i10/"
+ },
+ "hyundai-i20": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/i20/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/i20/"
+ },
+ "hyundai-i30": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/i30/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/i30/"
+ },
+ "hyundai-i40": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/i40/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/i40/"
+ },
+ "hyundai-ioniq": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/ioniq/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/ioniq/"
+ },
+ "hyundai-ioniq-5": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/ioniq-5/"
+ },
+ "hyundai-ioniq-6": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/ioniq-6/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/ioniq-6/"
+ },
+ "hyundai-ix20": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/ix20/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/ix20/"
+ },
+ "hyundai-ix35": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/ix35/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/ix35/"
+ },
+ "hyundai-kona": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/kona/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/kona/"
+ },
+ "hyundai-santa-fe": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/santa-fe/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/santa-fe/"
+ },
+ "hyundai-tucson": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/hyundai/tucson/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/hyundai/tucson/"
+ },
+ "jaguar-e-pace": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jaguar/e-pace/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jaguar/e-pace/"
+ },
+ "jaguar-f-pace": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jaguar/f-pace/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jaguar/f-pace/"
+ },
+ "jaguar-f-type": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jaguar/f-type/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jaguar/f-type/"
+ },
+ "jaguar-i-pace": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jaguar/i-pace/"
+ },
+ "jaguar-xe": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jaguar/xe/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jaguar/xe/"
+ },
+ "jaguar-xf": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jaguar/xf/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jaguar/xf/"
+ },
+ "jaguar-xj": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jaguar/xj/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jaguar/xj/"
+ },
+ "jeep-avenger": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jeep/avenger/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jeep/avenger/"
+ },
+ "jeep-cherokee": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jeep/cherokee/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jeep/cherokee/"
+ },
+ "jeep-compass": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jeep/compass/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jeep/compass/"
+ },
+ "jeep-grand-cherokee": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jeep/grand-cherokee/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jeep/grand-cherokee/"
+ },
+ "jeep-renegade": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jeep/renegade/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jeep/renegade/"
+ },
+ "jeep-wrangler": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/jeep/wrangler/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/jeep/wrangler/"
+ },
+ "kia-carens": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/carens/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/carens/"
+ },
+ "kia-ceed": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/ceed/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/ceed/"
+ },
+ "kia-ev6": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/ev6/"
+ },
+ "kia-ev9": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/ev9/"
+ },
+ "kia-niro": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/niro/"
+ },
+ "kia-optima": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/optima/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/optima/"
+ },
+ "kia-picanto": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/picanto/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/picanto/"
+ },
+ "kia-proceed": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/proceed/"
+ },
+ "kia-rio": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/rio/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/rio/"
+ },
+ "kia-sorento": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/sorento/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/sorento/"
+ },
+ "kia-soul": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/soul/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/soul/"
+ },
+ "kia-sportage": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/sportage/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/sportage/"
+ },
+ "kia-stonic": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/stonic/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/stonic/"
+ },
+ "kia-venga": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/kia/venga/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/venga/"
+ },
+ "kia-xceed": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/kia/xceed/"
+ },
+ "lancia-delta": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/lancia/delta/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lancia/delta/"
+ },
+ "lancia-musa": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/lancia/musa/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lancia/musa/"
+ },
+ "lancia-ypsilon": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/lancia/ypsilon/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lancia/ypsilon/"
+ },
+ "land-rover-defender": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/defender/"
+ },
+ "land-rover-discovery": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/land-rover/discovery/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/discovery/"
+ },
+ "land-rover-discovery-sport": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/discovery-sport/"
+ },
+ "land-rover-freelander": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/land-rover/freelander/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/freelander/"
+ },
+ "land-rover-range-rover": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/range-rover/"
+ },
+ "land-rover-range-rover-evoque": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/land-rover/range-rover-evoque/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/range-rover-evoque/"
+ },
+ "land-rover-range-rover-sport": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/land-rover/range-rover-sport/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/range-rover-sport/"
+ },
+ "land-rover-range-rover-velar": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/land-rover/range-rover-velar/"
+ },
+ "lexus-ct": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/lexus/ct/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lexus/ct/"
+ },
+ "lexus-es": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lexus/es/"
+ },
+ "lexus-is": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/lexus/is/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lexus/is/"
+ },
+ "lexus-nx": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/lexus/nx/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lexus/nx/"
+ },
+ "lexus-rx": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/lexus/rx/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lexus/rx/"
+ },
+ "lexus-ux": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/lexus/ux/"
+ },
+ "mazda-2": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/2/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/2/"
+ },
+ "mazda-3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/3/"
+ },
+ "mazda-5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/5/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/5/"
+ },
+ "mazda-6": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/6/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/6/"
+ },
+ "mazda-cx-3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/cx-3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/cx-3/"
+ },
+ "mazda-cx-30": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/cx-30/"
+ },
+ "mazda-cx-5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/cx-5/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/cx-5/"
+ },
+ "mazda-cx-60": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/cx-60/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/cx-60/"
+ },
+ "mazda-mx-30": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/mx-30/"
+ },
+ "mazda-mx-5": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mazda/mx-5/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mazda/mx-5/"
+ },
+ "mercedes-benz-a-class": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/a/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/a-klasse/"
+ },
+ "mercedes-benz-b-class": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/b/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/b-klasse/"
+ },
+ "mercedes-benz-c-class": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/c/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/c-klasse/"
+ },
+ "mercedes-benz-cla": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/cla/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/cla/"
+ },
+ "mercedes-benz-cls": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/cls/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/cls/"
+ },
+ "mercedes-benz-e-class": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/e/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/e-klasse/"
+ },
+ "mercedes-benz-eqa": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/eqa/"
+ },
+ "mercedes-benz-eqb": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/eqb/"
+ },
+ "mercedes-benz-eqc": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/eqc/"
+ },
+ "mercedes-benz-eqe": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/eqe/"
+ },
+ "mercedes-benz-g-class": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/g/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/g-klasse/"
+ },
+ "mercedes-benz-gla": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/gla/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/gla/"
+ },
+ "mercedes-benz-glb": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/glb/"
+ },
+ "mercedes-benz-glc": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/glc/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/glc/"
+ },
+ "mercedes-benz-gle": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/gle/"
+ },
+ "mercedes-benz-glk": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/glk/"
+ },
+ "mercedes-benz-gls": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/gls/"
+ },
+ "mercedes-benz-ml": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/ml/"
+ },
+ "mercedes-benz-s-class": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/s/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/s-klasse/"
+ },
+ "mercedes-benz-sl": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/sl/"
+ },
+ "mercedes-benz-slk": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/slk/"
+ },
+ "mercedes-benz-sprinter": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/sprinter/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/sprinter/"
+ },
+ "mercedes-benz-v-class": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/v/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/v-klasse/"
+ },
+ "mercedes-benz-vito": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mercedes-benz/vito/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mercedes-benz/vito/"
+ },
+ "mg-hs": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mg/hs/"
+ },
+ "mg-mg4": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mg/mg4/"
+ },
+ "mg-mg5": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mg/mg5/"
+ },
+ "mg-zs": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mg/zs/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mg/zs/"
+ },
+ "mini-cabrio": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mini/cabrio/"
+ },
+ "mini-clubman": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mini/clubman/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mini/clubman/"
+ },
+ "mini-cooper": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mini/cooper/"
+ },
+ "mini-cooper-s": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mini/cooper-s/"
+ },
+ "mini-countryman": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mini/countryman/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mini/countryman/"
+ },
+ "mini-one": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mini/one/"
+ },
+ "mini-paceman": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mini/paceman/"
+ },
+ "mitsubishi-asx": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/asx/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/asx/"
+ },
+ "mitsubishi-colt": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/colt/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/colt/"
+ },
+ "mitsubishi-eclipse-cross": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/eclipse-cross/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/eclipse-cross/"
+ },
+ "mitsubishi-l200": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/l200/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/l200/"
+ },
+ "mitsubishi-lancer": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/lancer/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/lancer/"
+ },
+ "mitsubishi-outlander": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/outlander/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/outlander/"
+ },
+ "mitsubishi-pajero": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/pajero/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/pajero/"
+ },
+ "mitsubishi-space-star": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/mitsubishi/space-star/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/mitsubishi/space-star/"
+ },
+ "nissan-ariya": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/ariya/"
+ },
+ "nissan-juke": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/nissan/juke/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/juke/"
+ },
+ "nissan-leaf": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/leaf/"
+ },
+ "nissan-micra": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/nissan/micra/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/micra/"
+ },
+ "nissan-navara": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/nissan/navara/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/navara/"
+ },
+ "nissan-note": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/nissan/note/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/note/"
+ },
+ "nissan-pathfinder": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/nissan/pathfinder/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/pathfinder/"
+ },
+ "nissan-qashqai": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/nissan/qashqai/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/qashqai/"
+ },
+ "nissan-x-trail": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/nissan/x-trail/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/nissan/x-trail/"
+ },
+ "opel-adam": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/adam/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/adam/"
+ },
+ "opel-agila": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/agila/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/agila/"
+ },
+ "opel-astra": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/astra/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/astra/"
+ },
+ "opel-combo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/combo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/combo/"
+ },
+ "opel-corsa": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/corsa/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/corsa/"
+ },
+ "opel-crossland": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/crossland/"
+ },
+ "opel-frontera": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/frontera/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/frontera/"
+ },
+ "opel-grandland": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/grandland/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/grandland/"
+ },
+ "opel-insignia": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/insignia/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/insignia/"
+ },
+ "opel-karl": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/karl/"
+ },
+ "opel-meriva": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/meriva/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/meriva/"
+ },
+ "opel-mokka": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/mokka/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/mokka/"
+ },
+ "opel-vectra": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/vectra/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/vectra/"
+ },
+ "opel-vivaro": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/vivaro/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/vivaro/"
+ },
+ "opel-zafira": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/opel/zafira/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/opel/zafira/"
+ },
+ "peugeot-107": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/107/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/107/"
+ },
+ "peugeot-108": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/108/"
+ },
+ "peugeot-2008": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/2008/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/2008/"
+ },
+ "peugeot-206": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/206/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/206/"
+ },
+ "peugeot-207": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/207/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/207/"
+ },
+ "peugeot-208": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/208/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/208/"
+ },
+ "peugeot-3008": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/3008/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/3008/"
+ },
+ "peugeot-306": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/306/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/306/"
+ },
+ "peugeot-307": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/307/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/307/"
+ },
+ "peugeot-308": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/308/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/308/"
+ },
+ "peugeot-407": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/407/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/407/"
+ },
+ "peugeot-5008": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/5008/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/5008/"
+ },
+ "peugeot-508": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/508/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/508/"
+ },
+ "peugeot-boxer": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/boxer/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/boxer/"
+ },
+ "peugeot-expert": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/expert/"
+ },
+ "peugeot-partner": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/partner/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/partner/"
+ },
+ "peugeot-rifter": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/peugeot/rifter/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/peugeot/rifter/"
+ },
+ "polestar-2": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/polestar/2/"
+ },
+ "polestar-3": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/polestar/3/"
+ },
+ "polestar-4": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/polestar/4/"
+ },
+ "porsche-718": {},
+ "porsche-911": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/porsche/911/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/porsche/911/"
+ },
+ "porsche-boxster": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/porsche/boxster/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/porsche/boxster/"
+ },
+ "porsche-cayenne": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/porsche/cayenne/"
+ },
+ "porsche-cayman": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/porsche/cayman/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/porsche/cayman/"
+ },
+ "porsche-macan": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/porsche/macan/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/porsche/macan/"
+ },
+ "porsche-panamera": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/porsche/panamera/"
+ },
+ "porsche-taycan": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/porsche/taycan/"
+ },
+ "renault-arkana": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/arkana/"
+ },
+ "renault-austral": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/austral/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/austral/"
+ },
+ "renault-captur": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/captur/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/captur/"
+ },
+ "renault-clio": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/clio/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/clio/"
+ },
+ "renault-espace": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/espace/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/espace/"
+ },
+ "renault-grand-scenic": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/grand-scenic/"
+ },
+ "renault-kadjar": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/kadjar/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/kadjar/"
+ },
+ "renault-kangoo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/kangoo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/kangoo/"
+ },
+ "renault-koleos": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/koleos/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/koleos/"
+ },
+ "renault-laguna": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/laguna/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/laguna/"
+ },
+ "renault-master": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/master/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/master/"
+ },
+ "renault-megane": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/megane/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/megane/"
+ },
+ "renault-scenic": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/scenic/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/scenic/"
+ },
+ "renault-talisman": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/talisman/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/talisman/"
+ },
+ "renault-trafic": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/trafic/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/trafic/"
+ },
+ "renault-twingo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/twingo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/twingo/"
+ },
+ "renault-zoe": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/renault/zoe/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/renault/zoe/"
+ },
+ "saab-9-3": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/saab/9-3/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/saab/9-3/"
+ },
+ "saab-9-5": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/saab/9-5/"
+ },
+ "seat-alhambra": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/alhambra/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/alhambra/"
+ },
+ "seat-altea": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/altea/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/altea/"
+ },
+ "seat-arona": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/arona/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/arona/"
+ },
+ "seat-ateca": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/ateca/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/ateca/"
+ },
+ "seat-exeo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/exeo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/exeo/"
+ },
+ "seat-ibiza": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/ibiza/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/ibiza/"
+ },
+ "seat-leon": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/leon/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/leon/"
+ },
+ "seat-mii": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/mii/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/mii/"
+ },
+ "seat-tarraco": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/tarraco/"
+ },
+ "seat-toledo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/seat/toledo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/seat/toledo/"
+ },
+ "skoda-citigo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/citigo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/citigo/"
+ },
+ "skoda-elroq": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/elroq/"
+ },
+ "skoda-enyaq": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/enyaq/"
+ },
+ "skoda-fabia": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/fabia/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/fabia/"
+ },
+ "skoda-kamiq": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/kamiq/"
+ },
+ "skoda-karoq": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/karoq/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/karoq/"
+ },
+ "skoda-kodiaq": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/kodiaq/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/kodiaq/"
+ },
+ "skoda-octavia": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/octavia/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/octavia/"
+ },
+ "skoda-rapid": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/rapid/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/rapid/"
+ },
+ "skoda-roomster": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/roomster/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/roomster/"
+ },
+ "skoda-scala": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/scala/"
+ },
+ "skoda-superb": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/superb/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/superb/"
+ },
+ "skoda-yeti": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/skoda/yeti/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/skoda/yeti/"
+ },
+ "smart-1": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/smart/1/"
+ },
+ "smart-forfour": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/smart/forfour/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/smart/forfour/"
+ },
+ "smart-fortwo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/smart/fortwo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/smart/fortwo/"
+ },
+ "subaru-brz": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/brz/"
+ },
+ "subaru-crosstrek": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/crosstrek/"
+ },
+ "subaru-forester": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/subaru/forester/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/forester/"
+ },
+ "subaru-impreza": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/subaru/impreza/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/impreza/"
+ },
+ "subaru-legacy": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/subaru/legacy/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/legacy/"
+ },
+ "subaru-levorg": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/subaru/levorg/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/levorg/"
+ },
+ "subaru-outback": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/subaru/outback/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/outback/"
+ },
+ "subaru-solterra": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/solterra/"
+ },
+ "subaru-wrx": {},
+ "subaru-xv": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/subaru/xv/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/subaru/xv/"
+ },
+ "suzuki-across": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/across/"
+ },
+ "suzuki-baleno": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/suzuki/baleno/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/baleno/"
+ },
+ "suzuki-grand-vitara": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/grand-vitara/"
+ },
+ "suzuki-ignis": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/suzuki/ignis/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/ignis/"
+ },
+ "suzuki-jimny": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/suzuki/jimny/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/jimny/"
+ },
+ "suzuki-s-cross": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/s-cross/"
+ },
+ "suzuki-swace": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/swace/"
+ },
+ "suzuki-swift": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/suzuki/swift/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/swift/"
+ },
+ "suzuki-sx4": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/suzuki/sx4/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/sx4/"
+ },
+ "suzuki-vitara": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/suzuki/vitara/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/suzuki/vitara/"
+ },
+ "tesla-model-3": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/tesla/model-3/"
+ },
+ "tesla-model-s": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/tesla/model-s/"
+ },
+ "tesla-model-x": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/tesla/model-x/"
+ },
+ "tesla-model-y": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/tesla/model-y/"
+ },
+ "toyota-auris": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/auris/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/auris/"
+ },
+ "toyota-avensis": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/avensis/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/avensis/"
+ },
+ "toyota-aygo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/aygo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/aygo/"
+ },
+ "toyota-aygo-x": {},
+ "toyota-bz4x": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/bz4x/"
+ },
+ "toyota-c-hr": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/c-hr/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/c-hr/"
+ },
+ "toyota-camry": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/camry/"
+ },
+ "toyota-corolla": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/corolla/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/corolla/"
+ },
+ "toyota-gr86": {},
+ "toyota-hilux": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/hilux/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/hilux/"
+ },
+ "toyota-land-cruiser": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/land-cruiser/"
+ },
+ "toyota-prius": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/prius/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/prius/"
+ },
+ "toyota-proace": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/proace/"
+ },
+ "toyota-rav4": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/rav4/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/rav4/"
+ },
+ "toyota-supra": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/supra/"
+ },
+ "toyota-verso": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/verso/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/verso/"
+ },
+ "toyota-yaris": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/toyota/yaris/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/yaris/"
+ },
+ "toyota-yaris-cross": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/toyota/yaris-cross/"
+ },
+ "volkswagen-amarok": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/amarok/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw-nutzfahrzeuge/amarok/"
+ },
+ "volkswagen-arteon": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/arteon/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/arteon/"
+ },
+ "volkswagen-caddy": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/caddy/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw-nutzfahrzeuge/caddy/"
+ },
+ "volkswagen-california": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/california/"
+ },
+ "volkswagen-crafter": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/crafter/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw-nutzfahrzeuge/crafter/"
+ },
+ "volkswagen-golf": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/golf/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/golf/"
+ },
+ "volkswagen-golf-plus": {},
+ "volkswagen-golf-sportsvan": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/golf-sportsvan/"
+ },
+ "volkswagen-id-3": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/id3/"
+ },
+ "volkswagen-id-4": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/id4/"
+ },
+ "volkswagen-id-5": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/id5/"
+ },
+ "volkswagen-id-buzz": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw-nutzfahrzeuge/id-buzz/"
+ },
+ "volkswagen-jetta": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/jetta/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/jetta/"
+ },
+ "volkswagen-multivan": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/multivan/"
+ },
+ "volkswagen-passat": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/passat/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/passat/"
+ },
+ "volkswagen-polo": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/polo/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/polo/"
+ },
+ "volkswagen-scirocco": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/scirocco/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/scirocco/"
+ },
+ "volkswagen-sharan": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/sharan/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/sharan/"
+ },
+ "volkswagen-t-cross": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/t-cross/"
+ },
+ "volkswagen-t-roc": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/t-roc/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/t-roc/"
+ },
+ "volkswagen-taigo": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/taigo/"
+ },
+ "volkswagen-tiguan": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/tiguan/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/tiguan/"
+ },
+ "volkswagen-touareg": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/touareg/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/touareg/"
+ },
+ "volkswagen-touran": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/touran/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/touran/"
+ },
+ "volkswagen-transporter": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/transporter/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw-nutzfahrzeuge/transporter/"
+ },
+ "volkswagen-up": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/up/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/up/"
+ },
+ "volvo-c30": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/c30/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/volvo/c30/"
+ },
+ "volvo-c40": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/volvo/c40/"
+ },
+ "volvo-ex30": {
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/volvo/ex30/"
+ },
+ "volvo-s60": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/s60/"
+ },
+ "volvo-s90": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/s90/"
+ },
+ "volvo-v40": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/v40/"
+ },
+ "volvo-v50": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/v50/"
+ },
+ "volvo-v60": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/v60/"
+ },
+ "volvo-v70": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/v70/"
+ },
+ "volvo-v90": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/v90/"
+ },
+ "volvo-xc40": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/xc40/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/volvo/xc40/"
+ },
+ "volvo-xc60": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/xc60/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/volvo/xc60/"
+ },
+ "volvo-xc70": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/xc70/"
+ },
+ "volvo-xc90": {
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/volvo/xc90/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/volvo/xc90/"
+ }
+}

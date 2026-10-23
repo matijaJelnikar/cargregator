@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, CarFront, ClipboardPaste, ExternalLink, Link2, Pencil, Smartphone, Trash2 } from "lucide-react";
+import { CarRiskPill } from "@/components/CarInfoCard";
 import { evaluateCar, resolveCar, type CarResult } from "@/lib/carInput";
 import { formatDate, formatEur, t, type Dict, type Locale } from "@/lib/i18n";
 import { parseListing } from "@/lib/listing";
@@ -151,6 +152,7 @@ export function MyCars({ lang, dict, notice }: { lang: Locale; dict: Dict; notic
                         <p className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
                           {site && <Pill tone="info">{site}</Pill>}
                           {car.input.price !== undefined && <span className="font-mono">{t(c.price, { price: eur(car.input.price) })}</span>}
+                          <CarRiskPill dict={dict} modelId={car.input.modelId} year={car.input.regYear} fuel={car.input.fuel} kw={car.input.kw} />
                         </p>
                         <p className="mt-1.5 font-mono text-[11px] text-subtle">{t(c.added, { date: formatDate(car.addedAt, lang) })}</p>
                       </div>
