@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
-import { LOCALES } from "@/lib/i18n";
+import { LOCALES, SITE } from "@/lib/i18n";
 import { THEME_KEY } from "@/lib/storage";
 import { getDictionary } from "./dictionaries";
 import "../globals.css";
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
   const { dict } = await getDictionary((await params).lang);
-  return { metadataBase: new URL("https://cars.jelnikar.dev"), title: dict.meta.title, description: dict.meta.description };
+  return { metadataBase: new URL(SITE), title: dict.meta.title, description: dict.meta.description };
 }
 
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {

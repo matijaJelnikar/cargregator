@@ -1,7 +1,7 @@
 // Matching a car (year, fuel, power) to the car-info data. Pure functions, shared by the search form, the results
 // page and the check page.
 
-import type { CarEngine, CarGeneration, CarRecall } from "./carinfoDb";
+import { failureWeight, type CarEngine, type CarFailure, type CarGeneration, type CarRecall } from "./carinfoDb";
 import { kwTolerance } from "./co2";
 import type { Fuel } from "./filters";
 
@@ -36,3 +36,17 @@ export function recallsInYears(recalls: CarRecall[], from: number | null, to: nu
 
 /** Recalls of a generation that can apply to a car first registered in `year` (production is a year either way). */
 export const recallsFor = (gen: CarGeneration, year?: number): CarRecall[] => (year === undefined ? gen.recalls : recallsInYears(gen.recalls, year - 1, year + 1));
+
+/**
+ * Known problems that can affect one car: generation-wide ones plus those of its engine (any power output of the same
+ * engine name), limited to failures whose years include the car's year (a year of slack; unknown years are kept).
+ * Most likely and most expensive first.
+ */
+export function risksFor(gen: CarGeneration, q: { engine?: CarEngine; year?: number }): CarFailure[] {
+  const sameName = new Set(q.engine ? gen.engines.filter((e) => e.name === q.engine!.name).map((e) => e.id) : []);
+  const y = q.year;
+  return gen.failures
+    .filter((f) => !f.engine_id || sameName.has(f.engine_id))
+    .filter((f) => y === undefined || ((f.year_from === null || y >= f.year_from - 1) && (f.year_to === null || y <= f.year_to + 1)))
+    .sort((a, b) => failureWeight(b) - failureWeight(a));
+}

@@ -2,14 +2,19 @@
 
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
+import { CarLinks } from "@/components/CarLinks";
+import { FailureList, VerdictPill, hasReport } from "@/components/CarReport";
 import { RecallList, years } from "@/components/RecallList";
 import { Eyebrow, Pill } from "@/components/ui";
 import { findMake, findModel } from "@/data/makes";
-import { modelSlug, type CarGeneration } from "@/lib/carinfoDb";
-import { engineFor, generationFor, generationsInRange, recallsFor } from "@/lib/carinfoMatch";
+import { modelSlug, pick, type CarGeneration } from "@/lib/carinfoDb";
+import { engineFor, generationFor, generationsInRange, recallsFor, risksFor } from "@/lib/carinfoMatch";
 import type { Fuel } from "@/lib/filters";
 import { t, type Dict, type Locale } from "@/lib/i18n";
 import { useCarInfo } from "@/lib/useCarInfo";
+
+/** Engine names a report says to avoid. */
+const avoid = (g: CarGeneration) => [...new Set(g.engines.filter((e) => e.verdict === "avoid").map((e) => e.name))];
 
 const modelHref = (lang: Locale, makeId: string, modelId: string) => `/${lang}/avti/${makeId}/${modelSlug(makeId, modelId)}/`;
 
@@ -65,6 +70,11 @@ export function CarInfoCard({
           <li key={g.id} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-2">
             <span>
               <span className="font-medium">{g.name}</span> <span className="font-mono text-muted">{years(g.year_from, g.year_to, dict)}</span>
+              {hasReport(g) && avoid(g).length > 0 && (
+                <span className="mt-0.5 block text-xs text-danger">
+                  {c.verdict.avoid}: {avoid(g).join(", ")}
+                </span>
+              )}
             </span>
             <Pill tone={g.recalls.length ? "warning" : "neutral"} dot>
               {g.recalls.length ? t(c.recallCount, { n: g.recalls.length }) : c.noRecalls}
@@ -72,6 +82,9 @@ export function CarInfoCard({
           </li>
         ))}
       </ul>
+      <div className="mt-3 border-t border-border pt-3">
+        <CarLinks car={{ makeId, modelId, makeName: findMake(makeId)?.name ?? "", modelName: findModel(makeId, modelId)?.name ?? "" }} dict={dict} compact />
+      </div>
     </section>
   );
 }
@@ -100,6 +113,8 @@ export function CarInfoPanel({
   const c = dict.carInfo;
   const engine = fuel && kw ? engineFor(gen, { fuel, kw, year }) : undefined;
   const recalls = recallsFor(gen, year);
+  const report = hasReport(gen);
+  const risks = report ? risksFor(gen, { engine, year }).slice(0, 3) : [];
   const href = engine
     ? `/${lang}/avti/${makeId}/${modelSlug(makeId, modelId)}/${gen.slug}/${engine.slug}/`
     : modelHref(lang, makeId, modelId);
@@ -110,9 +125,17 @@ export function CarInfoPanel({
         {gen.name} <span className="font-mono text-sm font-normal text-muted">{years(gen.year_from, gen.year_to, dict)}</span>
       </h2>
       {engine && (
-        <p className="mt-0.5 text-sm text-muted">
+        <p className="mt-0.5 flex flex-wrap items-center gap-2 text-sm text-muted">
           {engine.name}, {engine.kw} kW
+          {report && engine.verdict && <VerdictPill verdict={engine.verdict} dict={dict} />}
         </p>
+      )}
+      {report && engine?.verdict && <p className="mt-2 text-sm">{pick(lang, engine.summary_sl, engine.summary_en)}</p>}
+      {risks.length > 0 && (
+        <div className="mt-3 border-t border-border pt-3">
+          <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.failuresTitle}</p>
+          <FailureList failures={risks} engines={gen.engines} lang={lang} dict={dict} />
+        </div>
       )}
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
         <Pill tone={recalls.length ? "warning" : "neutral"} dot>
@@ -123,8 +146,33 @@ export function CarInfoPanel({
           <ArrowRight className="size-3.5" aria-hidden />
         </Link>
       </div>
+      <div className="mt-3 border-t border-border pt-3">
+        <p className="mb-1.5 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.linksGen}</p>
+        <CarLinks car={{ makeId, modelId, makeName: findMake(makeId)?.name ?? "", modelName: findModel(makeId, modelId)?.name ?? "", gen }} dict={dict} compact />
+      </div>
       <RecallList recalls={recalls} lang={lang} dict={dict} />
       {recalls.length > 0 && <p className="mt-3 text-xs text-muted">{c.vinNote}</p>}
     </section>
   );
+}
+
+/** Saved cars: a small warning when the report says to avoid this car's engine or lists likely problems for it. */
+export function CarRiskPill({ dict, modelId, year, fuel, kw }: { dict: Dict; modelId?: string; year?: number; fuel?: Fuel; kw?: number }) {
+  const gens = useCarInfo(modelId);
+  const gen = gens && year !== undefined ? generationFor(gens, year) : undefined;
+  if (!gen || !hasReport(gen)) return null;
+  const engine = fuel && kw ? engineFor(gen, { fuel, kw, year }) : undefined;
+  if (engine?.verdict === "avoid") {
+    return (
+      <Pill tone="danger" dot>
+        {dict.carInfo.verdict.avoid}: {engine.name}
+      </Pill>
+    );
+  }
+  const likely = risksFor(gen, { engine, year }).filter((f) => f.likelihood === "high").length;
+  return likely > 0 ? (
+    <Pill tone="warning" dot>
+      {t(dict.carInfo.likelyProblems, { n: likely })}
+    </Pill>
+  ) : null;
 }

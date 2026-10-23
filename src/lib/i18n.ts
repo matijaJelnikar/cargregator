@@ -23,6 +23,9 @@ export function formatEur(n: number, lang: Locale): string {
   return n.toLocaleString(lang === "sl" ? "sl-SI" : "en-GB", { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 });
 }
 
+/** The public origin, for absolute URLs (metadataBase, sitemap, structured data). */
+export const SITE = "https://cars.jelnikar.dev";
+
 /** Canonical and per-language URLs of a page, for `metadata.alternates` (path starts and ends with "/"). */
 export const alternates = (lang: Locale, path: string) => ({
   canonical: `/${lang}${path}`,

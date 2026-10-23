@@ -33,8 +33,16 @@ function option(name: string, fallback: string, args: string[]): string {
   return value;
 }
 
-/** Runs one prompt; resolves with the CLI's JSON result or rejects with what went wrong. */
-export function ask(prompt: string, model: string, schema = SCHEMA): Promise<{ structured_output?: unknown; is_error?: boolean; result?: string }> {
+/**
+ * Runs one prompt; resolves with the CLI's JSON result or rejects with what went wrong. `tools` (e.g. WebSearch,
+ * WebFetch) are enabled and pre-approved; by default the call has none.
+ */
+export function ask(
+  prompt: string,
+  model: string,
+  schema = SCHEMA,
+  { tools = [], system = SYSTEM, cwd = SKELETON_DIR, timeoutMs = TIMEOUT_MS }: { tools?: string[]; system?: string; cwd?: string; timeoutMs?: number } = {},
+): Promise<{ structured_output?: unknown; is_error?: boolean; result?: string; total_cost_usd?: number; num_turns?: number }> {
   return new Promise((resolve, reject) => {
     const child = spawn(
       "claude",
@@ -43,17 +51,18 @@ export function ask(prompt: string, model: string, schema = SCHEMA): Promise<{ s
         "--model", model,
         "--output-format", "json",
         "--json-schema", schema,
-        "--system-prompt", SYSTEM,
-        "--tools", "",
+        "--system-prompt", system,
+        "--tools", tools.join(","),
+        ...(tools.length ? ["--allowedTools", ...tools] : []),
         "--strict-mcp-config",
         "--setting-sources", "",
         "--no-session-persistence",
       ],
-      { stdio: ["pipe", "pipe", "pipe"], cwd: SKELETON_DIR },
+      { stdio: ["pipe", "pipe", "pipe"], cwd },
     );
     let out = "";
     let err = "";
-    const timer = setTimeout(() => child.kill(), TIMEOUT_MS);
+    const timer = setTimeout(() => child.kill(), timeoutMs);
     child.stdout.on("data", (d) => (out += d));
     child.stderr.on("data", (d) => (err += d));
     child.on("close", (code) => {

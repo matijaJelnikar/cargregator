@@ -79,3 +79,73 @@ export const KnowledgeAnswer = z.object({
   ),
 });
 export type KnowledgeAnswer = z.infer<typeof KnowledgeAnswer>;
+
+// Written reports (scripts/carinfo/report.ts): one per generation, researched with web search. -----------------
+
+/** Same values as the carinfo enums in the schema migration. */
+export const AREAS = ["engine", "gearbox", "electrics", "suspension", "body", "emissions"] as const;
+export const LIKELIHOODS = ["low", "med", "high"] as const;
+export const VERDICTS = ["recommended", "ok", "avoid"] as const;
+export const LINK_KINDS = ["test", "safety", "reliability", "review", "forum", "other"] as const;
+
+const Text = z.object({ sl: z.string().min(1), en: z.string().min(1) });
+const Source = z.object({ url: z.url(), title: z.string().min(1) });
+const Eur = z.number().int().min(0).max(100_000);
+
+export const ReportAnswer = z.object({
+  /** 2–4 sentences: what the car is, who it suits, how it has aged. */
+  summary: Text,
+  pros: z.array(Text).min(2).max(6),
+  cons: z.array(Text).min(2).max(6),
+  /** One entry per engine name from the prompt ("1.4 TSI"); applies to every power output of that name. */
+  engines: z.array(
+    z.object({
+      name: z.string().min(1),
+      verdict: z.enum(VERDICTS),
+      score: z.number().int().min(1).max(10),
+      /** Typical yearly service and repair spend in EUR, fuel and insurance excluded. */
+      annual_cost_min: Eur.nullable(),
+      annual_cost_max: Eur.nullable(),
+      summary: Text,
+    }),
+  ),
+  failures: z.array(
+    z.object({
+      area: z.enum(AREAS),
+      /** An engine name from the prompt when the problem is specific to it, else null. */
+      engine: z.string().nullable(),
+      title: Text,
+      body: Text,
+      symptoms: Text,
+      year_from: year.nullable(),
+      year_to: year.nullable(),
+      likelihood: z.enum(LIKELIHOODS),
+      cost_min: Eur.nullable(),
+      cost_max: Eur.nullable(),
+      sources: z.array(Source).min(1),
+    }),
+  ),
+  /** What to check on a viewing or test drive, most important first. */
+  checks: z.array(Text).min(3).max(10),
+  links: z.array(z.object({ kind: z.enum(LINK_KINDS), title: z.string().min(1), url: z.url() })),
+  ncap: z.object({ stars: z.number().int().min(0).max(5), year: year, url: z.url() }).nullable(),
+  /** 0–1: how well the sources covered this generation. */
+  confidence: z.number().min(0).max(1),
+});
+export type ReportAnswer = z.infer<typeof ReportAnswer>;
+
+/** The check pass (scripts/carinfo/verify.ts): one verdict per failure, by index, after reading its sources. */
+export const VerifyAnswer = z.object({
+  failures: z.array(z.object({ index: z.number().int().min(0), check: z.enum(["supported", "weak", "unsupported"]), note: z.string() })),
+  /** Links and the NCAP page that did not load or are about another car. */
+  bad_urls: z.array(z.string()),
+  /** Statements in summary/pros/cons/engines that sources contradict or that are wrong for this generation. */
+  errors: z.array(z.object({ claim: z.string(), fix: z.string() })),
+  /** Plausible statements the cited sources just don't cover (informational, not blocking). */
+  unsourced: z.array(z.string()),
+});
+export type VerifyAnswer = z.infer<typeof VerifyAnswer>;
+
+/** The correction pass: the report's prose with the checker's errors fixed. */
+export const ReportFix = ReportAnswer.pick({ summary: true, pros: true, cons: true, engines: true });
+export type ReportFix = z.infer<typeof ReportFix>;
