@@ -13,7 +13,7 @@ import { Card, Eyebrow, button } from "@/components/ui";
 import { MAKES, type Make, type Model } from "@/data/makes";
 import { getGenerations, modelSlug, pick, type CarEngine, type CarGeneration } from "@/lib/carinfoDb";
 import { DEFAULT_FILTERS, toQuery } from "@/lib/filters";
-import { alternates, t, type Dict, type Locale } from "@/lib/i18n";
+import { alternates, t, tn, type Dict, type Locale } from "@/lib/i18n";
 import { getDictionary } from "../../../dictionaries";
 
 // New or reviewed content shows up without a redeploy: pages are rendered on demand and cached.
@@ -104,7 +104,7 @@ function Generation({ gen, make, model, lang, dict }: { gen: CarGeneration; make
       )}
 
       <details className="mt-4 border-t border-border pt-4">
-        <summary className="cursor-pointer text-sm font-medium">{t(c.engines, { n: gen.engines.length })}</summary>
+        <summary className="cursor-pointer text-sm font-medium">{tn(c.engines, gen.engines.length, lang)}</summary>
         <div className="mt-3 overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
@@ -159,7 +159,7 @@ export default async function ModelPage({ params }: PageProps<"/[lang]/avti/[mak
         <Eyebrow>{c.eyebrow}</Eyebrow>
         <h1 className="mt-2 text-[28px] font-bold leading-tight tracking-tight sm:text-4xl">{name}</h1>
         <p className="mt-2 font-mono text-sm text-muted">
-          {onSale} · {t(c.generations, { n: generations.length })}
+          {onSale} · {tn(c.generations, generations.length, lang)}
         </p>
       </div>
 

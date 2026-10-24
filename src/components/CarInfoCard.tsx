@@ -10,7 +10,7 @@ import { findMake, findModel } from "@/data/makes";
 import { modelSlug, pick, type CarGeneration } from "@/lib/carinfoDb";
 import { engineFor, generationFor, generationsInRange, recallsFor, risksFor } from "@/lib/carinfoMatch";
 import type { Fuel } from "@/lib/filters";
-import { t, type Dict, type Locale } from "@/lib/i18n";
+import { t, tn, type Dict, type Locale } from "@/lib/i18n";
 import { useCarInfo } from "@/lib/useCarInfo";
 
 /** Engine names a report says to avoid. */
@@ -25,8 +25,8 @@ export function CarInfoHint({ lang, dict, makeId, modelId }: { lang: Locale; dic
   const recalls = gens.reduce((n, g) => n + g.recalls.length, 0);
   return (
     <Link href={modelHref(lang, makeId, modelId)} className="mt-1.5 inline-flex items-center gap-1 text-xs text-accent hover:underline">
-      {t(dict.carInfo.generations, { n: gens.length })}
-      {recalls > 0 && <> · {t(dict.carInfo.recallCount, { n: recalls })}</>}
+      {tn(dict.carInfo.generations, gens.length, lang)}
+      {recalls > 0 && <> · {tn(dict.carInfo.recallCount, recalls, lang)}</>}
       <ArrowRight className="size-3" aria-hidden />
     </Link>
   );
@@ -77,7 +77,7 @@ export function CarInfoCard({
               )}
             </span>
             <Pill tone={g.recalls.length ? "warning" : "neutral"} dot>
-              {g.recalls.length ? t(c.recallCount, { n: g.recalls.length }) : c.noRecalls}
+              {g.recalls.length ? tn(c.recallCount, g.recalls.length, lang) : c.noRecalls}
             </Pill>
           </li>
         ))}
@@ -139,7 +139,7 @@ export function CarInfoPanel({
       )}
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
         <Pill tone={recalls.length ? "warning" : "neutral"} dot>
-          {recalls.length ? t(c.recallCount, { n: recalls.length }) : c.noRecalls}
+          {recalls.length ? tn(c.recallCount, recalls.length, lang) : c.noRecalls}
         </Pill>
         <Link href={href} className="inline-flex items-center gap-1 text-sm text-accent hover:underline">
           {c.openGuide}

@@ -7,7 +7,7 @@ import { NcapBadge, ReportNote, hasReport } from "@/components/CarReport";
 import { years } from "@/components/RecallList";
 import { Chip } from "@/components/ui";
 import { pick, type Bilingual, type CarGeneration } from "@/lib/carinfoDb";
-import { t, type Dict, type Locale } from "@/lib/i18n";
+import { tn, type Dict, type Locale } from "@/lib/i18n";
 
 function ProsCons({
   title,
@@ -15,14 +15,12 @@ function ProsCons({
   icon: Icon,
   tone,
   lang,
-  empty,
 }: {
   title: string;
   items: Bilingual[];
   icon: typeof ThumbsUp;
   tone: string;
   lang: Locale;
-  empty: string;
 }) {
   return (
     <div className="rounded-xl border border-border bg-card p-4">
@@ -30,15 +28,11 @@ function ProsCons({
         <Icon className={`size-4 ${tone}`} aria-hidden />
         {title}
       </h2>
-      {items.length ? (
-        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
-          {items.map((x) => (
-            <li key={x.en}>{pick(lang, x.sl, x.en)}</li>
-          ))}
-        </ul>
-      ) : (
-        <p className="mt-2 text-sm text-muted">{empty}</p>
-      )}
+      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
+        {items.map((x) => (
+          <li key={x.en}>{pick(lang, x.sl, x.en)}</li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -74,7 +68,7 @@ export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarG
             </div>
             <div>
               <dt className="font-mono text-[11px] uppercase tracking-wider text-subtle">{c.engineCol}</dt>
-              <dd className="mt-0.5 font-medium">{t(c.engines, { n: gen.engines.length })}</dd>
+              <dd className="mt-0.5 font-medium">{tn(c.engines, gen.engines.length, lang)}</dd>
             </div>
           </dl>
           <NcapBadge gen={gen} dict={dict} />
@@ -85,10 +79,15 @@ export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarG
           </a>
         </div>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <ProsCons title={c.prosTitle} items={report ? gen.pros : []} icon={ThumbsUp} tone="text-success" lang={lang} empty={c.summarySoon} />
-        <ProsCons title={c.consTitle} items={report ? gen.cons : []} icon={ThumbsDown} tone="text-warning" lang={lang} empty={c.summarySoon} />
-      </div>
+      {/* Without a report, one note instead of two empty boxes saying the same thing. */}
+      {report && (gen.pros.length > 0 || gen.cons.length > 0) ? (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {gen.pros.length > 0 && <ProsCons title={c.prosTitle} items={gen.pros} icon={ThumbsUp} tone="text-success" lang={lang} />}
+          {gen.cons.length > 0 && <ProsCons title={c.consTitle} items={gen.cons} icon={ThumbsDown} tone="text-warning" lang={lang} />}
+        </div>
+      ) : (
+        <p className="rounded-xl border border-border bg-card p-4 text-sm text-muted">{c.summarySoon}</p>
+      )}
       {report && <ReportNote gen={gen} lang={lang} dict={dict} />}
     </div>
   );

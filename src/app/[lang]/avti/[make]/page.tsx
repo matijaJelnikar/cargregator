@@ -8,7 +8,7 @@ import { years } from "@/components/RecallList";
 import { Eyebrow } from "@/components/ui";
 import { MAKES } from "@/data/makes";
 import { modelSlug, modelSummaries } from "@/lib/carinfoDb";
-import { alternates, t } from "@/lib/i18n";
+import { alternates, t, tn } from "@/lib/i18n";
 import { getDictionary } from "../../dictionaries";
 
 // Rendered on demand and cached, like the model pages.
@@ -61,7 +61,7 @@ export default async function MakePage({ params }: PageProps<"/[lang]/avti/[make
                     <span className="min-w-0">
                       <span className="block font-medium group-hover:text-accent">{m.name}</span>
                       <span className="block font-mono text-xs text-muted">
-                        {years(s.year_from, s.year_to, dict)} · {t(c.generations, { n: s.generations })}
+                        {years(s.year_from, s.year_to, dict)} · {tn(c.generations, s.generations, lang)}
                       </span>
                     </span>
                     <ChevronRight className="size-4 shrink-0 text-subtle group-hover:text-accent" aria-hidden />

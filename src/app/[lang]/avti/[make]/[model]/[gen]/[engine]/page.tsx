@@ -11,7 +11,7 @@ import { MAKES } from "@/data/makes";
 import { getGenerations, modelSlug, pick } from "@/lib/carinfoDb";
 import { recallsInYears } from "@/lib/carinfoMatch";
 import { DEFAULT_FILTERS, toQuery } from "@/lib/filters";
-import { alternates, formatEur, t } from "@/lib/i18n";
+import { alternates, formatEur, t, tn } from "@/lib/i18n";
 import { getDictionary } from "../../../../../dictionaries";
 
 // Rendered on demand and cached, like the model page.
@@ -117,7 +117,7 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
         </dl>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
           <Pill tone={recalls.length ? "warning" : "neutral"} dot>
-            {recalls.length ? t(c.recallCount, { n: recalls.length }) : c.noRecalls}
+            {recalls.length ? tn(c.recallCount, recalls.length, lang) : c.noRecalls}
           </Pill>
           <Link href={`/${lang}/results/?${search}`} className={button("primary", { small: true })}>
             <Search className="size-4" aria-hidden />

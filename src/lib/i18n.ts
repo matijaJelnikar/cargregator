@@ -11,6 +11,17 @@ export function t(template: string, vars: Record<string, string | number> = {}):
   return template.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
 }
 
+// Plural forms in a dictionary string, separated by "|": English one|other, Slovenian one|two|few|other
+// (1 generacija, 2 generaciji, 3 generacije, 5 generacij; 101 counts as one, 102 as two).
+const PLURAL_ORDER: Record<Locale, Intl.LDMLPluralRule[]> = { en: ["one", "other"], sl: ["one", "two", "few", "other"] };
+
+/** "{n} generation|{n} generations" + 1 → "1 generation" */
+export function tn(template: string, n: number, lang: Locale): string {
+  const forms = template.split("|");
+  const i = PLURAL_ORDER[lang].indexOf(new Intl.PluralRules(lang).select(n));
+  return t(forms[Math.min(i < 0 ? forms.length - 1 : i, forms.length - 1)], { n });
+}
+
 export function formatNumber(n: number, lang: Locale): string {
   return n.toLocaleString(lang === "sl" ? "sl-SI" : "en-GB");
 }
