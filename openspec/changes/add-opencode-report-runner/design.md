@@ -5,7 +5,7 @@
 `run-claude.ts` exports `ask(prompt, model, schema, {tools, system, cwd, timeoutMs})`. It spawns
 `claude -p --output-format json --json-schema … --tools WebSearch,WebFetch` and returns `structured_output`.
 `report.ts` and `verify.ts` call it. OpenCode's `opencode run` takes `-m provider/model`, `--format json` (raw JSON
-events, schema not documented), `--agent`, `--dir` and `--auto`. It has no JSON-schema option. Its `webfetch` tool is
+events, schema not documented), `--agent`, `--standalone` (private server instead of the background service) and `--auto` (opencode v2.1.4; there is no `--dir`). It has no JSON-schema option. Its `webfetch` tool is
 built in. `websearch` needs `OPENCODE_ENABLE_EXA=true`. Go limits are per model: a 5-hour window is 20% of the
 monthly allowance, a weekly window 50%.
 
@@ -28,7 +28,7 @@ monthly allowance, a weekly window 50%.
 - **OpenCode isolation:**
   - Config: `scripts/carinfo/opencode.json` defines agent `carinfo-report` with permissions `webfetch: allow`,
     `websearch: allow` and everything else `deny`. It is passed through `OPENCODE_CONFIG` and `--agent`.
-  - Calls run with `--dir data-raw/carinfo/reports`, so even a permission bug cannot reach the repo.
+  - Calls run with `--standalone` and with the child process cwd set to `data-raw/carinfo/reports`, so the report agent never works inside the repo. The binary is `$OPENCODE_BIN`, falling back to `~/.opencode/bin/opencode` (it is not on the non-interactive PATH).
   - Calls run with `--auto`, which still honours explicit denies.
 - **Structured output:** the schema is appended to the prompt as "answer with one JSON object matching this
   schema". The wrapper takes the final assistant text from the JSON events, extracts the last fenced or bare JSON
