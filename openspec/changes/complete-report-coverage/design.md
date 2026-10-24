@@ -25,6 +25,9 @@ What's missing is the coverage summary, splitting the work across runners, and a
   (`--all --tail`), in parallel, until they meet. Answers are per generation, so they never collide.
 - **Go model: `minimax-m3`**, judged by its check results, not a benchmark. If its share of held-back reports or of
   unsupported failures is more than twice Sonnet's, stop Go writing and try `kimi-k2.7-code` on 10 tail generations.
+- **Result (2026-10-25):** both Go models failed. MiniMax (48 reports): 8% held back, 12% of failures unsupported,
+  vs Sonnet's 2% and 4%. Kimi (6 of 10 trial reports): 17% held back, 35% unsupported, at ~$0.80 of Go usage per
+  report (MiniMax ~$0.22). Unless Matija decides otherwise, the tail is written on Sonnet as Claude windows allow.
 - **Checks before writing.** Every report is checked on Claude, whoever wrote it. When a Claude window is available,
   clear unchecked reports before writing new Sonnet ones.
 - **Confidence from the check, not the model.** MiniMax rates itself 0.7–0.8, Claude 0.4–0.6. `import.ts` writes
