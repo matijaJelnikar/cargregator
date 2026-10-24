@@ -8,6 +8,8 @@
 //   node scripts/carinfo/report.ts volkswagen-golf dacia-duster         # every generation of these models
 //   node scripts/carinfo/report.ts --pilot                              # the pilot models (PILOT below)
 //   node scripts/carinfo/report.ts --all                                # every generation, most registered first
+//   node scripts/carinfo/report.ts --all --tail                         # least registered first, so a second runner
+//                                                                       # (OpenCode) meets the first in the middle
 //   node scripts/carinfo/report.ts --model opus --jobs 2 ...            # model alias (default sonnet), parallel calls
 //   node scripts/carinfo/report.ts --runner opencode --model opencode-go/kimi-k3 skoda-fabia
 
@@ -165,6 +167,7 @@ async function main() {
   if (runner !== "claude" && runner !== "opencode") throw new Error(`--runner must be claude or opencode, got ${runner}`);
   const outDir = option("--out", "", args);
   const all = args.includes("--all");
+  const tail = args.includes("--tail");
   const pilot = args.includes("--pilot");
   const targets = args.filter((a) => !a.startsWith("--"));
   const modelIds = [...new Set([...(pilot ? PILOT : []), ...targets.map((t) => t.split("/")[0])])];
@@ -184,13 +187,18 @@ async function main() {
   const queue = (await loadGenerations(all ? [] : modelIds))
     .filter(wanted)
     .filter((g) => explicit(g) || !existsSync(`${answersDir}/${g.id}.json`))
-    .sort((a, b) => (all ? b.registrations - a.registrations : b.year_from - a.year_from));
+    .sort((a, b) => (all ? (tail ? -1 : 1) * (b.registrations - a.registrations) : b.year_from - a.year_from));
   const total = queue.length;
   let done = 0;
   const failed: string[] = [];
 
   async function worker() {
     for (let gen = queue.shift(); gen; gen = queue.shift()) {
+      // Another runner working the other end of the list may have written it since the queue was built.
+      if (!explicit(gen) && existsSync(`${answersDir}/${gen.id}.json`)) {
+        done++;
+        continue;
+      }
       const label = `${gen.model_id}/${gen.slug}`;
       const started = Date.now();
       const prompt = reportPrompt(gen);

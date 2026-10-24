@@ -2,7 +2,8 @@
 
 Status on 2026-10-24. Open content/product questions are in `docs/CARINFO-QUESTIONS.md`; this file is the
 task list. **The working plan is now OpenSpec:** `openspec/changes/*` (one change per area below, with spec,
-design and tasks); run `npx @fission-ai/openspec list` for progress. This file stays as the short overview. **You** = needs Matija, **Claude** = can run on its own.
+design and tasks); run `npx @fission-ai/openspec list` for progress. This file stays as the short overview. Report run progress: `docs/CARINFO-PROGRESS.md`; OpenCode instructions:
+`docs/CARINFO-OPENCODE.md`. **You** = needs Matija, **Claude** = can run on its own.
 
 ## Where things stand
 

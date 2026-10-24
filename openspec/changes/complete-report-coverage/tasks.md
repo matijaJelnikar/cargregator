@@ -15,12 +15,15 @@
 - [x] 2.2 `import.ts`: only reports checked since the last export (`reports/exported.json`; `--all` for every one),
   written as a timestamped batch `reports-<stamp>-NNN.sql` of ~300 KB (~20 generations) per file
 - [x] 2.3 Tests for the coverage counts and for skipping unchecked answers
+- [x] 2.4 `progress.ts` → `docs/CARINFO-PROGRESS.md` (committed log of every generation's state, next up, by runner)
+- [x] 2.5 `report.ts --tail` (least registered first) and a per-generation re-check, so Claude and OpenCode can run
+  at the same time from opposite ends
 
 ## 3. Full run (repeat per subscription window)
 
 - [ ] 3.1 Sonnet: `report.ts --all` for the top N generations by registrations (N from add-opencode-report-runner
   4.3)
-- [ ] 3.2 OpenCode Go: `report.ts --all --runner opencode --model <chosen>` for the rest
+- [ ] 3.2 OpenCode Go: `report.ts --all --tail --runner opencode --model <chosen>` for the rest (docs/CARINFO-OPENCODE.md)
 - [ ] 3.3 Retry the failures listed in `reports/errors/` (smart-fortwo/c453 and any others)
 - [ ] 3.4 `verify.ts` on all unchecked answers; retry `FAILED` ones
 - [ ] 3.5 `import.ts` (new reports only); (Matija) load the batch (**Supabase write**)
