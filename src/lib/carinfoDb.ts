@@ -4,8 +4,8 @@
 
 import type { Fuel } from "./filters";
 
-const REST = "https://wblmhgmotllxffpwsmhb.supabase.co/rest/v1";
-const PUBLISHABLE_KEY = "sb_publishable_f3QEE0kxL0E7HqB2CWMRTg_-Dc-aOb4";
+export const REST = "https://wblmhgmotllxffpwsmhb.supabase.co/rest/v1";
+export const PUBLISHABLE_KEY = "sb_publishable_f3QEE0kxL0E7HqB2CWMRTg_-Dc-aOb4";
 /** Car data changes when we load or review content, not per visit. */
 const REVALIDATE_S = 3600;
 
