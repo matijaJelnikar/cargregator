@@ -1,6 +1,6 @@
 # Car reports: progress
 
-Generated 2026-10-24 17:58 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
+Generated 2026-10-24 18:21 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
 
 **To continue:** rerun the same commands; each skips finished work.
 1. `node scripts/carinfo/report.ts --all` writes reports, most registered first. Claude by default, or
@@ -15,12 +15,12 @@ Loading the SQL into Supabase is Matija's step. "exported" means the SQL was wri
 
 | state | generations |
 |---|---|
-| exported to SQL (handed to Matija to load) | 77 |
-| held back (sources too weak, not exported) | 2 |
-| checked, waiting for import.ts | 1 |
-| written, waiting for verify.ts | 167 |
-| failed (see reports/errors/, rerun) | 6 |
-| not started | 565 |
+| exported to SQL (handed to Matija to load) | 96 |
+| held back (sources too weak, not exported) | 5 |
+| checked, waiting for import.ts | 5 |
+| written, waiting for verify.ts | 141 |
+| failed (see reports/errors/, rerun) | 8 |
+| not started | 563 |
 | **total** | **818** |
 
 Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
@@ -67,6 +67,8 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 | 175 | Volkswagen Taigo I (`volkswagen-taigo/mk1`) | 267,921 |  |
 | 176 | Nissan Micra IV (`nissan-micra/k13`) | 266,897 |  |
 | 177 | Opel Meriva B (`opel-meriva/b`) | 265,855 |  |
+| 765 | Audi e-tron A6 e-tron (`audi-e-tron/gh`) | 366 |  |
+| 766 | Jeep Compass III (`jeep-compass/mk3`) | 362 |  |
 | 767 | Mercedes-Benz SLK (R171) (`mercedes-benz-slk/r171`) | 354 |  |
 | 768 | Alfa Romeo 147 (`alfa-romeo-147/mk1`) | 314 |  |
 | 793 | Jeep Grand Cherokee III (WH) (`jeep-grand-cherokee/wh`) | 31 |  |
@@ -77,6 +79,9 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 |---|---|---|---|
 | 192 | Peugeot 308 I (`peugeot-308/mk1`) | 245,726 | claude/sonnet |
 | 517 | Hyundai i30 I (FD) (`hyundai-i30/fd`) | 31,864 | claude/sonnet |
+| 771 | Citroën C4 I (`citroen-c4/mk1`) | 235 | opencode/opencode-go/minimax-m3 |
+| 791 | Toyota Proace I (`toyota-proace/mk1`) | 41 | opencode/opencode-go/minimax-m3 |
+| 811 | Peugeot 307 (`peugeot-307/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
 
 ## Waiting for a check
 
@@ -201,52 +206,26 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 | 172 | Audi A6 (C8) (`audi-a6/c8`) | 272,761 | claude/sonnet |
 | 173 | Mazda CX-5 II (`mazda-cx-5/mk2`) | 269,776 | claude/sonnet |
 | 174 | Dacia Jogger (`dacia-jogger/mk1`) | 269,099 | claude/sonnet |
-| 769 | MINI Cabrio (F57) (`mini-cabrio/f57`) | 303 | opencode/opencode-go/minimax-m3 |
-| 770 | BMW M5 Touring (G99) (`bmw-m5/g99`) | 270 | opencode/opencode-go/minimax-m3 |
-| 771 | Citroën C4 I (`citroen-c4/mk1`) | 235 | opencode/opencode-go/minimax-m3 |
 | 772 | Subaru Impreza VI (`subaru-impreza/gu`) | 225 | opencode/opencode-go/minimax-m3 |
-| 773 | Suzuki S-Cross SX4 S-Cross (`suzuki-s-cross/mk1`) | 222 | opencode/opencode-go/minimax-m3 |
-| 774 | Volkswagen Jetta V (`volkswagen-jetta/mk5`) | 198 | opencode/opencode-go/minimax-m3 |
-| 775 | Mitsubishi Eclipse Cross II (`mitsubishi-eclipse-cross/mk2`) | 175 | opencode/opencode-go/minimax-m3 |
 | 776 | BMW i3 (NA0) (`bmw-i3/na0`) | 171 | opencode/opencode-go/minimax-m3 |
 | 777 | Volkswagen Jetta VII (`volkswagen-jetta/mk7`) | 169 | opencode/opencode-go/minimax-m3 |
-| 778 | Opel Meriva A (`opel-meriva/a`) | 167 | opencode/opencode-go/minimax-m3 |
 | 779 | MINI Cabrio (U25) (`mini-cabrio/u25`) | 165 | opencode/opencode-go/minimax-m3 |
 | 780 | Mazda 5 Mazda5 I (CR) (`mazda-5/mk1`) | 164 | opencode/opencode-go/minimax-m3 |
-| 781 | Kia Carens III (`kia-carens/mk3`) | 124 | opencode/opencode-go/minimax-m3 |
 | 782 | Chevrolet Corvette C6 (`chevrolet-corvette/c6`) | 120 | opencode/opencode-go/minimax-m3 |
-| 783 | Land Rover Defender (Classic) (`land-rover-defender/l316`) | 120 | opencode/opencode-go/minimax-m3 |
 | 784 | Renault Master II (`renault-master/mk2`) | 104 | opencode/opencode-go/minimax-m3 |
 | 785 | Mercedes-Benz GLB with EQ Technology (H247) (`mercedes-benz-glb/h247`) | 94 | opencode/opencode-go/minimax-m3 |
-| 786 | Toyota Land Cruiser 70 (`toyota-land-cruiser/j70`) | 59 | opencode/opencode-go/minimax-m3 |
-| 787 | BMW 1 Series Sedan (F52) (`bmw-1-series/f52`) | 51 | opencode/opencode-go/minimax-m3 |
 | 788 | Mercedes-Benz CLS (W219) (`mercedes-benz-cls/w219`) | 51 | opencode/opencode-go/minimax-m3 |
-| 789 | Ford Fiesta VI (`ford-fiesta/mk6`) | 46 | opencode/opencode-go/minimax-m3 |
-| 791 | Toyota Proace I (`toyota-proace/mk1`) | 41 | opencode/opencode-go/minimax-m3 |
-| 792 | Kia Sorento I (JC) (`kia-sorento/jc`) | 39 | opencode/opencode-go/minimax-m3 |
-| 794 | Nissan Navara (NP300, D23) (`nissan-navara/d23`) | 28 | opencode/opencode-go/minimax-m3 |
-| 795 | Mitsubishi L200 IV (`mitsubishi-l200/mk4`) | 27 | opencode/opencode-go/minimax-m3 |
 | 796 | Renault Grand Scénic III (`renault-grand-scenic/mk3`) | 22 | opencode/opencode-go/minimax-m3 |
-| 797 | Alfa Romeo 156 (`alfa-romeo-156/932`) | 0 | opencode/opencode-go/minimax-m3 |
 | 798 | Audi A2 (`audi-a2/a2`) | 0 | opencode/opencode-go/minimax-m3 |
-| 799 | Fiat Grande Punto (`fiat-grande-punto/199`) | 0 | opencode/opencode-go/minimax-m3 |
-| 800 | Fiat Stilo (`fiat-stilo/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
 | 801 | Ford Ranger I (`ford-ranger/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
-| 802 | Ford Ranger II (`ford-ranger/mk2`) | 0 | opencode/opencode-go/minimax-m3 |
 | 803 | Ford Ranger III (`ford-ranger/t6`) | 0 | opencode/opencode-go/minimax-m3 |
 | 804 | Ford Ranger IV (`ford-ranger/p703`) | 0 | opencode/opencode-go/minimax-m3 |
-| 805 | Hyundai Getz (`hyundai-getz/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
-| 806 | MINI Paceman (`mini-paceman/r61`) | 0 | opencode/opencode-go/minimax-m3 |
 | 807 | Opel Vectra A (`opel-vectra/a`) | 0 | opencode/opencode-go/minimax-m3 |
 | 808 | Opel Vectra B (`opel-vectra/b`) | 0 | opencode/opencode-go/minimax-m3 |
-| 809 | Opel Vectra C (`opel-vectra/c`) | 0 | opencode/opencode-go/minimax-m3 |
 | 810 | Peugeot 306 (`peugeot-306/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
-| 811 | Peugeot 307 (`peugeot-307/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
 | 812 | Toyota Hilux V (`toyota-hilux/mk5`) | 0 | opencode/opencode-go/minimax-m3 |
-| 813 | Toyota Hilux VI (`toyota-hilux/mk6`) | 0 | opencode/opencode-go/minimax-m3 |
 | 814 | Toyota Hilux VII (`toyota-hilux/an10`) | 0 | opencode/opencode-go/minimax-m3 |
 | 815 | Toyota Hilux VIII (`toyota-hilux/an120`) | 0 | opencode/opencode-go/minimax-m3 |
-| 816 | Toyota Hilux IX (`toyota-hilux/an160`) | 0 | opencode/opencode-go/minimax-m3 |
 | 817 | Volkswagen Amarok I (`volkswagen-amarok/2h`) | 0 | opencode/opencode-go/minimax-m3 |
 | 818 | Volkswagen Amarok II (`volkswagen-amarok/mk2`) | 0 | opencode/opencode-go/minimax-m3 |
 
@@ -254,7 +233,11 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 
 | rank | generation | registrations | written by |
 |---|---|---|---|
-| 160 | Hyundai i20 III (`hyundai-i20/mk3`) | 288,651 | claude/sonnet |
+| 769 | MINI Cabrio (F57) (`mini-cabrio/f57`) | 303 | opencode/opencode-go/minimax-m3 |
+| 774 | Volkswagen Jetta V (`volkswagen-jetta/mk5`) | 198 | opencode/opencode-go/minimax-m3 |
+| 775 | Mitsubishi Eclipse Cross II (`mitsubishi-eclipse-cross/mk2`) | 175 | opencode/opencode-go/minimax-m3 |
+| 794 | Nissan Navara (NP300, D23) (`nissan-navara/d23`) | 28 | opencode/opencode-go/minimax-m3 |
+| 805 | Hyundai Getz (`hyundai-getz/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
 
 ## Exported
 
@@ -313,6 +296,7 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 | 147 | Škoda Fabia IV (`skoda-fabia/mk4`) | 309,564 | claude/sonnet |
 | 151 | Tesla Model 3 (`tesla-model-3/mk1`) | 297,747 | claude/sonnet |
 | 157 | Hyundai i30 II (GD) (`hyundai-i30/gd`) | 289,563 | claude/sonnet |
+| 160 | Hyundai i20 III (`hyundai-i20/mk3`) | 288,651 | claude/sonnet |
 | 171 | Kia Sportage III (SL) (`kia-sportage/sl`) | 274,446 | claude/sonnet |
 | 189 | Volkswagen Tiguan III (`volkswagen-tiguan/mk3`) | 251,074 | claude/sonnet |
 | 201 | Škoda Octavia II (`skoda-octavia/mk2`) | 231,669 | claude/sonnet |
@@ -336,4 +320,22 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 | 663 | Volkswagen Passat CC (`volkswagen-passat/cc`) | 8,310 | claude/sonnet |
 | 709 | Renault Clio VI (`renault-clio/mk6`) | 3,320 | claude/sonnet |
 | 758 | Škoda Octavia I (`skoda-octavia/mk1`) | 456 | claude/sonnet |
+| 770 | BMW M5 Touring (G99) (`bmw-m5/g99`) | 270 | opencode/opencode-go/minimax-m3 |
+| 773 | Suzuki S-Cross SX4 S-Cross (`suzuki-s-cross/mk1`) | 222 | opencode/opencode-go/minimax-m3 |
+| 778 | Opel Meriva A (`opel-meriva/a`) | 167 | opencode/opencode-go/minimax-m3 |
+| 781 | Kia Carens III (`kia-carens/mk3`) | 124 | opencode/opencode-go/minimax-m3 |
+| 783 | Land Rover Defender (Classic) (`land-rover-defender/l316`) | 120 | opencode/opencode-go/minimax-m3 |
+| 786 | Toyota Land Cruiser 70 (`toyota-land-cruiser/j70`) | 59 | opencode/opencode-go/minimax-m3 |
+| 787 | BMW 1 Series Sedan (F52) (`bmw-1-series/f52`) | 51 | opencode/opencode-go/minimax-m3 |
+| 789 | Ford Fiesta VI (`ford-fiesta/mk6`) | 46 | opencode/opencode-go/minimax-m3 |
 | 790 | Škoda Fabia I (`skoda-fabia/mk1`) | 46 | claude/sonnet |
+| 792 | Kia Sorento I (JC) (`kia-sorento/jc`) | 39 | opencode/opencode-go/minimax-m3 |
+| 795 | Mitsubishi L200 IV (`mitsubishi-l200/mk4`) | 27 | opencode/opencode-go/minimax-m3 |
+| 797 | Alfa Romeo 156 (`alfa-romeo-156/932`) | 0 | opencode/opencode-go/minimax-m3 |
+| 799 | Fiat Grande Punto (`fiat-grande-punto/199`) | 0 | opencode/opencode-go/minimax-m3 |
+| 800 | Fiat Stilo (`fiat-stilo/mk1`) | 0 | opencode/opencode-go/minimax-m3 |
+| 802 | Ford Ranger II (`ford-ranger/mk2`) | 0 | opencode/opencode-go/minimax-m3 |
+| 806 | MINI Paceman (`mini-paceman/r61`) | 0 | opencode/opencode-go/minimax-m3 |
+| 809 | Opel Vectra C (`opel-vectra/c`) | 0 | opencode/opencode-go/minimax-m3 |
+| 813 | Toyota Hilux VI (`toyota-hilux/mk6`) | 0 | opencode/opencode-go/minimax-m3 |
+| 816 | Toyota Hilux IX (`toyota-hilux/an160`) | 0 | opencode/opencode-go/minimax-m3 |
