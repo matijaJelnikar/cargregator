@@ -19,7 +19,7 @@
 - [x] 2.2 Review the screenshots; list the issues found in this file (2026-10-24, 32 shots, no horizontal overflow)
   - Fixed: Slovenian plurals ("1 generacij", "3 generacij"); now `tn()` with one|two|few|other forms
   - Fixed: a model without a report showed the same placeholder in both the pros and the cons box; now one note
-  - Open: the model page repeats the selected generation (photo and summary in the hero, then again in its
+  - Fixed: the model page repeated the selected generation (photo and summary in the hero, then again in its
     generation card); Golf is ~16,000 px tall at 390 px with three generations fully expanded
   - Open: `/admin` uses the system font, not the site's (cosmetic, admin only)
   - Not bugs: the fixed bottom nav and the Next dev badge appear mid-page in full-page shots; lazy photos below the

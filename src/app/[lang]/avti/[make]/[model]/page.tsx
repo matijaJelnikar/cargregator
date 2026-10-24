@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CarLinks } from "@/components/CarLinks";
 import { CarPhoto } from "@/components/CarPhoto";
-import { CheckList, EngineVerdicts, FailureList, FoundLinks, NcapBadge, hasReport } from "@/components/CarReport";
+import { CheckList, EngineVerdicts, FailureList, FoundLinks, hasReport } from "@/components/CarReport";
 import { ModelHero } from "@/components/ModelHero";
 import { RecallList, years } from "@/components/RecallList";
 import { ReportError } from "@/components/ReportError";
@@ -13,7 +13,7 @@ import { Card, Eyebrow, button } from "@/components/ui";
 import { MAKES, type Make, type Model } from "@/data/makes";
 import { getGenerations, modelSlug, pick, type CarEngine, type CarGeneration } from "@/lib/carinfoDb";
 import { DEFAULT_FILTERS, toQuery } from "@/lib/filters";
-import { alternates, t, tn, type Dict, type Locale } from "@/lib/i18n";
+import { alternates, tn, type Dict, type Locale } from "@/lib/i18n";
 import { getDictionary } from "../../../dictionaries";
 
 // New or reviewed content shows up without a redeploy: pages are rendered on demand and cached.
@@ -58,14 +58,16 @@ function Generation({ gen, make, model, lang, dict }: { gen: CarGeneration; make
   return (
     <Card className="scroll-mt-20">
       <div id={gen.slug} className="grid gap-4 sm:grid-cols-[12rem_minmax(0,1fr)]">
-        <CarPhoto gen={gen} alt={`${make.name} ${gen.name}`} dict={dict} />
+        {/* The hero above already shows each generation's photo, summary and NCAP rating (with its switcher); here
+            the photo stays only as a desktop thumbnail for scanning. */}
+        <div className="hidden sm:block">
+          <CarPhoto gen={gen} alt={`${make.name} ${gen.name}`} dict={dict} />
+        </div>
         <div className="min-w-0 space-y-3">
           <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-lg font-semibold">
             {gen.name}
             <span className="font-mono text-sm font-normal text-muted">{years(gen.year_from, gen.year_to, dict)}</span>
           </h3>
-          <NcapBadge gen={gen} dict={dict} />
-          {report && <p className="text-sm leading-relaxed text-muted">{pick(lang, gen.summary_sl, gen.summary_en)}</p>}
           <div>
             <p className="mb-1.5 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.linksGen}</p>
             <CarLinks car={car} dict={dict} compact />
