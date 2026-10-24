@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ReportAnswer, type VerifyAnswer } from "../../src/lib/carinfo";
-import { batchStamp, coverageLine, generationSql, isHeld, needsExport } from "./import";
+import { batchStamp, coverageLine, generationSql, isHeld, needsExport, spaceNumbers } from "./import";
 
 const t = (en: string) => ({ sl: `${en} (sl)`, en });
 const failure = (title: string, url: string) => ({
@@ -86,5 +86,14 @@ describe("choosing what to export", () => {
 
   it("names batches so they sort by time", () => {
     expect(batchStamp(new Date("2026-10-24T14:31:59Z"))).toBe("20261024-1431");
+  });
+});
+
+describe("spaceNumbers", () => {
+  it("puts back the space a model dropped before a number", () => {
+    expect(spaceNumbers("motor je razvil200 kW, either120 or kot2.4")).toBe("motor je razvil 200 kW, either 120 or kot 2.4");
+  });
+  it("leaves names and units alone", () => {
+    expect(spaceNumbers("Mazda5, Euro6, Hybrid4, AutoScout24, 1.4 TSI, 2KD-FTV")).toBe("Mazda5, Euro6, Hybrid4, AutoScout24, 1.4 TSI, 2KD-FTV");
   });
 });

@@ -29,6 +29,19 @@ const EXPORTED = `${REPORT_DIR}/exported.json`;
 // About 20 generations per file: still pastes into the Supabase SQL editor in one go.
 const MAX_CHUNK = 300_000;
 
+/** MiniMax often drops the space before a number ("razvil200 kW", "either120"). Only lowercase words get the space
+ * back, so names like Mazda5, Euro6 or Hybrid4 stay as written. */
+export const spaceNumbers = (s: string) => s.replace(/(?<!\p{L})(\p{Ll}{2,})(?=\d)/gu, "$1 ");
+
+/** Applies spaceNumbers to every {sl, en} text in a report; names, engine keys and URLs are left alone. */
+function cleanText<T>(x: T): T {
+  if (Array.isArray(x)) return x.map(cleanText) as T;
+  if (!x || typeof x !== "object") return x;
+  const o = x as Record<string, unknown>;
+  if (typeof o.sl === "string" && typeof o.en === "string") return { ...o, sl: spaceNumbers(o.sl), en: spaceNumbers(o.en) } as T;
+  return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, cleanText(v)])) as T;
+}
+
 export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { http?: Record<string, number> }, generatedBy: string, modelId = "") {
   // The model pages we already link to for every generation (src/lib/carLinks.ts) are not repeated.
   const known = (LINK_MAP as Record<string, { am?: string; adac?: string }>)[modelId] ?? {};
@@ -42,7 +55,7 @@ export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { h
     .filter((f) => f.sources.length > 0);
   const links = a.links.filter((l) => ok(l.url));
   const ncap = a.ncap && ok(a.ncap.url) ? a.ncap : null;
-  const payload = { summary: a.summary, pros: a.pros, cons: a.cons, confidence: a.confidence, ncap, engines: a.engines, failures, checks: a.checks, links };
+  const payload = cleanText({ summary: a.summary, pros: a.pros, cons: a.cons, confidence: a.confidence, ncap, engines: a.engines, failures, checks: a.checks, links });
   // carinfo.load_report (migration 20261022000400) writes everything for the generation in one call.
   const sql = `select * from carinfo.load_report(${q(id)}::uuid, ${q(JSON.stringify(payload))}::jsonb, ${q(generatedBy)});`;
   return { sql, kept: failures.length, dropped: a.failures.length - failures.length, links: links.length, droppedLinks: a.links.length - links.length };
