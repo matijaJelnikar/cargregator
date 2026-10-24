@@ -13,9 +13,8 @@ const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["lati
 // Applies a theme chosen in this browser before the first paint (no light flash in dark mode).
 const themeScript = `try{var t=JSON.parse(localStorage.getItem(${JSON.stringify(THEME_KEY)}));if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
 
-// Static export: only the generated locales exist.
-export const dynamicParams = false;
-
+// No `dynamicParams = false` here: Next applies it to every page below, which would 404 the on-demand car-guide
+// pages. getDictionary() already 404s unknown locales.
 export async function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
 }
