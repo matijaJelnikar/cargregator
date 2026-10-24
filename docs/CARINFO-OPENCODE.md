@@ -14,8 +14,18 @@ node scripts/carinfo/report.ts --all --tail --runner opencode --model opencode-g
 node scripts/carinfo/progress.ts
 ```
 
-`<MODEL>` is `minimax-m3` or `kimi-k2.7-code`, whichever won the benchmark (`data-raw/carinfo/reports/bench.md`).
-When it prints "Stopping: subscription limit reached", run the same command again after the Go window resets.
+**Model (2026-10-24):** MiniMax failed the check (14% of its reports held back vs 2% for Sonnet, 16% of failures
+unsupported vs 4%), so it no longer writes reports. Kimi is on trial: first these 10 tail generations, then Claude
+Code checks them and decides whether Kimi takes over `--all --tail`.
+
+```bash
+OPENCODE_ENABLE_EXA=true node scripts/carinfo/report.ts --runner opencode --model opencode-go/kimi-k2.7-code --jobs 2 \
+  jeep-grand-cherokee/wh alfa-romeo-147/mk1 mercedes-benz-slk/r171 jeep-compass/mk3 audi-e-tron/gh \
+  nissan-micra/k12 opel-combo/combo-c ford-c-max/mk1 ford-tourneo-connect/mk1 mitsubishi-lancer/evo-x
+```
+
+Only after Kimi passes, `<MODEL>` above is `kimi-k2.7-code`. When it prints "Stopping: subscription limit reached",
+run the same command again after the Go window resets.
 
 ## Option B: inside OpenCode
 
