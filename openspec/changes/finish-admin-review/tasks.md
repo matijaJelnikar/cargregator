@@ -13,8 +13,12 @@
 - [ ] 2.1 (Matija) Request a link at `/admin/login/`, open it in the same browser, and land on the queue
 - [ ] 2.2 Try each action on one generation: save summary, verdict, failure, check, remove link, approve, back to
   queue, withdraw. Confirm the public page reflects each one
-- [ ] 2.3 RLS test via MCP read-only transaction: a non-admin JWT claim updates 0 rows and reads no hidden rows
-- [ ] 2.4 Run `get_advisors` (security) and confirm it is still clean
+- [ ] 2.3 RLS test via MCP read-only transaction. Read side passed 2026-10-24: a non-admin JWT sees 0 reports,
+  0 hidden generations, 0 unsupported failures and 0 admins, and is_admin() is false. Still to do: the write side
+  (an update as a non-admin changes 0 rows), inside a rolled-back transaction, with Matija's OK
+- [x] 2.4 `get_advisors` (security), 2026-10-24: only two SECURITY DEFINER warnings. `carinfo.is_admin()` is
+  intended (the admin check; it only reports on the caller). `public.rls_auto_enable()` is Supabase's event trigger
+  and cannot be called through the API. Optional: `revoke execute` on both from anon (Matija's OK)
 
 ## 3. Prompt public updates
 
