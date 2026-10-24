@@ -124,8 +124,13 @@ ${JSON.stringify({ summary: a.summary, pros: a.pros, cons: a.cons, engines: a.en
   const res = await ask(prompt, "sonnet", jsonSchema(ReportFix), { system: "You edit car reports. Answer with JSON matching the given schema only.", cwd: REPORT_DIR });
   const parsed = ReportFix.safeParse(res.structured_output);
   if (res.is_error || !parsed.success) throw new Error(`fix: ${res.is_error ? res.result : parsed.error!.message}`);
-  const names = new Set(a.engines.map((e) => e.name));
-  if (parsed.data.engines.some((e) => !names.has(e.name))) throw new Error("fix: engine names changed");
+  // Engine names are keys into carinfo.engines: fixed entries are matched by name (or by position when the list kept
+  // its length), an engine the fixer dropped keeps its old text and one it invented is ignored.
+  const fixed = parsed.data.engines;
+  parsed.data.engines = a.engines.map((orig, i) => {
+    const e = fixed.find((f) => f.name === orig.name) ?? (fixed.length === a.engines.length ? fixed[i] : undefined);
+    return e ? { ...e, name: orig.name } : orig;
+  });
   if (!existsSync(`${ANSWERS}/${id}.orig.json`)) await writeFile(`${ANSWERS}/${id}.orig.json`, JSON.stringify(raw, null, 2));
   await writeFile(`${ANSWERS}/${id}.json`, JSON.stringify({ ...raw, ...parsed.data }, null, 2));
 }

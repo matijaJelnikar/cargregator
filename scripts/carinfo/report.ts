@@ -7,6 +7,7 @@
 //   node scripts/carinfo/report.ts volkswagen-golf/mk7            # one generation
 //   node scripts/carinfo/report.ts volkswagen-golf dacia-duster    # every generation of these models
 //   node scripts/carinfo/report.ts --pilot                         # the pilot models (PILOT below)
+//   node scripts/carinfo/report.ts --all                           # every generation, most registered first
 //   node scripts/carinfo/report.ts --model opus --jobs 2 ...       # model alias (default sonnet), parallel calls
 
 import { existsSync } from "node:fs";
@@ -43,15 +44,17 @@ export interface DbGen {
   slug: string;
   name: string;
   code: string | null;
+  registrations: number;
   year_from: number;
   year_to: number | null;
   engines: { name: string; fuel: string; kw: number | null; year_from: number | null; year_to: number | null; engine_code: string | null }[];
   recalls: { title_en: string; year_from: number | null; year_to: number | null }[];
 }
 
+/** Generations of these models, or of every model when modelIds is empty. */
 export async function loadGenerations(modelIds: string[]): Promise<DbGen[]> {
-  const select = "id,model_id,slug,name,code,year_from,year_to,engines(name,fuel,kw,year_from,year_to,engine_code),recalls(title_en,year_from,year_to)";
-  const res = await fetch(`${REST}/generations?select=${select}&model_id=in.(${modelIds.map(encodeURIComponent).join(",")})&order=model_id,year_from`, {
+  const select = "id,model_id,slug,name,code,registrations,year_from,year_to,engines(name,fuel,kw,year_from,year_to,engine_code),recalls(title_en,year_from,year_to)";
+  const res = await fetch(`${REST}/generations?select=${select}${modelIds.length ? `&model_id=in.(${modelIds.map(encodeURIComponent).join(",")})` : ""}&order=model_id,year_from`, {
     headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, "Accept-Profile": "carinfo" },
   });
   if (!res.ok) throw new Error(`generations: ${res.status}`);
@@ -99,7 +102,7 @@ export function reportPrompt(gen: DbGen): string {
   const years = `${gen.year_from}–${gen.year_to ?? "today"}`;
   const engines = engineNames(gen);
   const recalls = gen.recalls.slice(0, 15).map((r) => `- ${r.title_en} (${r.year_from ?? "?"}–${r.year_to ?? "?"})`);
-  return `# Used-car report: ${make} ${gen.name}${gen.code ? ` (${gen.code})` : ""}, ${years}
+  return `# Used-car report: ${make} ${gen.name}${gen.code && !gen.name.includes(gen.code) ? ` (${gen.code})` : ""}, ${years}
 
 Research this generation of the ${make} ${model} and write a buyer's report.
 
@@ -156,21 +159,23 @@ async function main() {
   const args = process.argv.slice(2);
   const model = option("--model", "sonnet", args);
   const jobs = Number(option("--jobs", "2", args));
+  const all = args.includes("--all");
   const pilot = args.includes("--pilot");
   const targets = args.filter((a) => !a.startsWith("--"));
   const modelIds = [...new Set([...(pilot ? PILOT : []), ...targets.map((t) => t.split("/")[0])])];
-  if (!modelIds.length) throw new Error("usage: report.ts <model_id[/gen_slug]>... | --pilot");
-  const wanted = (g: DbGen) => pilot || targets.includes(g.model_id) || targets.includes(`${g.model_id}/${g.slug}`);
+  if (!modelIds.length && !all) throw new Error("usage: report.ts <model_id[/gen_slug]>... | --pilot | --all");
+  const wanted = (g: DbGen) => all || pilot || targets.includes(g.model_id) || targets.includes(`${g.model_id}/${g.slug}`);
   const explicit = (g: DbGen) => targets.includes(`${g.model_id}/${g.slug}`);
 
   await mkdir(ANSWERS, { recursive: true });
   await mkdir(ERRORS, { recursive: true });
   await mkdir(PROMPTS, { recursive: true });
-  // Newest generations first: they are what most buyers look at.
-  const queue = (await loadGenerations(modelIds))
+  // Newest generations first: they are what most buyers look at. A full run goes by registrations instead, so the
+  // generations most people drive are covered before the subscription runs out.
+  const queue = (await loadGenerations(all ? [] : modelIds))
     .filter(wanted)
     .filter((g) => explicit(g) || !existsSync(`${ANSWERS}/${g.id}.json`))
-    .sort((a, b) => b.year_from - a.year_from);
+    .sort((a, b) => (all ? b.registrations - a.registrations : b.year_from - a.year_from));
   const total = queue.length;
   const schema = jsonSchema(ReportAnswer);
   let done = 0;
@@ -212,7 +217,7 @@ async function main() {
   }
 
   await Promise.all(Array.from({ length: Math.min(jobs, total) }, worker));
-  console.log(`${total - failed.length} answered, ${failed.length} failed${failed.length ? `: ${failed.join(" ")}` : ""}`);
+  console.log(`${done - failed.length} answered, ${failed.length} failed, ${total - done} left${failed.length ? `: ${failed.join(" ")}` : ""}`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();
