@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CARINFO_FUELS, SkeletonAnswer, engineSlug } from "./carinfo";
-import { publicVerdict, type CarEngine, type CarFailure, type CarGeneration, type CarRecall } from "./carinfoDb";
+import type { CarEngine, CarFailure, CarGeneration, CarRecall } from "./carinfoDb";
 import { carLinks } from "./carLinks";
 import { engineFor, generationFor, generationsInRange, recallsFor, recallsInYears, risksFor } from "./carinfoMatch";
 import { FUELS, type Fuel } from "./filters";
@@ -43,7 +43,7 @@ describe("matching a car to car-info data", () => {
   const gen = (slug: string, from: number, to: number | null, engines: CarEngine[] = [], recalls: CarRecall[] = []): CarGeneration => ({
     id: slug, slug, name: slug, code: null, year_from: from, year_to: to, registrations: 0,
     image_url: null, image_credit: null, image_license: null, image_source_url: null,
-    status: "skeleton", summary_sl: null, summary_en: null, pros: [], cons: [], ncap_stars: null, ncap_year: null, ncap_url: null,
+    status: "skeleton", reviewed_at: null, summary_sl: null, summary_en: null, pros: [], cons: [], ncap_stars: null, ncap_year: null, ncap_url: null,
     engines, recalls, failures: [], checks: [], links: [],
   });
   const gens = [gen("mk6", 2008, 2013), gen("mk7", 2012, 2020), gen("mk8", 2019, null)];
@@ -140,14 +140,5 @@ describe("risks for one car", () => {
 
   it("without a known engine shows only generation-wide failures", () => {
     expect(risksFor(gen, {}).map((f) => f.id)).toEqual(["dsg", "lights"]);
-  });
-});
-
-describe("public verdict", () => {
-  it("shows an unreviewed avoid as known issues, a reviewed one as avoid", () => {
-    expect(publicVerdict("avoid", "ai_checked")).toBe("issues");
-    expect(publicVerdict("avoid", "reviewed")).toBe("avoid");
-    expect(publicVerdict("ok", "ai_checked")).toBe("ok");
-    expect(publicVerdict(null, "ai_checked")).toBeNull();
   });
 });

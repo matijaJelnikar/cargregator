@@ -2,7 +2,8 @@ import { Check, ExternalLink, ShieldCheck } from "lucide-react";
 import { years } from "@/components/RecallList";
 import { Pill, type Tone } from "@/components/ui";
 import { pick, type CarEngine, type CarFailure, type CarGeneration } from "@/lib/carinfoDb";
-import { formatEur, t, type Dict, type Locale } from "@/lib/i18n";
+import { formatDate, formatEur, t, type Dict, type Locale } from "@/lib/i18n";
+import { costBand, showExactCost } from "@/lib/reportPolicy";
 
 const VERDICT_TONE: Record<NonNullable<CarEngine["verdict"]>, Tone> = { recommended: "success", ok: "neutral", avoid: "danger", issues: "warning" };
 const LIKELIHOOD_TONE: Record<CarFailure["likelihood"], Tone> = { low: "neutral", med: "warning", high: "danger" };
@@ -31,8 +32,10 @@ export function NcapBadge({ gen, dict }: { gen: Pick<CarGeneration, "ncap_stars"
 }
 
 /** "AI-assisted, checked" or "reviewed": always shown next to report content. */
-export function ReportNote({ gen, dict }: { gen: Pick<CarGeneration, "status">; dict: Dict }) {
-  return <p className="text-xs text-subtle">{gen.status === "reviewed" ? dict.carInfo.reviewed : dict.carInfo.aiChecked}</p>;
+export function ReportNote({ gen, lang, dict }: { gen: Pick<CarGeneration, "status" | "reviewed_at">; lang: Locale; dict: Dict }) {
+  const c = dict.carInfo;
+  if (gen.status !== "reviewed") return <p className="text-xs text-subtle">{c.aiChecked}</p>;
+  return <p className="text-xs text-subtle">{gen.reviewed_at ? t(c.reviewedOn, { date: formatDate(gen.reviewed_at, lang) }) : c.reviewed}</p>;
 }
 
 /** One line per engine name with its verdict, score and yearly running cost. */
@@ -72,14 +75,18 @@ export function EngineVerdicts({ engines, lang, dict, hrefFor }: { engines: CarE
   );
 }
 
-export function FailureList({ failures, engines, lang, dict }: { failures: CarFailure[]; engines: CarEngine[]; lang: Locale; dict: Dict }) {
+/** Repair costs: the exact range once the generation is reviewed, a low/medium/high band before (lib/reportPolicy.ts). */
+export function FailureList({ failures, gen, lang, dict }: { failures: CarFailure[]; gen: Pick<CarGeneration, "engines" | "status">; lang: Locale; dict: Dict }) {
+  const engines = gen.engines;
+  const exact = showExactCost(gen);
   const c = dict.carInfo;
   if (!failures.length) return null;
   const engineName = new Map(engines.map((e) => [e.id, e.name]));
   return (
     <ul className="space-y-3">
       {failures.map((f) => {
-        const cost = range(f.cost_min, f.cost_max, lang);
+        const band = costBand(f);
+        const cost = exact ? range(f.cost_min, f.cost_max, lang) : band && c.costBand[band];
         const engine = f.engine_id ? engineName.get(f.engine_id) : undefined;
         return (
           <li key={f.id} className="rounded-lg border border-border p-3">
@@ -103,7 +110,7 @@ export function FailureList({ failures, engines, lang, dict }: { failures: CarFa
             )}
             <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
               {cost && (
-                <span className="font-mono text-subtle">
+                <span className={exact ? "font-mono text-subtle" : "text-subtle"} title={exact ? undefined : c.costBandHint}>
                   {c.repairCost}: {cost}
                 </span>
               )}

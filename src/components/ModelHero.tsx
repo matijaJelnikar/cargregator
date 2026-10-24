@@ -89,7 +89,7 @@ export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarG
         <ProsCons title={c.prosTitle} items={report ? gen.pros : []} icon={ThumbsUp} tone="text-success" lang={lang} empty={c.summarySoon} />
         <ProsCons title={c.consTitle} items={report ? gen.cons : []} icon={ThumbsDown} tone="text-warning" lang={lang} empty={c.summarySoon} />
       </div>
-      {report && <ReportNote gen={gen} dict={dict} />}
+      {report && <ReportNote gen={gen} lang={lang} dict={dict} />}
     </div>
   );
 }

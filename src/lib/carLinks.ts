@@ -3,7 +3,7 @@
 
 import LINK_MAP from "@/data/carLinks.json";
 
-export type CarLinkId = "tests" | "safety" | "adac" | "breakdowns" | "tuv";
+export type CarLinkId = "tests" | "safety" | "adac" | "tuv";
 
 export interface CarLink {
   id: CarLinkId;
@@ -23,7 +23,6 @@ export interface CarLinkInput {
 
 const MAP: Record<string, { am?: string; adac?: string }> = LINK_MAP;
 const AM_SEARCH = "https://avto-magazin.metropolitan.si/iskanje/";
-const ADAC_BREAKDOWNS = "https://www.adac.de/rund-ums-fahrzeug/unfall-schaden-panne/adac-pannenstatistik/";
 
 const web = (q: string) => `https://www.google.com/search?q=${encodeURIComponent(q)}`;
 
@@ -36,7 +35,6 @@ export function carLinks({ modelId, makeName, modelName, gen }: CarLinkInput): C
     found.am ? { id: "tests", url: found.am, exact: true } : { id: "tests", url: `${AM_SEARCH}?q=${encodeURIComponent(car)}`, exact: false },
     { id: "safety", url: web(`site:euroncap.com ${car}${gen ? ` ${gen.year_from}` : ""}`), exact: false },
     found.adac ? { id: "adac", url: found.adac, exact: true } : { id: "adac", url: web(`site:adac.de autokatalog ${car}`), exact: false },
-    { id: "breakdowns", url: ADAC_BREAKDOWNS, exact: true },
     { id: "tuv", url: web(`TÜV Report ${genCar} Mängel`), exact: false },
   ];
 }

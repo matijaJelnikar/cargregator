@@ -126,6 +126,8 @@ ${startingPoints(gen.model_id)}
 - Search the web before writing. Good sources: ADAC Pannenstatistik and Autokatalog, TÜV-Report / AutoBild TÜV,
   auto motor und sport, Avto magazin (avto-magazin.metropolitan.si), Honest John, What Car? reliability, Carwow,
   Which?, owner forums and well-known specialist garages. Prefer sources that name this generation or its years.
+- Readers are Slovenian: when Avto magazin, Honest John or What Car? cover this generation, cite them in preference
+  to a German source that says the same.
 - Read (WebFetch) the pages you cite. Cite only URLs you actually opened and that are about this car.
 - Use at least 3 different websites across the report; a failure backed by two sites is better than one.
 - Keep it to about 12 searches and 12 page reads.

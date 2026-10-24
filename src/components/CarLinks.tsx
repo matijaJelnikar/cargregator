@@ -1,8 +1,8 @@
-import { ClipboardCheck, ExternalLink, Gauge, Newspaper, Search, ShieldCheck, Wrench, type LucideIcon } from "lucide-react";
+import { ClipboardCheck, ExternalLink, Gauge, Newspaper, Search, ShieldCheck, type LucideIcon } from "lucide-react";
 import { carLinks, type CarLinkId, type CarLinkInput } from "@/lib/carLinks";
 import type { Dict } from "@/lib/i18n";
 
-const ICONS: Record<CarLinkId, LucideIcon> = { tests: Newspaper, safety: ShieldCheck, adac: Gauge, breakdowns: Wrench, tuv: ClipboardCheck };
+const ICONS: Record<CarLinkId, LucideIcon> = { tests: Newspaper, safety: ShieldCheck, adac: Gauge, tuv: ClipboardCheck };
 
 /** Road tests, crash ratings and reliability sources for a model or one generation, as a grid of outbound cards. */
 export function CarLinks({ car, dict, compact = false }: { car: CarLinkInput; dict: Dict; compact?: boolean }) {

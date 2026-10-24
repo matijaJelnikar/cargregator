@@ -3,6 +3,7 @@
 // client library is bundled into the worker.
 
 import type { Fuel } from "./filters";
+import { publicVerdict } from "./reportPolicy";
 
 export const REST = "https://wblmhgmotllxffpwsmhb.supabase.co/rest/v1";
 export const PUBLISHABLE_KEY = "sb_publishable_f3QEE0kxL0E7HqB2CWMRTg_-Dc-aOb4";
@@ -20,7 +21,7 @@ export interface CarEngine {
   year_from: number | null;
   year_to: number | null;
   registrations: number;
-  /** "issues" is shown in place of an "avoid" that no human has reviewed yet (see publicVerdict). */
+  /** "issues" is shown in place of an unreviewed "avoid" without enough supported failures (lib/reportPolicy.ts). */
   verdict: "recommended" | "ok" | "avoid" | "issues" | null;
   score: number | null;
   annual_cost_min: number | null;
@@ -91,6 +92,7 @@ export interface CarGeneration {
   image_source_url: string | null;
   /** Written report (empty until one is imported with status ai_checked or reviewed). */
   status: "skeleton" | "generated" | "ai_checked" | "reviewed" | "hidden";
+  reviewed_at: string | null;
   summary_sl: string | null;
   summary_en: string | null;
   pros: Bilingual[];
@@ -153,15 +155,11 @@ export const failureWeight = (f: Pick<CarFailure, "likelihood" | "cost_max">) =>
 /** A report's text in the page language, falling back to English. */
 export const pick = (lang: "sl" | "en", sl: string | null | undefined, en: string | null | undefined) => (lang === "sl" ? sl || en : en || sl) ?? "";
 
-/** "Avoid" is the most damaging claim a report makes, so until a human reviews the generation it reads "known issues". */
-export const publicVerdict = (verdict: CarEngine["verdict"], status: CarGeneration["status"]): CarEngine["verdict"] =>
-  verdict === "avoid" && status !== "reviewed" ? "issues" : verdict;
-
 /** Generations of one model with their engines and recalls, oldest first. */
 export async function getGenerations(modelId: string): Promise<CarGeneration[]> {
   const select = [
     "id,slug,name,code,year_from,year_to,registrations,image_url,image_credit,image_license,image_source_url",
-    "status,summary_sl,summary_en,pros,cons,ncap_stars,ncap_year,ncap_url",
+    "status,reviewed_at,summary_sl,summary_en,pros,cons,ncap_stars,ncap_year,ncap_url",
     "engines(id,slug,name,engine_code,fuel,kw,ccm,year_from,year_to,registrations,verdict,score,annual_cost_min,annual_cost_max,summary_sl,summary_en)",
     "recalls(id,authority,ref,title_en,title_sl,year_from,year_to,source_url)",
     "failures(id,engine_id,area,title_sl,title_en,body_sl,body_en,symptoms_sl,symptoms_en,year_from,year_to,likelihood,cost_min,cost_max,sources,ai_check,status)",
@@ -174,7 +172,7 @@ export async function getGenerations(modelId: string): Promise<CarGeneration[]> 
   const byPower = (a: CarEngine, b: CarEngine) => a.fuel.localeCompare(b.fuel) || (a.kw ?? 0) - (b.kw ?? 0);
   return rows.map((g) => ({
     ...g,
-    engines: g.engines.map((e) => ({ ...e, verdict: publicVerdict(e.verdict, g.status) })).sort(byPower),
+    engines: g.engines.map((e) => ({ ...e, verdict: publicVerdict(e, g) })).sort(byPower),
     recalls: [...g.recalls].sort((a, b) => (b.year_to ?? 0) - (a.year_to ?? 0)),
     failures: [...g.failures].sort((a, b) => failureWeight(b) - failureWeight(a)),
     checks: [...g.checks].sort((a, b) => a.sort - b.sort),

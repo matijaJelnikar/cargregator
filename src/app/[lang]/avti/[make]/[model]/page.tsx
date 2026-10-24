@@ -93,7 +93,7 @@ function Generation({ gen, make, model, lang, dict }: { gen: CarGeneration; make
         <div className="mt-4 border-t border-border pt-4">
           <h4 className="font-semibold">{c.failuresTitle}</h4>
           <p className="mb-3 mt-1 text-sm text-muted">{c.failuresIntro}</p>
-          <FailureList failures={gen.failures} engines={gen.engines} lang={lang} dict={dict} />
+          <FailureList failures={gen.failures} gen={gen} lang={lang} dict={dict} />
         </div>
       )}
       {gen.checks.length > 0 && (

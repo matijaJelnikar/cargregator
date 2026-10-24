@@ -101,7 +101,7 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
           </div>
           <p className="mt-3 leading-relaxed">{pick(lang, engine.summary_sl, engine.summary_en)}</p>
           <div className="mt-3">
-            <ReportNote gen={gen} dict={dict} />
+            <ReportNote gen={gen} lang={lang} dict={dict} />
           </div>
         </Card>
       )}
@@ -134,13 +134,13 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
       {engineFailures.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-xl font-semibold">{c.engineFailures}</h2>
-          <FailureList failures={engineFailures} engines={gen.engines} lang={lang} dict={dict} />
+          <FailureList failures={engineFailures} gen={gen} lang={lang} dict={dict} />
         </section>
       )}
       {genFailures.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-xl font-semibold">{c.genFailures}</h2>
-          <FailureList failures={genFailures} engines={gen.engines} lang={lang} dict={dict} />
+          <FailureList failures={genFailures} gen={gen} lang={lang} dict={dict} />
         </section>
       )}
       {gen.checks.length > 0 && (

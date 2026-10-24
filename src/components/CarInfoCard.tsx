@@ -134,7 +134,7 @@ export function CarInfoPanel({
       {risks.length > 0 && (
         <div className="mt-3 border-t border-border pt-3">
           <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.failuresTitle}</p>
-          <FailureList failures={risks} engines={gen.engines} lang={lang} dict={dict} />
+          <FailureList failures={risks} gen={gen} lang={lang} dict={dict} />
         </div>
       )}
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
