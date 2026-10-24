@@ -12,9 +12,9 @@ Work done tonight is listed in "Status" at the bottom. Questions are ordered by 
    Waiting for you: `data-raw/carinfo/sql/reports-*.sql` (pilot reports; each generation's call replaces its
    failures, checks and links). Run them in the dashboard SQL editor, or tell me to load them.
 
-1. **R2 for photos.** Create bucket `cargregator`, connect a custom domain (suggested `img.jelnikar.dev`),
+1. **R2 for photos.** Create bucket `cargregator`, connect a custom domain (suggested `cars-img.jelnikar.dev`),
    then `! npx wrangler login`. After that I run `node scripts/carinfo/images.ts upload` and
-   `IMG_BASE=https://img.jelnikar.dev node scripts/carinfo/images.ts sql` and load the SQL. OK with that domain?
+   `IMG_BASE=https://cars-img.jelnikar.dev node scripts/carinfo/images.ts sql` and load the SQL. OK with that domain?
 2. **Commits.** Nothing is committed yet (Phase A + car profile + reports pipeline). Commit in chunks
    (schema/scripts, UI, data files) on a branch and open a PR, or straight to main like before?
 
