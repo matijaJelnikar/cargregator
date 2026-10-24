@@ -1,0 +1,22 @@
+schema: spec-driven
+
+context: |
+  Cargregator: used-car search aggregator for Slovenia (Next.js 16 on Cloudflare Workers via OpenNext, sl/en).
+  The car guide (/avti/…) reads the Supabase schema `carinfo` (project wblmhgmotllxffpwsmhb) over PostgREST.
+  Constraints an agent cannot infer from the code:
+  - Supabase writes (data loads, deletes, migrations, admin rows) need Matija's explicit OK every time. Prepare SQL
+    files instead; Matija runs them in the SQL editor or tells the agent to load them through the Supabase MCP.
+  - No Anthropic API key and no paid API credits. AI work runs on subscriptions through CLIs (Claude Code `claude -p`,
+    OpenCode Go `opencode run`) and must be resumable, because subscription windows run out mid-run.
+  - Never use a Supabase service-role key in the app. Admin writes go through the signed-in admin's own token and RLS.
+  - Photos never go in the repo or in Supabase storage; they are served from Cloudflare R2.
+  - Recalls come from EU Safety Gate only (never NHTSA).
+  - Generated data stays in data-raw/ (gitignored).
+  - Read node_modules/next/dist/docs/ before writing Next.js code; this Next version differs from training data.
+
+rules:
+  proposal:
+    - State what is out of scope
+  tasks:
+    - Mark tasks that need Matija with "(Matija)"
+    - Every task that writes to Supabase says so and waits for Matija's OK
