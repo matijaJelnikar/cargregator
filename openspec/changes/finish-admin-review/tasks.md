@@ -4,7 +4,7 @@
 
 - [ ] 1.1 (Matija) Supabase → Authentication → Users → add a user with your email
 - [ ] 1.2 (Matija) Supabase → Authentication → URL Configuration: add `http://localhost:3000/admin/auth/callback/`
-  and `https://<production domain>/admin/auth/callback/`
+  and `https://cars.jelnikar.dev/admin/auth/callback/`
 - [ ] 1.3 (Matija) Run `insert into carinfo.admins (user_id) select id from auth.users where email = '<email>';`
   (**Supabase write**)
 
@@ -31,6 +31,7 @@
 
 ## 4. Review
 
-- [ ] 4.1 (Matija) Review the ~100 most-registered generations in the queue
+- [ ] 4.1 (Matija) Review the most-registered generations in the queue, top 30 first. Not a launch gate (2026-10-24):
+  the site is live on AI-checked content under the report policy
 - [ ] 4.2 (Matija) Work the error-report inbox
-- [ ] 4.3 Commit the admin site (see ship-car-guide)
+- [x] 4.3 Commit the admin site (see ship-car-guide)

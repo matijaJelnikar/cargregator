@@ -16,17 +16,17 @@
 
 ## Decisions
 
-Pending Matija; the recommended option comes first:
-1. **"Avoid" while unreviewed:** show it with the unreviewed note, *or* show "known issues" until reviewed.
-   Recommended: show it with the note for engines that have ≥2 supported failures, otherwise "known issues".
-2. **Repair costs:** low/medium/high bands until reviewed, exact ranges after. Alternatives: always exact with the
-   note, or hidden.
-3. **Sources:** keep German sources, and add a prompt line that prefers Avto magazin, Honest John and What Car?
-   when they cover the generation.
-4. **Disagreeing runs (7a):** for the top ~100 generations, run verdicts twice and show "avoid" only when both runs
-   agree; accept single runs elsewhere.
-5. **Links:** drop the generic ADAC breakdown link. Fallback search: keep Google unless Matija prefers DuckDuckGo.
-6. **Logos:** keep initials for the 9 makes. Commons logos are mostly trademark-only.
+Decided by Matija, 2026-10-24:
+1. **"Avoid" while unreviewed:** shown (with the unreviewed note) only for engines with ≥2 supported failures;
+   otherwise "known issues". A reviewed generation shows the reviewer's verdict.
+   - Hotfix already live: `publicVerdict()` in `carinfoDb.ts` turns every unreviewed "avoid" into "issues"
+     ("Known issues" / "Znane težave"). The full rule replaces it.
+2. **Repair costs:** low/medium/high bands until reviewed, exact ranges after.
+3. **Sources:** keep German sources; a prompt line prefers Avto magazin, Honest John and What Car? where they cover
+   the generation. New runs only; existing reports are not rewritten.
+4. **Disagreeing runs (7a):** accepted as is. No second verdict run; the ≥2-supported-failures rule guards "avoid".
+5. **Links:** drop the generic ADAC breakdown link; keep Google as the fallback search.
+6. **Logos:** keep initials for the 9 makes.
 
 Implementation: `src/lib/reportPolicy.ts` exports `verdictDisplay(engine, gen)` and `costDisplay(failure, gen)`,
 used by `CarReport`, `CarInfoCard` and the engine page. Unit tests cover each status.
@@ -35,4 +35,4 @@ used by `CarReport`, `CarInfoCard` and the engine page. Unit tests cover each st
 
 - **Hiding "avoid"** makes reports less useful. Showing it unreviewed risks a wrong claim. The note plus the
   "≥2 supported failures" rule balances the two.
-- **A second verdict run** doubles cost for the top generations only.
+- **No second verdict run:** two runs can still disagree on "ok" vs "recommended"; accepted.

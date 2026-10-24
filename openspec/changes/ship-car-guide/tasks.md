@@ -1,24 +1,20 @@
 # Tasks
 
-## 1. Commit
+## 1. Done
 
-- [ ] 1.1 (Matija) Choose: commit in chunks on `feat/car-guide` and open a PR, or merge straight to main
-  (CARINFO-QUESTIONS 2)
-- [ ] 1.2 Commit the admin site (`src/app/admin/`, `src/lib/adminAuth*.ts`, `src/lib/adminData.ts`, the
-  `carinfoDb.ts` export)
-- [ ] 1.3 Commit the script fixes (`report.ts --all` and its summary count, the prompt title, `verify.ts` engine
-  names)
-- [ ] 1.4 Commit `openspec/`, `.claude/` and `.opencode/` (OpenSpec skills), `docs/CARINFO-TODO.md` and AGENTS.md
+- [x] 1.1 Car guide, pipeline and admin site committed and merged to `main` (PR #4 and later commits)
+- [x] 1.2 First deploy to Workers; the car guide is live at https://cars.jelnikar.dev
 
-## 2. Release
+## 2. Deploy routine (repeat for every code change)
 
-- [ ] 2.1 `npx tsc --noEmit`, `npx vitest run`, lint, `next build` and the OpenNext build
-- [ ] 2.2 Push the branch; open a PR with a summary of the car guide, admin site and pipeline
-- [ ] 2.3 (Matija) Review and merge
-- [ ] 2.4 Deploy to Workers
+1. `npx tsc --noEmit`, `npx vitest run`, lint, `next build`
+2. Commit on `main` (or a branch and PR for larger work); `git push`
+3. (Matija, or with his OK) `npm run deploy`
+4. Probe production: `/sl/avti/`, a model with a report, an engine page, `/sitemap.xml`
+
+- [ ] 2.1 First run: the "avoid" hotfix plus the commits not yet on origin
 
 ## 3. Production checks
 
-- [ ] 3.1 The car guide pages render with live data (make grid, a model with a report, an engine page, the sitemap)
-- [ ] 3.2 `/admin` on Workers: login link, callback, refresh route, one save action, logout
-- [ ] 3.3 Production callback URL added in Supabase Auth (finish-admin-review 1.2)
+- [ ] 3.1 `/admin` on Workers: login link, callback, refresh route, one save action, logout
+- [ ] 3.2 Production callback URL added in Supabase Auth (finish-admin-review 1.2)

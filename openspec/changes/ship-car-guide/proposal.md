@@ -2,22 +2,19 @@
 
 ## Why
 
-The car guide is on branch `feat/car-guide` and is not pushed. The admin site, the script fixes and these specs are
-not committed. Nothing reaches users until it is merged and deployed to Cloudflare Workers, and the admin site has
-never run on Workers.
+The car guide is merged (PR #4) and live at https://cars.jelnikar.dev, deployed by hand with `npm run deploy`. The
+release work this change first described is done. What remains is a repeatable routine for shipping code changes
+(the report policy, visual fixes, admin fixes) and checking `/admin` on Workers, which has never been tried.
+
+Report data does not need a deploy: pages read Supabase at runtime, so loading a batch shows up without one.
 
 ## What Changes
 
-- Commit the remaining work in logical chunks:
-  - the admin site;
-  - the report-script fixes;
-  - OpenSpec and the docs.
-- Push the branch and open a PR to `main`.
-- Deploy with OpenNext to Cloudflare Workers, then check the car guide and `/admin` in production: cookies,
-  server actions, auth redirects and fetch caching.
-- Set the production URL in Supabase Auth's redirect list (see finish-admin-review).
+- A deploy routine: checks → push `main` → `npm run deploy` → probe production.
+- First run: the "avoid" hotfix (set-report-content-policy 2.0) and the 14 commits not yet on origin.
+- Production checks of `/admin` once the admin account exists (finish-admin-review).
 
-Out of scope: new features. This change is release work only.
+Out of scope: new features, CI deploys.
 
 ## Capabilities
 
@@ -27,6 +24,6 @@ Out of scope: new features. This change is release work only.
 
 ## Impact
 
-- Git: the `feat/car-guide` branch, then a PR to `main`.
-- Cloudflare Workers deployment (existing OpenNext setup from PR #1).
+- Git: `main` and `origin/main`.
+- Cloudflare Workers deployment (OpenNext, `npm run deploy`).
 - No behaviour changes beyond what other changes specify, so `skip_specs: true`.

@@ -21,9 +21,16 @@ What's missing is the coverage summary, splitting the work across runners, and a
 
 ## Decisions
 
-- **Split by registrations.** The top N generations (N decided in add-opencode-report-runner task 4.3, suggested
-  ~150) stay on Sonnet; the rest go to the chosen Go model. Both runs can go in parallel from two terminals because
-  answers are per generation.
+- **No cut-off (Matija, 2026-10-24).** Sonnet writes from the top (`--all`), the Go model from the bottom
+  (`--all --tail`), in parallel, until they meet. Answers are per generation, so they never collide.
+- **Go model: `minimax-m3`**, judged by its check results, not a benchmark. If its share of held-back reports or of
+  unsupported failures is more than twice Sonnet's, stop Go writing and try `kimi-k2.7-code` on 10 tail generations.
+- **Checks before writing.** Every report is checked on Claude, whoever wrote it. When a Claude window is available,
+  clear unchecked reports before writing new Sonnet ones.
+- **Confidence from the check, not the model.** MiniMax rates itself 0.7–0.8, Claude 0.4–0.6. `import.ts` writes
+  `ai_confidence` from the check results (share of supported failures, number of sources) for every runner.
+- **Held back:** one retry on Sonnet (with the preferred-sources prompt); if still weak, the generation has no
+  report and shows specs and recalls only.
 - **Batch routine per window:**
   1. Run `report.ts` until it hits the limit.
   2. Run `verify.ts`.
@@ -33,9 +40,7 @@ What's missing is the coverage summary, splitting the work across runners, and a
 - **SQL files** hold about 20 generations each (~300 KB) so they paste into the SQL editor. `import.ts` remembers
   what it exported (`reports/exported.json`, keyed by check time) and writes only new or re-checked reports, as a
   timestamped batch, so earlier batches are never overwritten.
-- **Engine-level reports** come after generation coverage: the top ~100 engine combinations by registrations, with
-  a separate prompt that focuses on that engine. This needs a small `ReportAnswer` variant and a loader. Plan it in
-  its own change when generation coverage is near done.
+- **Engine-level reports:** dropped from this plan (Matija, 2026-10-24); revisit after launch.
 
 ## Risks / Trade-offs
 

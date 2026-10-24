@@ -21,8 +21,10 @@
 
 ## 3. Full run (repeat per subscription window)
 
-- [ ] 3.1 Sonnet: `report.ts --all` for the top N generations by registrations (N from add-opencode-report-runner
-  4.3)
+- [ ] 3.0 Clear the unchecked backlog with `verify.ts`; compare MiniMax with Sonnet (held-back and unsupported
+  rates, see design "Go model")
+- [ ] 3.0a `import.ts`: derive `confidence` from the check results instead of the model's own number; test it
+- [ ] 3.1 Sonnet: `report.ts --all` from the top, until it meets the Go run
 - [ ] 3.2 OpenCode Go: `report.ts --all --tail --runner opencode --model <chosen>` for the rest (docs/CARINFO-OPENCODE.md)
 - [ ] 3.3 Retry the failures listed in `reports/errors/` (smart-fortwo/c453 and any others)
 - [ ] 3.4 `verify.ts` on all unchecked answers; retry `FAILED` ones
@@ -31,5 +33,5 @@
 
 ## 4. Wrap-up
 
-- [ ] 4.1 Re-run held-back generations once with Opus, or accept them as having no report
-- [ ] 4.2 Propose a separate change for engine-level reports (top ~100 engine combinations)
+- [ ] 4.1 Re-run held-back generations once with Sonnet (preferred-sources prompt); accept the rest as having no report
+- [x] ~~4.2~~ (dropped) Engine-level reports: revisit after launch

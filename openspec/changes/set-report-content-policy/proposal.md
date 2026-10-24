@@ -19,8 +19,7 @@ page.
   - keep or drop the generic ADAC breakdown link;
   - the search engine used for Euro NCAP/TÜV fallback links;
   - logos for the 9 makes that show initials.
-- How to handle runs that disagree on a verdict (7a): accept, run twice and keep only the agreed failures, or use
-  Opus for verdicts.
+- How to handle runs that disagree on a verdict (7a): accepted, no second run.
 
 Out of scope: the review workflow itself (finish-admin-review).
 

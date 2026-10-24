@@ -33,10 +33,13 @@
 
 ## 4. Benchmark and choice
 
-- [ ] 4.1 Run the two allowed Go models on the 5 benchmark generations into `reports/bench/<model>/`, then run `verify.ts` on
+Dropped 2026-10-24 (Matija): no separate benchmark. MiniMax already wrote 48 real reports; it is judged by their check
+results instead (see complete-report-coverage design, "Go model").
+
+- [x] ~~4.1~~ (dropped) Run the two allowed Go models on the 5 benchmark generations into `reports/bench/<model>/`, then run `verify.ts` on
   them
-- [ ] 4.2 Add `scripts/carinfo/bench.ts` and write the comparison table to `data-raw/carinfo/reports/bench.md`
-- [ ] 4.3 (Matija) Pick the Go model and the cut-off: which registration rank and below goes to Go, and what
+- [x] ~~4.2~~ (dropped) Add `scripts/carinfo/bench.ts` and write the comparison table to `data-raw/carinfo/reports/bench.md`
+- [x] 4.3 (Matija) Pick the Go model and the cut-off: `minimax-m3`, no cut-off (see complete-report-coverage design): which registration rank and below goes to Go, and what
   stays on Sonnet
-- [ ] 4.4 Write the choice into `docs/CARINFO-QUESTIONS.md` (questions 7 and 7a) and into complete-report-coverage's
+- [x] 4.4 Write the choice into `docs/CARINFO-QUESTIONS.md` (questions 7 and 7a) and into complete-report-coverage's
   design

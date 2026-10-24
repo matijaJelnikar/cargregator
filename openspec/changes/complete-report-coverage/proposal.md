@@ -13,7 +13,6 @@ written, checked and loaded, the car guide shows a report for one car.
   - the long tail on the Go model chosen in add-opencode-report-runner.
 - Check every new answer with `verify.ts`. Retry failed ones.
 - Import and load in batches, so pages fill up as runs finish rather than at the end.
-- Engine-level reports for the ~100 most-registered engine combinations, once generation coverage is done.
 - A coverage line in the import report: written, checked, imported, held back.
 
 Out of scope: hand review (finish-admin-review) and changes to what the report shows (set-report-content-policy).
