@@ -6,6 +6,7 @@
 
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { OPENCODE_MODELS } from "./llm.ts";
 import { spawn } from "node:child_process";
 import { ReportAnswer, VerifyAnswer } from "../../src/lib/carinfo.ts";
 
@@ -22,13 +23,8 @@ export const BENCH_GENERATIONS = [
   { id: "6d5f7704-9bfb-4bb5-abc1-4c68399e5a40", model_id: "dacia-sandero", slug: "mk3", name: "Sandero III" },
 ];
 
-// Cheap models only: Go has one shared budget, and one Kimi K3 report costs as much as ~10 DeepSeek ones.
-export const BENCH_MODELS = [
-  "opencode-go/deepseek-v4-pro",
-  "opencode-go/minimax-m3",
-  "opencode-go/glm-5.3-flash",
-  "opencode-go/kimi-k2.7-code",
-];
+// The allowed Go models (llm.ts OPENCODE_MODELS); Sonnet's answers in reports/answers are the reference.
+export const BENCH_MODELS = OPENCODE_MODELS;
 
 function modelDir(model: string): string {
   return `${BENCH_DIR}/${model.replace(/\//g, "-")}`;

@@ -6,6 +6,8 @@ context: |
   Constraints an agent cannot infer from the code:
   - Supabase writes (data loads, deletes, migrations, admin rows) need Matija's explicit OK every time. Prepare SQL
     files instead; Matija runs them in the SQL editor or tells the agent to load them through the Supabase MCP.
+  - OpenCode Go: only opencode-go/kimi-k2.7-code and opencode-go/minimax-m3 may be used, and only for writing
+    reports (never for coding). The Go budget is one shared pool and runs out fast.
   - No Anthropic API key and no paid API credits. AI work runs on subscriptions through CLIs (Claude Code `claude -p`,
     OpenCode Go `opencode run`) and must be resumable, because subscription windows run out mid-run.
   - Never use a Supabase service-role key in the app. Admin writes go through the signed-in admin's own token and RLS.

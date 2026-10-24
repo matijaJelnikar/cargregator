@@ -278,6 +278,17 @@ async function runOpencodeOnce(
   });
 }
 
+/**
+ * The only OpenCode Go models Matija allows (the Go budget is shared across models and small). Anything else is
+ * refused before a call is made; change this list only on his say-so.
+ */
+export const OPENCODE_MODELS = ["opencode-go/kimi-k2.7-code", "opencode-go/minimax-m3"] as const;
+
+export function assertOpencodeModel(model: string): void {
+  if (!(OPENCODE_MODELS as readonly string[]).includes(model))
+    throw new Error(`OpenCode model ${model} is not allowed; use one of: ${OPENCODE_MODELS.join(", ")}`);
+}
+
 /** Runs one prompt through `opencode run --format json`, validates the answer, and tries one repair round. */
 export async function askOpencode(
   prompt: string,
@@ -285,6 +296,7 @@ export async function askOpencode(
   schema: z.ZodType,
   options: AskOptions = {},
 ): Promise<AskResult> {
+  assertOpencodeModel(model);
   const schemaText = jsonSchema(schema);
   const fullPrompt = `${prompt.trim()}\n\nAnswer with one JSON object matching this schema:\n${schemaText}`;
 

@@ -10,8 +10,6 @@
 - [ ] 1.3 Confirm `websearch` (with `OPENCODE_ENABLE_EXA=true`) and `webfetch` work headless, and that a shell or
   edit request is denied by the agent config. Status: webfetch works and shell is unavailable (fixtures), but the
   only websearch sample is "Web search cancelled", so it needs one more real call once the Go limit resets
-- [x] 2.5 Tool errors (a page answering 429) no longer count as usage limits; only provider error events do
-- [x] 2.6 Answers save `cost_usd` and `seconds`, which the benchmark table reads
 
 ## 2. Runner wrapper
 
@@ -21,6 +19,10 @@
   Move the Claude code into `askClaude` and add `askOpencode` (spawn, parse events, extract JSON, one repair round)
 - [x] 2.3 Unit tests for JSON extraction and event parsing, using the fixtures from 1.2
 - [x] 2.4 Tighten usage-limit detection with the real Go message; test it
+- [x] 2.5 Tool errors (a page answering 429) no longer count as usage limits; only provider error events do
+- [x] 2.6 Answers save `cost_usd` and `seconds`, which the benchmark table reads
+- [x] 2.7 Allow only `opencode-go/kimi-k2.7-code` and `opencode-go/minimax-m3` (`OPENCODE_MODELS`); refuse others
+  before any call
 
 ## 3. Scripts
 
@@ -31,7 +33,7 @@
 
 ## 4. Benchmark and choice
 
-- [ ] 4.1 Run 2–3 Go models on the 5 benchmark generations into `reports/bench/<model>/`, then run `verify.ts` on
+- [ ] 4.1 Run the two allowed Go models on the 5 benchmark generations into `reports/bench/<model>/`, then run `verify.ts` on
   them
 - [ ] 4.2 Add `scripts/carinfo/bench.ts` and write the comparison table to `data-raw/carinfo/reports/bench.md`
 - [ ] 4.3 (Matija) Pick the Go model and the cut-off: which registration rank and below goes to Go, and what

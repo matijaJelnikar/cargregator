@@ -10,14 +10,15 @@ most-registered generations and for the check pass.
 ## What Changes
 
 - The report and check scripts get a runner choice: `--runner claude` (the default, as today) or
-  `--runner opencode` with `--model opencode-go/<id>`.
+  `--runner opencode` with `--model opencode-go/<id>`. Only `kimi-k2.7-code` and `minimax-m3` are allowed. Go's
+  budget is shared and small, so any other model is refused.
 - The OpenCode runner calls `opencode run --format json` with a dedicated agent that may only search and fetch
   web pages: no shell, no file edits.
 - OpenCode has no JSON-schema flag, so its answer is pulled out of the reply and validated against the same
   `ReportAnswer` schema. One repair round follows if validation fails.
 - Each answer records the runner and model that wrote it, and that ends up in `generated_by`.
 - A comparison mode writes to a separate folder. A test model's answers never overwrite the Sonnet ones.
-- A one-off benchmark runs 2–3 Go models on 5 pilot generations against the Sonnet answers, before a Go model is
+- A one-off benchmark runs the two allowed Go models on 5 pilot generations against the Sonnet answers, before one is
   picked for the long tail.
 
 Out of scope: changing the report schema or the prompt content, and using OpenCode for the skeleton data

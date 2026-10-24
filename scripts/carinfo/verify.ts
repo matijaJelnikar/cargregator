@@ -10,7 +10,7 @@ import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { ReportAnswer, ReportFix, VerifyAnswer } from "../../src/lib/carinfo.ts";
 import { REPORT_DIR, carName } from "./report.ts";
-import { ask, type Runner } from "./llm.ts";
+import { ask, assertOpencodeModel, type Runner } from "./llm.ts";
 
 const ANSWERS = `${REPORT_DIR}/answers`;
 const CHECKED = `${REPORT_DIR}/checked`;
@@ -85,6 +85,7 @@ async function main() {
   const args = process.argv.slice(2);
   const model = option("--model", "sonnet", args);
   const runner = (option("--runner", "claude", args) as Runner);
+  if (runner === "opencode") assertOpencodeModel(model);
   if (runner !== "claude" && runner !== "opencode") throw new Error(`--runner must be claude or opencode, got ${runner}`);
   const outDir = option("--out", "", args);
   const only = args.filter((a) => !a.startsWith("--"));

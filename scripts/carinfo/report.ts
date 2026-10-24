@@ -16,7 +16,7 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import { ReportAnswer } from "../../src/lib/carinfo.ts";
 import { MAKES } from "../../src/data/makes.ts";
 import LINK_MAP from "../../src/data/carLinks.json" with { type: "json" };
-import { ask, type Runner } from "./llm.ts";
+import { ask, assertOpencodeModel, type Runner } from "./llm.ts";
 
 export const REPORT_DIR = "data-raw/carinfo/reports";
 const ANSWERS = `${REPORT_DIR}/answers`;
@@ -161,6 +161,7 @@ async function main() {
   const model = option("--model", "sonnet", args);
   const jobs = Number(option("--jobs", "2", args));
   const runner = (option("--runner", "claude", args) as Runner);
+  if (runner === "opencode") assertOpencodeModel(model);
   if (runner !== "claude" && runner !== "opencode") throw new Error(`--runner must be claude or opencode, got ${runner}`);
   const outDir = option("--out", "", args);
   const all = args.includes("--all");

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { extractJson, isUsageLimitError, parseOpencodeEvents } from "./llm.ts";
+import { assertOpencodeModel, extractJson, isUsageLimitError, parseOpencodeEvents } from "./llm.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const fixture = (name: string) => resolve(__dirname, "fixtures", name);
@@ -81,5 +81,14 @@ describe("parseOpencodeEvents", () => {
     const raw = '{"type":"error","timestamp":1,"sessionID":"ses_x","error":{"type":"provider.no-route","message":"Model unavailable: opencode-go/nonexistent-model"}}';
     const parsed = parseOpencodeEvents(raw);
     expect(parsed.error).toBe("Model unavailable: opencode-go/nonexistent-model");
+  });
+});
+
+describe("assertOpencodeModel", () => {
+  it("allows only Kimi K2.7 Code and MiniMax M3", () => {
+    expect(() => assertOpencodeModel("opencode-go/kimi-k2.7-code")).not.toThrow();
+    expect(() => assertOpencodeModel("opencode-go/minimax-m3")).not.toThrow();
+    for (const m of ["opencode-go/kimi-k3", "opencode-go/glm-5.3", "kimi-k2.7-code", "opencode-go/minimax-m3.1-flash"])
+      expect(() => assertOpencodeModel(m)).toThrow(/not allowed/);
   });
 });

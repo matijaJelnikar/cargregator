@@ -41,8 +41,14 @@ monthly allowance, a weekly window 50%.
   per generation: failures found, sources, verify results (supported/weak/unsupported), verdicts that differ from
   Sonnet, confidence, time and the cost estimate.
   - Generations: Golf VII, Octavia III, Clio IV, Qashqai J11, Sandero III.
-  - Models: 2–3 from Kimi K3/K3.1 Pro, GLM-5.3, Qwen3.8 Max, DeepSeek V4 Pro.
+  - Models: only the allowed ones, `kimi-k2.7-code` and `minimax-m3`.
   - Exclude models that train on request data (the Gemini and Muse "Contributor" models).
+
+- **Allowed models (Matija, 2026-10-24):** only `opencode-go/kimi-k2.7-code` and `opencode-go/minimax-m3`. Go has one
+  shared budget, not one per model: a single coding session plus a few Kimi K3 calls used a full 5-hour window and
+  20% of the month. The list is `OPENCODE_MODELS` in `llm.ts`. The runner and the scripts refuse any other model.
+- **No coding on Go:** building and fixing the scripts is done in Claude Code. The Go budget is kept for writing
+  reports.
 
 ## Risks / Trade-offs
 
