@@ -1,15 +1,16 @@
-// Check pass for written reports: first a plain HTTP check of every cited URL, then a second `claude -p` call
+// Check pass for written reports: first a plain HTTP check of every cited URL, then a second AI runner call
 // (WebFetch only) that reads each failure's sources and says whether they support it. Results go next to the
 // answers; import.ts drops unsupported failures and dead links. Resumable like report.ts.
 //
-//   node scripts/carinfo/verify.ts                 # every answer without a check
-//   node scripts/carinfo/verify.ts <generationId>  # re-check some
+//   node scripts/carinfo/verify.ts                              # every answer without a check, Claude/Sonnet
+//   node scripts/carinfo/verify.ts <generationId>               # re-check some
+//   node scripts/carinfo/verify.ts --runner opencode --model opencode-go/kimi-k3 --out reports/bench/kimi-k3
 
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { ReportAnswer, ReportFix, VerifyAnswer } from "../../src/lib/carinfo.ts";
 import { REPORT_DIR, carName } from "./report.ts";
-import { ask, jsonSchema } from "./run-claude.ts";
+import { ask, type Runner } from "./llm.ts";
 
 const ANSWERS = `${REPORT_DIR}/answers`;
 const CHECKED = `${REPORT_DIR}/checked`;
@@ -73,16 +74,31 @@ ${a.engines.map((e) => `- ${e.name}: ${e.verdict} ${e.score}/10 — ${e.summary.
 `;
 }
 
+function option(name: string, fallback: string, args: string[]): string {
+  const i = args.indexOf(name);
+  if (i === -1) return fallback;
+  const [, value] = args.splice(i, 2);
+  return value;
+}
+
 async function main() {
-  const only = process.argv.slice(2);
-  await mkdir(CHECKED, { recursive: true });
-  const ids = (await readdir(ANSWERS))
+  const args = process.argv.slice(2);
+  const model = option("--model", "sonnet", args);
+  const runner = (option("--runner", "claude", args) as Runner);
+  if (runner !== "claude" && runner !== "opencode") throw new Error(`--runner must be claude or opencode, got ${runner}`);
+  const outDir = option("--out", "", args);
+  const only = args.filter((a) => !a.startsWith("--"));
+
+  const answersDir = outDir || ANSWERS;
+  const checkedDir = outDir ? `${outDir}/checked` : CHECKED;
+
+  await mkdir(checkedDir, { recursive: true });
+  const ids = (await readdir(answersDir))
     .filter((f) => !f.endsWith(".orig.json"))
     .map((f) => f.replace(/\.json$/, ""))
-    .filter((id) => (only.length ? only.includes(id) : !existsSync(`${CHECKED}/${id}.json`)));
-  const schema = jsonSchema(VerifyAnswer);
+    .filter((id) => (only.length ? only.includes(id) : !existsSync(`${checkedDir}/${id}.json`)));
   for (const [n, id] of ids.entries()) {
-    const raw = JSON.parse(await readFile(`${ANSWERS}/${id}.json`, "utf8"));
+    const raw = JSON.parse(await readFile(`${answersDir}/${id}.json`, "utf8"));
     const a = { ...ReportAnswer.parse(raw), model_id: raw.model_id as string };
     const urls = [...a.failures.flatMap((f) => f.sources.map((s) => s.url)), ...a.links.map((l) => l.url), ...(a.ncap ? [a.ncap.url] : [])];
     const status = await urlStatus(urls);
@@ -91,7 +107,7 @@ async function main() {
       let checked: VerifyAnswer | undefined;
       // A check that skips some failures is retried once; failures still missing count as weak.
       for (let attempt = 0; attempt < 2 && (!checked || checked.failures.length < a.failures.length); attempt++) {
-        const res = await ask(verifyPrompt(a, status, raw.name ?? raw.slug), "sonnet", schema, { tools: ["WebFetch"], system: SYSTEM, cwd: REPORT_DIR, timeoutMs: 30 * 60_000 });
+        const res = await ask(verifyPrompt(a, status, raw.name ?? raw.slug), model, VerifyAnswer, { runner, tools: ["WebFetch"], system: SYSTEM, cwd: REPORT_DIR, timeoutMs: 30 * 60_000 });
         const parsed = VerifyAnswer.safeParse(res.structured_output);
         if (res.is_error || !parsed.success) throw new Error(res.is_error ? `CLI error: ${res.result}` : parsed.error!.message);
         checked = parsed.data;
@@ -99,13 +115,13 @@ async function main() {
       const v = checked!;
       for (let i = 0; i < a.failures.length; i++)
         if (!v.failures.some((f) => f.index === i)) v.failures.push({ index: i, check: "weak", note: "not checked" });
-      if (v.errors.length) await fix(id, raw, a, v);
-      await writeFile(`${CHECKED}/${id}.json`, JSON.stringify({ ...v, fixed: v.errors.length > 0, http: Object.fromEntries(status) }, null, 2));
+      if (v.errors.length && !outDir) await fix(id, raw, a, v);
+      await writeFile(`${checkedDir}/${id}.json`, JSON.stringify({ ...v, fixed: v.errors.length > 0, http: Object.fromEntries(status) }, null, 2));
       const c = v.failures.reduce<Record<string, number>>((m, f) => ((m[f.check] = (m[f.check] ?? 0) + 1), m), {});
       console.log(`[${n + 1}/${ids.length}] ${raw.model_id}/${raw.slug} ok ${JSON.stringify(c)}, ${v.bad_urls.length} bad urls, ${v.errors.length} errors fixed (${Math.round((Date.now() - started) / 1000)}s)`);
     } catch (e) {
       console.log(`[${n + 1}/${ids.length}] ${raw.model_id}/${raw.slug} FAILED ${(e as Error).message.slice(0, 300)}`);
-      if (/limit|quota|rate/i.test((e as Error).message)) break;
+      if (/limit|quota|rate|429|insufficient/i.test((e as Error).message)) break;
     }
   }
 }
@@ -121,7 +137,7 @@ ${v.errors.map((e) => `- "${e.claim}" → ${e.fix}`).join("\n")}
 ## Report
 ${JSON.stringify({ summary: a.summary, pros: a.pros, cons: a.cons, engines: a.engines }, null, 1)}
 `;
-  const res = await ask(prompt, "sonnet", jsonSchema(ReportFix), { system: "You edit car reports. Answer with JSON matching the given schema only.", cwd: REPORT_DIR });
+  const res = await ask(prompt, "sonnet", ReportFix, { runner: "claude", system: "You edit car reports. Answer with JSON matching the given schema only.", cwd: REPORT_DIR });
   const parsed = ReportFix.safeParse(res.structured_output);
   if (res.is_error || !parsed.success) throw new Error(`fix: ${res.is_error ? res.result : parsed.error!.message}`);
   // Engine names are keys into carinfo.engines: fixed entries are matched by name (or by position when the list kept
