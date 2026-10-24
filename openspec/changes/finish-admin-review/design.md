@@ -42,6 +42,8 @@ RLS policies for admin writes exist from the first migration. Public pages fetch
 ## Risks / Trade-offs
 
 - **Opening the link in another browser** fails (the verifier cookie is missing). The error says so.
-- **Tag revalidation on OpenNext** may need extra config (a tag cache in KV or D1). Fallback: lower `revalidate` for
-  car pages to 300 s.
+- **Tag revalidation on OpenNext:** `open-next.config.ts` uses the defaults (a dummy incremental cache and tag cache),
+  so production does not cache fetches at all. Edits show at once, but every page view queries Supabase. Adding a
+  Workers cache later (R2 incremental cache plus a D1 or DO tag cache) keeps the tags working. Without the tag
+  cache, tags are ignored.
 - **One admin, no audit trail:** acceptable for now.

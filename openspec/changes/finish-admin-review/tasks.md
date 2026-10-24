@@ -18,9 +18,12 @@
 
 ## 3. Prompt public updates
 
-- [ ] 3.1 Read the Next 16 docs for `revalidateTag` and fetch `tags`; check OpenNext's tag cache on Workers
-- [ ] 3.2 Tag public carinfo fetches per model; call `revalidateTag` from admin actions
-- [ ] 3.3 Fallback if tags don't work on Workers: revalidate car pages every 300 s
+- [x] 3.1 Read the Next 16 docs for `revalidateTag` (two-argument form) and fetch `tags`. OpenNext is on its default
+  config, so production has no incremental or tag cache: every request reads Supabase fresh
+- [x] 3.2 Tag `getGenerations` per model (`carinfo:<model_id>`); report-changing admin actions call
+  `revalidateTag(tag, { expire: 0 })`
+- [ ] 3.3 If a Workers incremental cache is added later (R2/KV), add a tag cache too (D1 or DO), or tags do nothing
+  there
 
 ## 4. Review
 

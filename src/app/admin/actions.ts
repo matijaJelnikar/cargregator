@@ -3,10 +3,11 @@
 // Every action checks the admin itself (actionToken) and writes with the admin's own token, so RLS has the last word.
 // Validation problems come back as ?error=… on the page (thrown messages are hidden in production).
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { actionToken, adminRest, safeNext, sendMagicLink, signOut } from "@/lib/adminAuth";
+import { modelTag } from "@/lib/carinfoDb";
 
 const text = (f: FormData, key: string) => String(f.get(key) ?? "").trim();
 const orNull = (s: string) => s || null;
@@ -15,6 +16,15 @@ const uuid = (s: string) => {
   if (!/^[0-9a-f-]{36}$/.test(s)) throw new Error("bad id");
   return s;
 };
+
+/**
+ * Expires the public model pages that show this generation. expire 0: the next visitor waits for fresh data rather
+ * than seeing the old report once (edits are rare, and "Avoid" corrections should not linger).
+ */
+async function refreshPublic(token: string, gid: string) {
+  const [g] = await adminRest<{ model_id: string }[]>(token, `generations?id=eq.${gid}&select=model_id`);
+  if (g) revalidateTag(modelTag(g.model_id), { expire: 0 });
+}
 
 export async function login(f: FormData) {
   const email = text(f, "email");
@@ -50,6 +60,7 @@ export async function saveGeneration(f: FormData) {
     method: "PATCH",
     body: { summary_sl: orNull(text(f, "summary_sl")), summary_en: orNull(text(f, "summary_en")), pros, cons },
   });
+  await refreshPublic(token, id);
   revalidatePath(`/admin/g/${id}/`);
   redirect(`/admin/g/${id}/?saved=1`);
 }
@@ -70,6 +81,7 @@ export async function setGenerationStatus(f: FormData) {
       await adminRest(token, `${table}?generation_id=eq.${id}&status=eq.ai_checked`, { method: "PATCH", body: { status, reviewed_at: now } });
     await adminRest(token, `checks?generation_id=eq.${id}&status=eq.ai_checked`, { method: "PATCH", body: { status } });
   }
+  await refreshPublic(token, id);
   revalidatePath("/admin/");
   redirect(safeNext(text(f, "next")));
 }
@@ -86,6 +98,7 @@ export async function saveEngine(f: FormData) {
       summary_en: orNull(text(f, "summary_en")),
     },
   });
+  await refreshPublic(token, gid);
   revalidatePath(`/admin/g/${gid}/`);
   redirect(`/admin/g/${gid}/?saved=1#engines`);
 }
@@ -106,6 +119,7 @@ export async function saveFailure(f: FormData) {
       reviewed_at: status === "reviewed" ? new Date().toISOString() : null,
     },
   });
+  await refreshPublic(token, gid);
   revalidatePath(`/admin/g/${gid}/`);
   redirect(`/admin/g/${gid}/?saved=1#failures`);
 }
@@ -119,6 +133,7 @@ export async function saveCheck(f: FormData) {
     method: "PATCH",
     body: { text_sl: text(f, "text_sl"), text_en: text(f, "text_en"), status },
   });
+  await refreshPublic(token, gid);
   revalidatePath(`/admin/g/${gid}/`);
   redirect(`/admin/g/${gid}/?saved=1#checks`);
 }
@@ -127,6 +142,7 @@ export async function deleteLink(f: FormData) {
   const gid = uuid(text(f, "gid"));
   const token = await actionToken();
   await adminRest(token, `links?id=eq.${uuid(text(f, "id"))}`, { method: "DELETE" });
+  await refreshPublic(token, gid);
   revalidatePath(`/admin/g/${gid}/`);
   redirect(`/admin/g/${gid}/?saved=1#links`);
 }

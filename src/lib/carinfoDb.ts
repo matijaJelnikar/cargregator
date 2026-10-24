@@ -104,10 +104,13 @@ export interface CarGeneration {
   links: CarLinkRow[];
 }
 
-async function get<T>(path: string): Promise<T> {
+/** Cache tag of one model's generations; the review site expires it after an edit (app/admin/actions.ts). */
+export const modelTag = (modelId: string) => `carinfo:${modelId}`;
+
+async function get<T>(path: string, tags: string[] = []): Promise<T> {
   const res = await fetch(`${REST}/${path}`, {
     headers: { apikey: PUBLISHABLE_KEY, Authorization: `Bearer ${PUBLISHABLE_KEY}`, "Accept-Profile": "carinfo" },
-    next: { revalidate: REVALIDATE_S },
+    next: { revalidate: REVALIDATE_S, tags },
   });
   if (!res.ok) throw new Error(`carinfo ${path}: ${res.status}`);
   return (await res.json()) as T;
@@ -160,7 +163,9 @@ export async function getGenerations(modelId: string): Promise<CarGeneration[]> 
     "checks(id,text_sl,text_en,sort)",
     "links(id,kind,label,url)",
   ].join(",");
-  const rows = await get<CarGeneration[]>(`generations?model_id=eq.${encodeURIComponent(modelId)}&select=${select}&order=year_from.asc`);
+  const rows = await get<CarGeneration[]>(`generations?model_id=eq.${encodeURIComponent(modelId)}&select=${select}&order=year_from.asc`, [
+    modelTag(modelId),
+  ]);
   const byPower = (a: CarEngine, b: CarEngine) => a.fuel.localeCompare(b.fuel) || (a.kw ?? 0) - (b.kw ?? 0);
   return rows.map((g) => ({
     ...g,
