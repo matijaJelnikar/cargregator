@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agents": {
+    "carinfo-report": {
+      "mode": "primary",
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "webfetch", "resource": "*", "effect": "allow" },
+        { "action": "websearch", "resource": "*", "effect": "allow" }
+      ]
+    }
+  }
+}

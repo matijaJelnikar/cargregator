@@ -2,6 +2,7 @@
 // already corrected the prose it found wrong). A report whose sources mostly failed is held back (listed in
 // import-report.md) unless --force. Imported content gets
 // status ai_checked, which is what makes it public. Rerunning replaces a generation's failures, checks and links.
+// Each answer records the runner/model that wrote it; import.ts writes that as `generated_by`.
 // Each generation is one carinfo.load_report call, small enough to run through the Supabase MCP.
 //
 //   node scripts/carinfo/import.ts [--force]   # → data-raw/carinfo/sql/reports-NNN.sql + reports/import-report.md
@@ -59,7 +60,10 @@ async function main() {
       report.push(`| ${label} | HELD | | | ${unsupported}/${a.failures.length} failures unsupported |`);
       continue;
     }
-    const g = generationSql(id, a, v, `claude-${raw.model ?? "sonnet"} report`, raw.model_id);
+    const runner = (raw.runner as string | undefined) ?? "claude";
+    const model = (raw.model as string | undefined) ?? "sonnet";
+    const generatedBy = `${runner}/${model}`;
+    const g = generationSql(id, a, v, `${generatedBy} report`, raw.model_id);
     report.push(`| ${label} | imported | ${g.kept}/${g.dropped} | ${g.links}/${g.droppedLinks} | ${checked.fixed ? `${v.errors.length} errors fixed` : ""} |`);
     const stmt = `-- ${label}\n${g.sql}\n\n`;
     if (chunk.length + stmt.length > MAX_CHUNK && chunk) {

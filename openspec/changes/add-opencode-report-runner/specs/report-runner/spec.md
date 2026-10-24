@@ -16,8 +16,20 @@ behave exactly as before (Claude Code, Sonnet).
 - **THEN** each generation is answered by `claude -p` with the Sonnet model, as before this change
 
 #### Scenario: OpenCode Go run
-- **WHEN** `report.ts --runner opencode --model opencode-go/kimi-k3 skoda-fabia` is started
+- **WHEN** `report.ts --runner opencode --model opencode-go/minimax-m3 skoda-fabia` is started
 - **THEN** each generation of the Fabia is answered by `opencode run` with that model
+
+### Requirement: Allowed OpenCode models
+The OpenCode runner SHALL accept only `opencode-go/kimi-k2.7-code` and `opencode-go/minimax-m3`, and SHALL refuse
+any other model before making a call. The list changes only when Matija says so.
+
+#### Scenario: Allowed model
+- **WHEN** a run is started with `--runner opencode --model opencode-go/kimi-k2.7-code`
+- **THEN** it proceeds
+
+#### Scenario: Other Go model
+- **WHEN** a run is started with `--runner opencode --model opencode-go/kimi-k3`
+- **THEN** it exits with an error naming the allowed models and no OpenCode call is made
 
 ### Requirement: Web-only tools
 A report call SHALL be able to search and fetch web pages, and SHALL NOT be able to run shell commands, edit files
@@ -52,8 +64,8 @@ Every saved answer SHALL record the runner and model that wrote it, and imported
 `generated_by`.
 
 #### Scenario: Imported Go report
-- **WHEN** a report written by `opencode-go/glm-5.3` is imported
-- **THEN** the generation's `generated_by` is `opencode/opencode-go/glm-5.3`
+- **WHEN** a report written by `opencode-go/minimax-m3` is imported
+- **THEN** the generation's `generated_by` is `opencode/opencode-go/minimax-m3`
 
 ### Requirement: Comparison runs do not overwrite
 A run with an output folder override SHALL write answers only there and SHALL NOT skip, change or delete answers in

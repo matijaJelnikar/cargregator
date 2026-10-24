@@ -65,7 +65,7 @@ Nothing is pushed; the branch is `feat/car-guide`.
 
 ## 5. Photos (you, then Claude)
 
-1. Create the Cloudflare R2 bucket `cargregator-img` and connect a custom domain (suggested `img.jelnikar.dev`).
+1. Create the Cloudflare R2 bucket `cargregator` and connect a custom domain (suggested `cars-img.jelnikar.dev`).
 2. `! npx wrangler login`
 3. Claude runs `node scripts/carinfo/images.ts upload`, then `IMG_BASE=https://<domain> node scripts/carinfo/images.ts sql`.
 4. Load that SQL (you). Photos never go in the repo or in Supabase.

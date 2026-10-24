@@ -1,21 +1,22 @@
-// Written reports, one per generation: `claude -p` researches the generation with WebSearch/WebFetch on the Claude
-// subscription and answers ReportAnswer (summary, pros/cons, engine verdicts, known failures with sources, checklist,
-// exact outside links, Euro NCAP rating). Generations that already have an answer are skipped, so a run cut short by
-// subscription limits resumes when started again. Nothing is written to Supabase here: verify.ts checks the answers
-// and import.ts turns checked answers into SQL.
+// Written reports, one per generation: an AI runner (Claude Code or OpenCode Go) researches the generation with
+// web search/fetch and answers ReportAnswer (summary, pros/cons, engine verdicts, known failures with sources,
+// checklist, exact outside links, Euro NCAP rating). Generations that already have an answer are skipped, so a run cut
+// short by subscription limits resumes when started again. Nothing is written to Supabase here: verify.ts checks the
+// answers and import.ts turns checked answers into SQL.
 //
-//   node scripts/carinfo/report.ts volkswagen-golf/mk7            # one generation
-//   node scripts/carinfo/report.ts volkswagen-golf dacia-duster    # every generation of these models
-//   node scripts/carinfo/report.ts --pilot                         # the pilot models (PILOT below)
-//   node scripts/carinfo/report.ts --all                           # every generation, most registered first
-//   node scripts/carinfo/report.ts --model opus --jobs 2 ...       # model alias (default sonnet), parallel calls
+//   node scripts/carinfo/report.ts volkswagen-golf/mk7                  # one generation, default Claude/Sonnet
+//   node scripts/carinfo/report.ts volkswagen-golf dacia-duster         # every generation of these models
+//   node scripts/carinfo/report.ts --pilot                              # the pilot models (PILOT below)
+//   node scripts/carinfo/report.ts --all                                # every generation, most registered first
+//   node scripts/carinfo/report.ts --model opus --jobs 2 ...            # model alias (default sonnet), parallel calls
+//   node scripts/carinfo/report.ts --runner opencode --model opencode-go/kimi-k3 skoda-fabia
 
 import { existsSync } from "node:fs";
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import { ReportAnswer } from "../../src/lib/carinfo.ts";
 import { MAKES } from "../../src/data/makes.ts";
 import LINK_MAP from "../../src/data/carLinks.json" with { type: "json" };
-import { ask, jsonSchema } from "./run-claude.ts";
+import { ask, assertOpencodeModel, type Runner } from "./llm.ts";
 
 export const REPORT_DIR = "data-raw/carinfo/reports";
 const ANSWERS = `${REPORT_DIR}/answers`;
@@ -159,6 +160,10 @@ async function main() {
   const args = process.argv.slice(2);
   const model = option("--model", "sonnet", args);
   const jobs = Number(option("--jobs", "2", args));
+  const runner = (option("--runner", "claude", args) as Runner);
+  if (runner === "opencode") assertOpencodeModel(model);
+  if (runner !== "claude" && runner !== "opencode") throw new Error(`--runner must be claude or opencode, got ${runner}`);
+  const outDir = option("--out", "", args);
   const all = args.includes("--all");
   const pilot = args.includes("--pilot");
   const targets = args.filter((a) => !a.startsWith("--"));
@@ -167,17 +172,20 @@ async function main() {
   const wanted = (g: DbGen) => all || pilot || targets.includes(g.model_id) || targets.includes(`${g.model_id}/${g.slug}`);
   const explicit = (g: DbGen) => targets.includes(`${g.model_id}/${g.slug}`);
 
-  await mkdir(ANSWERS, { recursive: true });
-  await mkdir(ERRORS, { recursive: true });
-  await mkdir(PROMPTS, { recursive: true });
+  const answersDir = outDir || ANSWERS;
+  const errorsDir = outDir ? `${outDir}/errors` : ERRORS;
+  const promptsDir = outDir ? `${outDir}/prompts` : PROMPTS;
+
+  await mkdir(answersDir, { recursive: true });
+  await mkdir(errorsDir, { recursive: true });
+  await mkdir(promptsDir, { recursive: true });
   // Newest generations first: they are what most buyers look at. A full run goes by registrations instead, so the
   // generations most people drive are covered before the subscription runs out.
   const queue = (await loadGenerations(all ? [] : modelIds))
     .filter(wanted)
-    .filter((g) => explicit(g) || !existsSync(`${ANSWERS}/${g.id}.json`))
+    .filter((g) => explicit(g) || !existsSync(`${answersDir}/${g.id}.json`))
     .sort((a, b) => (all ? b.registrations - a.registrations : b.year_from - a.year_from));
   const total = queue.length;
-  const schema = jsonSchema(ReportAnswer);
   let done = 0;
   const failed: string[] = [];
 
@@ -186,17 +194,17 @@ async function main() {
       const label = `${gen.model_id}/${gen.slug}`;
       const started = Date.now();
       const prompt = reportPrompt(gen);
-      await writeFile(`${PROMPTS}/${gen.id}.md`, prompt);
+      await writeFile(`${promptsDir}/${gen.id}.md`, prompt);
       let why: string | undefined;
       let cost = 0;
       try {
-        const res = await ask(prompt, model, schema, { tools: TOOLS, system: SYSTEM, cwd: REPORT_DIR, timeoutMs: TIMEOUT_MS });
+        const res = await ask(prompt, model, ReportAnswer, { runner, tools: TOOLS, system: SYSTEM, cwd: REPORT_DIR, timeoutMs: TIMEOUT_MS });
         cost = res.total_cost_usd ?? 0;
         const parsed = ReportAnswer.safeParse(res.structured_output);
         if (res.is_error || !parsed.success) why = res.is_error ? `CLI error: ${res.result}` : parsed.error!.message;
         else {
-          await writeFile(`${ANSWERS}/${gen.id}.json`, JSON.stringify({ model_id: gen.model_id, slug: gen.slug, name: gen.name, model, ...parsed.data }, null, 2));
-          await rm(`${ERRORS}/${gen.id}.txt`, { force: true });
+          await writeFile(`${answersDir}/${gen.id}.json`, JSON.stringify({ model_id: gen.model_id, slug: gen.slug, name: gen.name, runner, model, cost_usd: cost, seconds: Math.round((Date.now() - started) / 1000), ...parsed.data }, null, 2));
+          await rm(`${errorsDir}/${gen.id}.txt`, { force: true });
         }
       } catch (e) {
         why = (e as Error).message;
@@ -204,12 +212,12 @@ async function main() {
       done++;
       if (why) {
         failed.push(label);
-        await writeFile(`${ERRORS}/${gen.id}.txt`, `${label}\n${why}`);
+        await writeFile(`${errorsDir}/${gen.id}.txt`, `${label}\n${why}`);
       }
       const secs = Math.round((Date.now() - started) / 1000);
       console.log(`[${done}/${total}] ${label} ${why ? `FAILED ${why.slice(0, 200)}` : "ok"} (${secs}s, ~$${cost.toFixed(2)} equiv)`);
       // A usage-limit answer means every further call fails too: stop and let the user rerun later.
-      if (why && /limit|quota|rate/i.test(why)) {
+      if (why && /limit|quota|rate|429|insufficient/i.test(why)) {
         queue.length = 0;
         console.log("Stopping: subscription limit reached. Rerun the same command later to resume.");
       }

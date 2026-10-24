@@ -7,74 +7,27 @@
 //   node scripts/carinfo/run-claude.ts volkswagen-golf dacia-duster # some models (re-answers them)
 //   node scripts/carinfo/run-claude.ts --model opus --jobs 2        # model alias (default sonnet), parallel calls
 
-import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
-import { z } from "zod";
 import { SkeletonAnswer } from "../../src/lib/carinfo.ts";
 import { SKELETON_DIR } from "./skeleton-prompt.ts";
+import { askClaude, jsonSchema } from "./llm.ts";
 
 const PROMPTS = `${SKELETON_DIR}/prompts`;
 const ANSWERS = `${SKELETON_DIR}/answers`;
 const ERRORS = `${SKELETON_DIR}/errors`;
 const TIMEOUT_MS = 15 * 60_000;
 const SYSTEM = "You are a careful automotive data analyst. Answer with JSON matching the given schema only.";
-// The CLI's validator doesn't know the draft 2020-12 meta-schema that zod names in "$schema".
-export function jsonSchema(schema: z.ZodType): string {
-  const { $schema: _, ...rest } = z.toJSONSchema(schema) as Record<string, unknown>;
-  return JSON.stringify(rest);
-}
 const SCHEMA = jsonSchema(SkeletonAnswer);
+
+// Re-export for callers that only need the Claude helper.
+export { askClaude as ask, jsonSchema };
 
 function option(name: string, fallback: string, args: string[]): string {
   const i = args.indexOf(name);
   if (i === -1) return fallback;
   const [, value] = args.splice(i, 2);
   return value;
-}
-
-/**
- * Runs one prompt; resolves with the CLI's JSON result or rejects with what went wrong. `tools` (e.g. WebSearch,
- * WebFetch) are enabled and pre-approved; by default the call has none.
- */
-export function ask(
-  prompt: string,
-  model: string,
-  schema = SCHEMA,
-  { tools = [], system = SYSTEM, cwd = SKELETON_DIR, timeoutMs = TIMEOUT_MS }: { tools?: string[]; system?: string; cwd?: string; timeoutMs?: number } = {},
-): Promise<{ structured_output?: unknown; is_error?: boolean; result?: string; total_cost_usd?: number; num_turns?: number }> {
-  return new Promise((resolve, reject) => {
-    const child = spawn(
-      "claude",
-      [
-        "-p",
-        "--model", model,
-        "--output-format", "json",
-        "--json-schema", schema,
-        "--system-prompt", system,
-        "--tools", tools.join(","),
-        ...(tools.length ? ["--allowedTools", ...tools] : []),
-        "--strict-mcp-config",
-        "--setting-sources", "",
-        "--no-session-persistence",
-      ],
-      { stdio: ["pipe", "pipe", "pipe"], cwd },
-    );
-    let out = "";
-    let err = "";
-    const timer = setTimeout(() => child.kill(), timeoutMs);
-    child.stdout.on("data", (d) => (out += d));
-    child.stderr.on("data", (d) => (err += d));
-    child.on("close", (code) => {
-      clearTimeout(timer);
-      try {
-        resolve(JSON.parse(out));
-      } catch {
-        reject(new Error(`exit ${code}: ${(err || out).slice(0, 2000)}`));
-      }
-    });
-    child.stdin.end(prompt);
-  });
 }
 
 async function main() {
@@ -96,7 +49,7 @@ async function main() {
       const started = Date.now();
       let why: string | undefined;
       try {
-        const res = await ask(await readFile(`${PROMPTS}/${id}.md`, "utf8"), model);
+        const res = await askClaude(await readFile(`${PROMPTS}/${id}.md`, "utf8"), model, SCHEMA, { cwd: SKELETON_DIR, timeoutMs: TIMEOUT_MS });
         const parsed = SkeletonAnswer.safeParse(res.structured_output);
         if (res.is_error || !parsed.success) why = res.is_error ? `CLI error: ${res.result}` : parsed.error!.message;
         else {
