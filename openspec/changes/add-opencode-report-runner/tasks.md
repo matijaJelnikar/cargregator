@@ -2,7 +2,7 @@
 
 ## 1. OpenCode setup
 
-- [ ] 1.1 (Matija) Install the `opencode` CLI, subscribe to OpenCode Go, run `/connect` → OpenCode Go, and set
+- [x] 1.1 (Matija) Install the `opencode` CLI, subscribe to OpenCode Go, run `/connect` → OpenCode Go, and set
   workspace privacy so no model trains on requests
 - [x] 1.2 Run one `opencode run --format json -m opencode-go/<model>` call by hand. Save a sample of its events
   (the success event, the error event, a usage-limit message if one can be triggered) in

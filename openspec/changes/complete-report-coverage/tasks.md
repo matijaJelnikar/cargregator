@@ -2,10 +2,10 @@
 
 ## 1. Pilot load
 
-- [ ] 1.1 (Matija) `node scripts/carinfo/import.ts` and read `data-raw/carinfo/reports/import-report.md`
-- [ ] 1.2 (Matija) Load `data-raw/carinfo/sql/reports-*.sql` in the SQL editor, or OK an MCP load
+- [x] 1.1 (Matija) `node scripts/carinfo/import.ts` and read `data-raw/carinfo/reports/import-report.md`
+- [x] 1.2 (Matija) Load `data-raw/carinfo/sql/reports-*.sql` in the SQL editor, or OK an MCP load
   (**Supabase write**)
-- [ ] 1.3 Check row counts per status via MCP (read only); clear `.next/dev/cache/fetch-cache`; spot-check Golf,
+- [x] 1.3 Check row counts per status via MCP (read only); clear `.next/dev/cache/fetch-cache`; spot-check Golf,
   Octavia and Duster pages
 
 ## 2. Import tooling
