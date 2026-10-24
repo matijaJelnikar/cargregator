@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ReportAnswer, type VerifyAnswer } from "../../src/lib/carinfo";
-import { batchStamp, coverageLine, generationSql, isHeld, needsExport, spaceNumbers } from "./import";
+import { batchStamp, checkConfidence, coverageLine, generationSql, isHeld, needsExport, spaceNumbers } from "./import";
 
 const t = (en: string) => ({ sl: `${en} (sl)`, en });
 const failure = (title: string, url: string) => ({
@@ -95,5 +95,25 @@ describe("spaceNumbers", () => {
   });
   it("leaves names and units alone", () => {
     expect(spaceNumbers("Mazda5, Euro6, Hybrid4, AutoScout24, 1.4 TSI, 2KD-FTV")).toBe("Mazda5, Euro6, Hybrid4, AutoScout24, 1.4 TSI, 2KD-FTV");
+  });
+});
+
+describe("checkConfidence", () => {
+  const check = (...c: VerifyAnswer["failures"][number]["check"][]) => c.map((check, index) => ({ index, check, note: "" }));
+  const sites = (n: number) => Array.from({ length: n }, (_, i) => `https://www.site${i}.example/page`);
+
+  it("is high only when failures are supported by several sites", () => {
+    expect(checkConfidence({ failures: check("supported", "supported"), errors: [] }, 2, sites(4))).toBe(1);
+    expect(checkConfidence({ failures: check("supported", "supported"), errors: [] }, 2, sites(2))).toBe(0.85);
+  });
+
+  it("counts weak as half, unsupported and skipped as nothing and weak", () => {
+    expect(checkConfidence({ failures: check("weak", "unsupported"), errors: [] }, 2, sites(4))).toBe(0.48);
+    expect(checkConfidence({ failures: check("supported"), errors: [] }, 2, sites(4))).toBe(0.83);
+  });
+
+  it("subtracts fixed prose errors and counts one site once", () => {
+    const errors = [{ claim: "a", fix: "b" }, { claim: "c", fix: "d" }];
+    expect(checkConfidence({ failures: check("supported"), errors }, 1, ["https://a.example/1", "https://www.a.example/2"])).toBe(0.68);
   });
 });

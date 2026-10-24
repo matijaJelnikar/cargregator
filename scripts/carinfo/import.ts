@@ -42,6 +42,21 @@ function cleanText<T>(x: T): T {
   return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, cleanText(v)])) as T;
 }
 
+const CHECK_SCORE = { supported: 1, weak: 0.5, unsupported: 0 } as const;
+
+/** Confidence from the check pass, the same for every runner (models rate themselves very differently: MiniMax
+ * 0.7–0.8, Claude 0.4–0.6). 70% how well the checker found the failures supported, 30% how many different sites
+ * the published failures cite (4 or more counts as full), minus 0.05 per prose error the checker had to fix. */
+export function checkConfidence(v: Pick<VerifyAnswer, "failures" | "errors">, failures: number, sources: string[]) {
+  // A failure the checker skipped counts as weak, as in verify.ts.
+  let sum = 0;
+  for (let i = 0; i < failures; i++) sum += CHECK_SCORE[v.failures.find((f) => f.index === i)?.check ?? "weak"];
+  const checkScore = failures ? sum / failures : 0.5;
+  const sites = new Set(sources.map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } })).size;
+  const score = 0.7 * checkScore + 0.3 * Math.min(1, sites / 4) - Math.min(0.2, 0.05 * v.errors.length);
+  return Math.round(Math.max(0, Math.min(1, score)) * 100) / 100;
+}
+
 export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { http?: Record<string, number> }, generatedBy: string, modelId = "") {
   // The model pages we already link to for every generation (src/lib/carLinks.ts) are not repeated.
   const known = (LINK_MAP as Record<string, { am?: string; adac?: string }>)[modelId] ?? {};
@@ -55,7 +70,8 @@ export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { h
     .filter((f) => f.sources.length > 0);
   const links = a.links.filter((l) => ok(l.url));
   const ncap = a.ncap && ok(a.ncap.url) ? a.ncap : null;
-  const payload = cleanText({ summary: a.summary, pros: a.pros, cons: a.cons, confidence: a.confidence, ncap, engines: a.engines, failures, checks: a.checks, links });
+  const confidence = checkConfidence(v, a.failures.length, failures.flatMap((f) => f.sources.map((s) => s.url)));
+  const payload = cleanText({ summary: a.summary, pros: a.pros, cons: a.cons, confidence, ncap, engines: a.engines, failures, checks: a.checks, links });
   // carinfo.load_report (migration 20261022000400) writes everything for the generation in one call.
   const sql = `select * from carinfo.load_report(${q(id)}::uuid, ${q(JSON.stringify(payload))}::jsonb, ${q(generatedBy)});`;
   return { sql, kept: failures.length, dropped: a.failures.length - failures.length, links: links.length, droppedLinks: a.links.length - links.length };

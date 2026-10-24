@@ -23,7 +23,7 @@
 
 - [ ] 3.0 Clear the unchecked backlog with `verify.ts`; compare MiniMax with Sonnet (held-back and unsupported
   rates, see design "Go model")
-- [ ] 3.0a `import.ts`: derive `confidence` from the check results instead of the model's own number; test it
+- [x] 3.0a `import.ts`: derive `confidence` from the check results instead of the model's own number; test it
 - [ ] 3.1 Sonnet: `report.ts --all` from the top, until it meets the Go run
 - [ ] 3.2 OpenCode Go: `report.ts --all --tail --runner opencode --model <chosen>` for the rest (docs/CARINFO-OPENCODE.md)
 - [ ] 3.3 Retry the failures listed in `reports/errors/` (smart-fortwo/c453 and any others)

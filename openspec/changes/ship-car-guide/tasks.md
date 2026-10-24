@@ -12,7 +12,7 @@
 3. (Matija, or with his OK) `npm run deploy`
 4. Probe production: `/sl/avti/`, a model with a report, an engine page, `/sitemap.xml`
 
-- [ ] 2.1 First run: the "avoid" hotfix plus the commits not yet on origin
+- [x] 2.1 First run: the "avoid" hotfix plus the commits not yet on origin
 
 ## 3. Production checks
 

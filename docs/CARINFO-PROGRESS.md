@@ -1,6 +1,6 @@
 # Car reports: progress
 
-Generated 2026-10-24 17:29 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
+Generated 2026-10-24 17:58 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
 
 **To continue:** rerun the same commands; each skips finished work.
 1. `node scripts/carinfo/report.ts --all` writes reports, most registered first. Claude by default, or
@@ -17,8 +17,8 @@ Loading the SQL into Supabase is Matija's step. "exported" means the SQL was wri
 |---|---|
 | exported to SQL (handed to Matija to load) | 77 |
 | held back (sources too weak, not exported) | 2 |
-| checked, waiting for import.ts | 0 |
-| written, waiting for verify.ts | 168 |
+| checked, waiting for import.ts | 1 |
+| written, waiting for verify.ts | 167 |
 | failed (see reports/errors/, rerun) | 6 |
 | not started | 565 |
 | **total** | **818** |
@@ -188,7 +188,6 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 | 156 | Peugeot 508 I (`peugeot-508/mk1`) | 291,767 | claude/sonnet |
 | 158 | Hyundai i10 III (`hyundai-i10/mk3`) | 289,245 | claude/sonnet |
 | 159 | Citroën C4 III (`citroen-c4/mk3`) | 288,751 | claude/sonnet |
-| 160 | Hyundai i20 III (`hyundai-i20/mk3`) | 288,651 | claude/sonnet |
 | 161 | Mercedes-Benz E-Class (W212) (`mercedes-benz-e-class/w212`) | 287,826 | claude/sonnet |
 | 162 | Nissan Juke II (F16) (`nissan-juke/f16`) | 287,611 | claude/sonnet |
 | 163 | Citroën C4 Cactus (`citroen-c4/cactus`) | 286,579 | claude/sonnet |
@@ -253,7 +252,9 @@ Written by: claude/sonnet 199, opencode/opencode-go/minimax-m3 48.
 
 ## Checked, not exported
 
-_none_
+| rank | generation | registrations | written by |
+|---|---|---|---|
+| 160 | Hyundai i20 III (`hyundai-i20/mk3`) | 288,651 | claude/sonnet |
 
 ## Exported
 
