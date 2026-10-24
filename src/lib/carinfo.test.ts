@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CARINFO_FUELS, SkeletonAnswer, engineSlug } from "./carinfo";
-import type { CarEngine, CarFailure, CarGeneration, CarRecall } from "./carinfoDb";
+import { publicVerdict, type CarEngine, type CarFailure, type CarGeneration, type CarRecall } from "./carinfoDb";
 import { carLinks } from "./carLinks";
 import { engineFor, generationFor, generationsInRange, recallsFor, recallsInYears, risksFor } from "./carinfoMatch";
 import { FUELS, type Fuel } from "./filters";
@@ -140,5 +140,14 @@ describe("risks for one car", () => {
 
   it("without a known engine shows only generation-wide failures", () => {
     expect(risksFor(gen, {}).map((f) => f.id)).toEqual(["dsg", "lights"]);
+  });
+});
+
+describe("public verdict", () => {
+  it("shows an unreviewed avoid as known issues, a reviewed one as avoid", () => {
+    expect(publicVerdict("avoid", "ai_checked")).toBe("issues");
+    expect(publicVerdict("avoid", "reviewed")).toBe("avoid");
+    expect(publicVerdict("ok", "ai_checked")).toBe("ok");
+    expect(publicVerdict(null, "ai_checked")).toBeNull();
   });
 });

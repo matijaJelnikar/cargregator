@@ -249,7 +249,7 @@
     "photoCredit": "Photo: {author}, {license}",
     "noPhoto": "No photo yet",
     "likelyProblems": "{n} common problems",
-    "verdict": {"recommended": "Recommended", "ok": "OK", "avoid": "Avoid"},
+    "verdict": {"recommended": "Recommended", "ok": "OK", "avoid": "Avoid", "issues": "Known issues"},
     "likelihood": {"low": "Rare", "med": "Common", "high": "Very common"},
     "area": {"engine": "Engine", "gearbox": "Gearbox", "electrics": "Electrics", "suspension": "Suspension and brakes", "body": "Body and interior", "emissions": "Emissions"},
     "failuresTitle": "Known problems",

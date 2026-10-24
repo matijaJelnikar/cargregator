@@ -249,7 +249,7 @@
     "photoCredit": "Foto: {author}, {license}",
     "noPhoto": "Fotografije še ni",
     "likelyProblems": "Pogoste težave: {n}",
-    "verdict": {"recommended": "Priporočamo", "ok": "V redu", "avoid": "Izogibajte se"},
+    "verdict": {"recommended": "Priporočamo", "ok": "V redu", "avoid": "Izogibajte se", "issues": "Znane težave"},
     "likelihood": {"low": "Redko", "med": "Pogosto", "high": "Zelo pogosto"},
     "area": {"engine": "Motor", "gearbox": "Menjalnik", "electrics": "Elektrika", "suspension": "Podvozje in zavore", "body": "Karoserija in notranjost", "emissions": "Izpušni sistem"},
     "failuresTitle": "Znane težave",

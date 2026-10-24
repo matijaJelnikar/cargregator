@@ -20,7 +20,8 @@ export interface CarEngine {
   year_from: number | null;
   year_to: number | null;
   registrations: number;
-  verdict: "recommended" | "ok" | "avoid" | null;
+  /** "issues" is shown in place of an "avoid" that no human has reviewed yet (see publicVerdict). */
+  verdict: "recommended" | "ok" | "avoid" | "issues" | null;
   score: number | null;
   annual_cost_min: number | null;
   annual_cost_max: number | null;
@@ -152,6 +153,10 @@ export const failureWeight = (f: Pick<CarFailure, "likelihood" | "cost_max">) =>
 /** A report's text in the page language, falling back to English. */
 export const pick = (lang: "sl" | "en", sl: string | null | undefined, en: string | null | undefined) => (lang === "sl" ? sl || en : en || sl) ?? "";
 
+/** "Avoid" is the most damaging claim a report makes, so until a human reviews the generation it reads "known issues". */
+export const publicVerdict = (verdict: CarEngine["verdict"], status: CarGeneration["status"]): CarEngine["verdict"] =>
+  verdict === "avoid" && status !== "reviewed" ? "issues" : verdict;
+
 /** Generations of one model with their engines and recalls, oldest first. */
 export async function getGenerations(modelId: string): Promise<CarGeneration[]> {
   const select = [
@@ -169,7 +174,7 @@ export async function getGenerations(modelId: string): Promise<CarGeneration[]> 
   const byPower = (a: CarEngine, b: CarEngine) => a.fuel.localeCompare(b.fuel) || (a.kw ?? 0) - (b.kw ?? 0);
   return rows.map((g) => ({
     ...g,
-    engines: [...g.engines].sort(byPower),
+    engines: g.engines.map((e) => ({ ...e, verdict: publicVerdict(e.verdict, g.status) })).sort(byPower),
     recalls: [...g.recalls].sort((a, b) => (b.year_to ?? 0) - (a.year_to ?? 0)),
     failures: [...g.failures].sort((a, b) => failureWeight(b) - failureWeight(a)),
     checks: [...g.checks].sort((a, b) => a.sort - b.sort),

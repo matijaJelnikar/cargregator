@@ -4,7 +4,7 @@ import { Pill, type Tone } from "@/components/ui";
 import { pick, type CarEngine, type CarFailure, type CarGeneration } from "@/lib/carinfoDb";
 import { formatEur, t, type Dict, type Locale } from "@/lib/i18n";
 
-const VERDICT_TONE: Record<NonNullable<CarEngine["verdict"]>, Tone> = { recommended: "success", ok: "neutral", avoid: "danger" };
+const VERDICT_TONE: Record<NonNullable<CarEngine["verdict"]>, Tone> = { recommended: "success", ok: "neutral", avoid: "danger", issues: "warning" };
 const LIKELIHOOD_TONE: Record<CarFailure["likelihood"], Tone> = { low: "neutral", med: "warning", high: "danger" };
 
 export const hasReport = (gen: Pick<CarGeneration, "status">) => gen.status === "ai_checked" || gen.status === "reviewed";
