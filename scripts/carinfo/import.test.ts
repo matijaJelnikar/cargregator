@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ReportAnswer, type VerifyAnswer } from "../../src/lib/carinfo";
-import { generationSql } from "./import";
+import { batchStamp, coverageLine, generationSql, isHeld, needsExport } from "./import";
 
 const t = (en: string) => ({ sl: `${en} (sl)`, en });
 const failure = (title: string, url: string) => ({
@@ -62,5 +62,29 @@ describe("importing a checked report", () => {
   it("escapes quotes for the SQL literal", () => {
     expect(g.sql).toContain("O''Brien");
     expect(g.sql.startsWith("select * from carinfo.load_report(")).toBe(true);
+  });
+});
+
+describe("choosing what to export", () => {
+  it("holds back a report when more than half its failures are unsupported", () => {
+    expect(isHeld(4, 6)).toBe(true);
+    expect(isHeld(3, 6)).toBe(false);
+    expect(isHeld(0, 0)).toBe(false);
+  });
+
+  it("exports reports never exported or checked again since", () => {
+    expect(needsExport(1000, undefined)).toBe(true);
+    expect(needsExport(2000, 1000)).toBe(true);
+    expect(needsExport(1000, 1000)).toBe(false);
+  });
+
+  it("states coverage against all generations", () => {
+    const line = coverageLine({ total: 818, written: 300, checked: 250, exported: 40, held: 2, previously: 208 });
+    expect(line).toContain("300 of 818 generations written, 250 checked");
+    expect(line).toContain("exported 40 and held back 2");
+  });
+
+  it("names batches so they sort by time", () => {
+    expect(batchStamp(new Date("2026-10-24T14:31:59Z"))).toBe("20261024-1431");
   });
 });

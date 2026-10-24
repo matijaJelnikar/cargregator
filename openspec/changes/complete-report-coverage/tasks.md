@@ -10,10 +10,11 @@
 
 ## 2. Import tooling
 
-- [ ] 2.1 `import.ts`: coverage summary (written / checked / imported / held back / total) at the top of
-  import-report.md
-- [ ] 2.2 `import.ts`: `--since <date>` and about 20 generations per SQL file
-- [ ] 2.3 Tests for the coverage counts and for skipping unchecked answers
+- [x] 2.1 `import.ts`: coverage summary (written / checked / exported / held back / total) at the top of
+  import-report.md; unchecked answers listed as "not checked"
+- [x] 2.2 `import.ts`: only reports checked since the last export (`reports/exported.json`; `--all` for every one),
+  written as a timestamped batch `reports-<stamp>-NNN.sql` of ~300 KB (~20 generations) per file
+- [x] 2.3 Tests for the coverage counts and for skipping unchecked answers
 
 ## 3. Full run (repeat per subscription window)
 
@@ -22,7 +23,7 @@
 - [ ] 3.2 OpenCode Go: `report.ts --all --runner opencode --model <chosen>` for the rest
 - [ ] 3.3 Retry the failures listed in `reports/errors/` (smart-fortwo/c453 and any others)
 - [ ] 3.4 `verify.ts` on all unchecked answers; retry `FAILED` ones
-- [ ] 3.5 `import.ts --since <last batch>`; (Matija) load the batch (**Supabase write**)
+- [ ] 3.5 `import.ts` (new reports only); (Matija) load the batch (**Supabase write**)
 - [ ] 3.6 Repeat 3.1–3.5 until all 818 generations are imported or listed as held back
 
 ## 4. Wrap-up

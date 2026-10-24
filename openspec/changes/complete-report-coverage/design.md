@@ -30,8 +30,9 @@ What's missing is the coverage summary, splitting the work across runners, and a
   3. Run `import.ts`.
   4. Matija loads the new `reports-*.sql`, or OKs an MCP load.
   5. Clear `.next/dev/cache/fetch-cache` and spot-check 2 pages.
-- **SQL files** hold about 20 generations each (~280 KB) so they paste into the SQL editor. `import.ts` gets
-  `--since <date>` so only new batches are written.
+- **SQL files** hold about 20 generations each (~300 KB) so they paste into the SQL editor. `import.ts` remembers
+  what it exported (`reports/exported.json`, keyed by check time) and writes only new or re-checked reports, as a
+  timestamped batch, so earlier batches are never overwritten.
 - **Engine-level reports** come after generation coverage: the top ~100 engine combinations by registrations, with
   a separate prompt that focuses on that engine. This needs a small `ReportAnswer` variant and a loader. Plan it in
   its own change when generation coverage is near done.
