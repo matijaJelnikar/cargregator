@@ -22,7 +22,7 @@ const MANIFEST = `${DIR}/manifest.json`;
 /** Photos rejected by hand (recheck with generation ids), never picked again for that generation. */
 const REJECTED = `${DIR}/rejected.json`;
 const SQL_DIR = "data-raw/carinfo/sql";
-const BUCKET = "cargregator-img";
+const BUCKET = "cargregator";
 const REST = "https://wblmhgmotllxffpwsmhb.supabase.co/rest/v1";
 const KEY = "sb_publishable_f3QEE0kxL0E7HqB2CWMRTg_-Dc-aOb4";
 // Wikimedia asks API clients to identify themselves.

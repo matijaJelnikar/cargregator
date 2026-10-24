@@ -2,7 +2,7 @@
 
 ## 1. Hosting
 
-- [ ] 1.1 (Matija) Create the R2 bucket `cargregator-img` and connect the custom domain (suggested `img.jelnikar.dev`)
+- [ ] 1.1 (Matija) Create the R2 bucket `cargregator` and connect the custom domain (suggested `img.jelnikar.dev`)
 - [ ] 1.2 (Matija) `! npx wrangler login`
 
 ## 2. Photos

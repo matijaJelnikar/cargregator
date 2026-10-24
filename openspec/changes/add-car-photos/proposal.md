@@ -8,7 +8,7 @@ their URLs written to Supabase.
 
 ## What Changes
 
-- Create the R2 bucket `cargregator-img` with a custom domain (suggested `img.jelnikar.dev`).
+- Create the R2 bucket `cargregator` with a custom domain (suggested `img.jelnikar.dev`).
 - Upload the cached photos with `images.ts upload`, then write the `image_*` columns with `images.ts sql`
   (`IMG_BASE=…`).
 - Run `images.ts recheck` first, to drop wrong-generation, duplicate or low-detail photos.

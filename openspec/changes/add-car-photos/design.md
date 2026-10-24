@@ -20,7 +20,7 @@
 
 ## Decisions
 
-- **Bucket:** `cargregator-img`, public through the custom domain `img.jelnikar.dev`, not the r2.dev URL (that one
+- **Bucket:** `cargregator`, public through the custom domain `img.jelnikar.dev`, not the r2.dev URL (that one
   is rate limited and not for production).
 - **Keys:** `<model_id>/<gen_slug>.<ext>`, immutable. A replaced photo gets a new key, so long cache headers stay
   safe.
