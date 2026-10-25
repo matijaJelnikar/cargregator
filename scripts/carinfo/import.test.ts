@@ -26,6 +26,7 @@ const answer = ReportAnswer.parse({
   links: [
     { kind: "test", title: "Test", url: "https://ok.example/test" },
     { kind: "review", title: "Wrong car", url: "https://ok.example/wrong" },
+    { kind: "test", title: "Plain http", url: "http://ok.example/plain" },
   ],
   ncap: { stars: 5, year: 2012, url: "https://ok.example/ncap" },
   confidence: 0.6,
@@ -56,6 +57,7 @@ describe("importing a checked report", () => {
   it("drops links the checker flagged and keeps the NCAP rating", () => {
     expect(g.links).toBe(1);
     expect(g.sql).not.toContain("ok.example/wrong");
+    expect(g.sql).not.toContain("ok.example/plain");
     expect(g.sql).toContain('"ncap":{"stars":5');
   });
 

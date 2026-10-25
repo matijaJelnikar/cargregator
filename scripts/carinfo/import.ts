@@ -61,7 +61,8 @@ export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { h
   // The model pages we already link to for every generation (src/lib/carLinks.ts) are not repeated.
   const known = (LINK_MAP as Record<string, { am?: string; adac?: string }>)[modelId] ?? {};
   const bad = new Set([...v.bad_urls, ...(known.am ? [known.am] : []), ...(known.adac ? [known.adac] : [])]);
-  const ok = (url: string) => !bad.has(url) && !isDead(v.http?.[url]);
+  // carinfo.links/ncap_url require https (constraint links_url_https), so a plain-http page would abort the whole load.
+  const ok = (url: string) => url.startsWith("https://") && !bad.has(url) && !isDead(v.http?.[url]);
 
   const failures = a.failures
     .map((f, i) => ({ f, check: v.failures.find((c) => c.index === i) }))
