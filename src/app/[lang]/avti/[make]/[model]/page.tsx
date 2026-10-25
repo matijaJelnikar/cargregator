@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CarLinks } from "@/components/CarLinks";
-import { CarPhoto } from "@/components/CarPhoto";
-import { CheckList, EngineVerdicts, FailureList, FoundLinks, hasReport } from "@/components/CarReport";
+import { CheckList, EngineVerdicts, FailureList, FoundLinks, VerdictPill, bestEngine, hasReport } from "@/components/CarReport";
+import { GenerationDetails, GenerationProvider } from "@/components/GenerationSwitch";
 import { ModelHero } from "@/components/ModelHero";
 import { RecallList, years } from "@/components/RecallList";
 import { ReportError } from "@/components/ReportError";
-import { Card, Eyebrow, button } from "@/components/ui";
+import { Eyebrow, button } from "@/components/ui";
 import { MAKES, type Make, type Model } from "@/data/makes";
 import { getGenerations, modelSlug, pick, type CarEngine, type CarGeneration } from "@/lib/carinfoDb";
 import { DEFAULT_FILTERS, toQuery } from "@/lib/filters";
@@ -54,88 +54,89 @@ function Generation({ gen, make, model, lang, dict }: { gen: CarGeneration; make
   const search = toQuery({ ...DEFAULT_FILTERS, makeId: make.id, modelId: model.id, yearFrom: gen.year_from, ...(gen.year_to ? { yearTo: gen.year_to } : {}) });
   const car = { makeId: make.id, modelId: model.id, makeName: make.name, modelName: model.name, gen };
   const report = hasReport(gen);
+  const best = report ? bestEngine(gen.engines) : undefined;
   const engineHref = (e: CarEngine) => `/${lang}/avti/${make.id}/${modelSlug(make.id, model.id)}/${gen.slug}/${e.slug}/`;
   return (
-    <Card className="scroll-mt-20">
-      <div id={gen.slug} className="grid gap-4 sm:grid-cols-[12rem_minmax(0,1fr)]">
-        {/* The hero above already shows each generation's photo, summary and NCAP rating (with its switcher); here
-            the photo stays only as a desktop thumbnail for scanning. */}
-        <div className="hidden sm:block">
-          <CarPhoto gen={gen} alt={`${make.name} ${gen.name}`} dict={dict} />
-        </div>
-        <div className="min-w-0 space-y-3">
-          <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-lg font-semibold">
-            {gen.name}
-            <span className="font-mono text-sm font-normal text-muted">{years(gen.year_from, gen.year_to, dict)}</span>
-          </h3>
+    <GenerationDetails slug={gen.slug} className="group/gen scroll-mt-20 rounded-xl border border-border bg-card">
+      <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-3 gap-y-1 p-4 [&::-webkit-details-marker]:hidden sm:px-5">
+        <h3 className="text-lg font-semibold">{gen.name}</h3>
+        <span className="font-mono text-sm text-muted">{years(gen.year_from, gen.year_to, dict)}</span>
+        {best?.verdict && <VerdictPill verdict={best.verdict} dict={dict} />}
+        {report && gen.failures.length > 0 && <span className="text-sm text-muted">{tn(c.problemCount, gen.failures.length, lang)}</span>}
+        <ChevronDown className="ml-auto size-4 shrink-0 text-subtle transition-transform group-open/gen:rotate-180" aria-hidden />
+      </summary>
+
+      <div className="space-y-4 border-t border-border p-4 sm:p-5">
+        {report && gen.engines.some((e) => e.verdict) && (
           <div>
-            <p className="mb-1.5 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.linksGen}</p>
-            <CarLinks car={car} dict={dict} compact />
+            <h4 className="font-semibold">{c.enginesTitle}</h4>
+            <EngineVerdicts engines={gen.engines} lang={lang} dict={dict} hrefFor={engineHref} />
           </div>
-          {gen.links.length > 0 && (
-            <div>
-              <p className="mb-1.5 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.foundLinks}</p>
-              <FoundLinks gen={gen} dict={dict} />
+        )}
+        {gen.failures.length > 0 && (
+          <div>
+            <h4 className="mb-2 font-semibold">{c.failuresTitle}</h4>
+            <FailureList failures={gen.failures} gen={gen} lang={lang} dict={dict} />
+          </div>
+        )}
+        {gen.checks.length > 0 && (
+          <div>
+            <h4 className="mb-2 font-semibold">{c.checksTitle}</h4>
+            <CheckList gen={gen} lang={lang} />
+          </div>
+        )}
+
+        <details>
+          <summary className="cursor-pointer text-sm font-medium">{tn(c.engines, gen.engines.length, lang)}</summary>
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-border font-mono text-[11px] uppercase tracking-wider text-subtle">
+                  <th className="py-2 pr-4 font-medium">{c.engineCol}</th>
+                  <th className="py-2 pr-4 font-medium">{c.fuelCol}</th>
+                  <th className="py-2 pr-4 font-medium">{c.powerCol}</th>
+                  <th className="py-2 font-medium">{c.yearsCol}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {gen.engines.map((e) => (
+                  <tr key={e.id} className="border-b border-border last:border-0">
+                    <td className="py-2 pr-4 font-medium">
+                      <Link href={engineHref(e)} className="hover:text-accent">
+                        {e.name}
+                      </Link>
+                      {e.engine_code && <span className="ml-2 font-mono text-xs font-normal text-subtle">{e.engine_code}</span>}
+                    </td>
+                    <td className="py-2 pr-4 text-muted">{dict.fuel[e.fuel]}</td>
+                    <td className="whitespace-nowrap py-2 pr-4 font-mono text-muted">{e.kw ? `${e.kw} kW` : "–"}</td>
+                    <td className="whitespace-nowrap py-2 font-mono text-muted">{years(e.year_from, e.year_to, dict)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+          <details>
+            <summary className="cursor-pointer text-sm font-medium">{c.linksGen}</summary>
+            <div className="mt-2 space-y-2">
+              <CarLinks car={car} dict={dict} compact />
+              {gen.links.length > 0 && (
+                <div>
+                  <p className="mb-1.5 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.foundLinks}</p>
+                  <FoundLinks gen={gen} dict={dict} />
+                </div>
+              )}
             </div>
-          )}
+          </details>
           <Link href={`/${lang}/results/?${search}`} className={button("secondary", { small: true })}>
             <Search className="size-4" aria-hidden />
             {c.searchGen}
           </Link>
         </div>
       </div>
-
-      {report && gen.engines.some((e) => e.verdict) && (
-        <div className="mt-4 border-t border-border pt-4">
-          <h4 className="font-semibold">{c.enginesTitle}</h4>
-          <EngineVerdicts engines={gen.engines} lang={lang} dict={dict} hrefFor={engineHref} />
-        </div>
-      )}
-      {gen.failures.length > 0 && (
-        <div className="mt-4 border-t border-border pt-4">
-          <h4 className="font-semibold">{c.failuresTitle}</h4>
-          <p className="mb-3 mt-1 text-sm text-muted">{c.failuresIntro}</p>
-          <FailureList failures={gen.failures} gen={gen} lang={lang} dict={dict} />
-        </div>
-      )}
-      {gen.checks.length > 0 && (
-        <div className="mt-4 border-t border-border pt-4">
-          <h4 className="mb-2 font-semibold">{c.checksTitle}</h4>
-          <CheckList gen={gen} lang={lang} />
-        </div>
-      )}
-
-      <details className="mt-4 border-t border-border pt-4">
-        <summary className="cursor-pointer text-sm font-medium">{tn(c.engines, gen.engines.length, lang)}</summary>
-        <div className="mt-3 overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr className="border-b border-border font-mono text-[11px] uppercase tracking-wider text-subtle">
-                <th className="py-2 pr-4 font-medium">{c.engineCol}</th>
-                <th className="py-2 pr-4 font-medium">{c.fuelCol}</th>
-                <th className="py-2 pr-4 font-medium">{c.powerCol}</th>
-                <th className="py-2 font-medium">{c.yearsCol}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {gen.engines.map((e) => (
-                <tr key={e.id} className="border-b border-border last:border-0">
-                  <td className="py-2 pr-4 font-medium">
-                    <Link href={engineHref(e)} className="hover:text-accent">
-                      {e.name}
-                    </Link>
-                    {e.engine_code && <span className="ml-2 font-mono text-xs font-normal text-subtle">{e.engine_code}</span>}
-                  </td>
-                  <td className="py-2 pr-4 text-muted">{dict.fuel[e.fuel]}</td>
-                  <td className="whitespace-nowrap py-2 pr-4 font-mono text-muted">{e.kw ? `${e.kw} kW` : "–"}</td>
-                  <td className="whitespace-nowrap py-2 font-mono text-muted">{years(e.year_from, e.year_to, dict)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </details>
-    </Card>
+    </GenerationDetails>
   );
 }
 
@@ -154,6 +155,7 @@ export default async function ModelPage({ params }: PageProps<"/[lang]/avti/[mak
   const onSale = years(first.year_from, generations.some((g) => g.year_to === null) ? null : Math.max(...generations.map((g) => g.year_to ?? 0)), dict);
   const withRecalls = [...generations].reverse().filter((g) => g.recalls.length);
   const recallCount = withRecalls.reduce((n, g) => n + g.recalls.length, 0);
+  const expanded = [...generations].reverse().find(hasReport) ?? last;
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <Breadcrumbs lang={lang} dict={dict} make={make} model={model} />
@@ -165,21 +167,20 @@ export default async function ModelPage({ params }: PageProps<"/[lang]/avti/[mak
         </p>
       </div>
 
-      <ModelHero key={last.id} name={name} gens={generations} lang={lang} dict={dict} />
+      <GenerationProvider initial={expanded.slug}>
+        <ModelHero key={last.id} name={name} gens={generations} lang={lang} dict={dict} />
+
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold">{c.generationsTitle}</h2>
+          {[...generations].reverse().map((g) => (
+            <Generation key={g.id} gen={g} make={make} model={model} lang={lang} dict={dict} />
+          ))}
+        </section>
+      </GenerationProvider>
 
       <section className="space-y-3">
-        <div>
-          <h2 className="text-xl font-semibold">{c.linksTitle}</h2>
-          <p className="mt-1 text-sm text-muted">{c.linksIntro}</p>
-        </div>
-        <CarLinks car={{ makeId: make.id, modelId: model.id, makeName: make.name, modelName: model.name }} dict={dict} />
-      </section>
-
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">{c.generationsTitle}</h2>
-        {[...generations].reverse().map((g) => (
-          <Generation key={g.id} gen={g} make={make} model={model} lang={lang} dict={dict} />
-        ))}
+        <h2 className="text-xl font-semibold">{c.linksTitle}</h2>
+        <CarLinks car={{ makeId: make.id, modelId: model.id, makeName: make.name, modelName: model.name }} dict={dict} compact />
       </section>
 
       {recallCount > 0 && (
@@ -187,7 +188,7 @@ export default async function ModelPage({ params }: PageProps<"/[lang]/avti/[mak
           <summary className="cursor-pointer font-semibold">
             {c.recallsSection} ({recallCount})
           </summary>
-          <p className="mt-2 text-sm text-muted">{c.recallsIntro}</p>
+          <p className="mt-2 text-sm text-muted">{c.recallVin}</p>
           {withRecalls.map((g) => (
             <div key={g.id} className="mt-4">
               <h3 className="text-sm font-semibold">
@@ -199,7 +200,6 @@ export default async function ModelPage({ params }: PageProps<"/[lang]/avti/[mak
         </details>
       )}
 
-      <p className="rounded-lg border border-border bg-surface-low p-3 text-sm leading-relaxed text-muted">{c.unreviewed}</p>
       <ReportError dict={dict} />
     </div>
   );

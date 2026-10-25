@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { ArrowDown, ThumbsDown, ThumbsUp } from "lucide-react";
 import { CarPhoto } from "@/components/CarPhoto";
-import { NcapBadge, ReportNote, hasReport } from "@/components/CarReport";
+import { NcapBadge, ReportBadge, hasReport } from "@/components/CarReport";
+import { useGeneration } from "@/components/GenerationSwitch";
 import { years } from "@/components/RecallList";
 import { Chip } from "@/components/ui";
 import { pick, type Bilingual, type CarGeneration } from "@/lib/carinfoDb";
@@ -37,12 +37,11 @@ function ProsCons({
   );
 }
 
-/** The model page's photo, summary and pros/cons with a generation switcher; starts on the newest one with a report. */
+/** The model page's photo, summary and pros/cons with a generation switcher shared with the cards below. */
 export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarGeneration[]; lang: Locale; dict: Dict }) {
   const c = dict.carInfo;
-  // Open on the newest generation that has a report, so a model with any content doesn't start on "coming soon".
-  const [slug, setSlug] = useState(([...gens].reverse().find(hasReport) ?? gens[gens.length - 1]).slug);
-  const gen = gens.find((g) => g.slug === slug) ?? gens[gens.length - 1];
+  const { selected, select } = useGeneration();
+  const gen = gens.find((g) => g.slug === selected) ?? gens[gens.length - 1];
   const report = hasReport(gen);
   return (
     <div className="space-y-4">
@@ -54,7 +53,7 @@ export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarG
               <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-wider text-subtle">{c.generationsTitle}</p>
               <div className="flex flex-wrap gap-2">
                 {[...gens].reverse().map((g) => (
-                  <Chip key={g.slug} pressed={g.slug === gen.slug} onClick={() => setSlug(g.slug)}>
+                  <Chip key={g.slug} pressed={g.slug === gen.slug} onClick={() => select(g.slug)}>
                     {g.name}
                   </Chip>
                 ))}
@@ -71,7 +70,10 @@ export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarG
               <dd className="mt-0.5 font-medium">{tn(c.engines, gen.engines.length, lang)}</dd>
             </div>
           </dl>
-          <NcapBadge gen={gen} dict={dict} />
+          <div className="flex flex-wrap items-center gap-2">
+            <NcapBadge gen={gen} dict={dict} />
+            {report && <ReportBadge gen={gen} lang={lang} dict={dict} />}
+          </div>
           {report && <p className="text-sm leading-relaxed">{pick(lang, gen.summary_sl, gen.summary_en)}</p>}
           <a href={`#${gen.slug}`} className="inline-flex items-center gap-1 text-sm text-accent hover:underline">
             {gen.name}
@@ -88,7 +90,6 @@ export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarG
       ) : (
         <p className="rounded-xl border border-border bg-card p-4 text-sm text-muted">{c.summarySoon}</p>
       )}
-      {report && <ReportNote gen={gen} lang={lang} dict={dict} />}
     </div>
   );
 }

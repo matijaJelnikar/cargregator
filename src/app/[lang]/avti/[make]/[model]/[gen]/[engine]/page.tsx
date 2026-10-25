@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Search } from "lucide-react";
 import { CarLinks } from "@/components/CarLinks";
-import { CheckList, FailureList, ReportNote, VerdictPill, hasReport } from "@/components/CarReport";
+import { CheckList, FailureList, ReportBadge, VerdictPill, hasReport } from "@/components/CarReport";
 import { RecallList, years } from "@/components/RecallList";
 import { ReportError } from "@/components/ReportError";
 import { Card, Eyebrow, Pill, button } from "@/components/ui";
@@ -67,6 +67,7 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
   const sameName = new Set(gen.engines.filter((e) => e.name === engine.name).map((e) => e.id));
   const engineFailures = gen.failures.filter((f) => f.engine_id && sameName.has(f.engine_id));
   const genFailures = gen.failures.filter((f) => !f.engine_id);
+  const problemCount = engineFailures.length + genFailures.length;
   const report = hasReport(gen) && engine.verdict !== null;
   const specs: [string, string][] = [
     [c.fuelCol, dict.fuel[engine.fuel]],
@@ -88,67 +89,77 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
         </Eyebrow>
         <h1 className="mt-2 text-[28px] font-bold leading-tight tracking-tight sm:text-4xl">{engine.name}</h1>
       </div>
-      {report && (
-        <Card>
-          <div className="flex flex-wrap items-center gap-3">
-            <VerdictPill verdict={engine.verdict!} dict={dict} />
-            {engine.score != null && <span className="font-mono text-sm text-muted">{t(c.score, { n: engine.score })}</span>}
-            {engine.annual_cost_min != null && engine.annual_cost_max != null && (
-              <span className="font-mono text-sm text-muted" title={c.annualCostHint}>
-                {t(c.annualCost, { min: formatEur(engine.annual_cost_min, lang), max: formatEur(engine.annual_cost_max, lang) })}
-              </span>
-            )}
-          </div>
-          <p className="mt-3 leading-relaxed">{pick(lang, engine.summary_sl, engine.summary_en)}</p>
-          <div className="mt-3">
-            <ReportNote gen={gen} lang={lang} dict={dict} />
-          </div>
-        </Card>
-      )}
-      <p className="rounded-lg border border-border bg-surface-low p-3 text-sm leading-relaxed text-muted">{c.unreviewed}</p>
       <Card>
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
-          {specs.map(([label, value]) => (
-            <div key={label}>
-              <dt className="font-mono text-[11px] uppercase tracking-wider text-subtle">{label}</dt>
-              <dd className="mt-1 font-medium">{value}</dd>
+        {report && (
+          <>
+            <div className="flex flex-wrap items-center gap-3">
+              <VerdictPill verdict={engine.verdict!} dict={dict} />
+              {engine.score != null && <span className="font-mono text-sm text-muted">{t(c.score, { n: engine.score })}</span>}
+              {engine.annual_cost_min != null && engine.annual_cost_max != null && (
+                <span className="font-mono text-sm text-muted" title={c.annualCostHint}>
+                  {t(c.annualCost, { min: formatEur(engine.annual_cost_min, lang), max: formatEur(engine.annual_cost_max, lang) })}
+                </span>
+              )}
+              <span className="ml-auto">
+                <ReportBadge gen={gen} lang={lang} dict={dict} />
+              </span>
             </div>
-          ))}
-        </dl>
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+            <p className="mt-3 leading-relaxed">{pick(lang, engine.summary_sl, engine.summary_en)}</p>
+          </>
+        )}
+        <p className={report ? "mt-3 font-mono text-sm text-muted" : "font-mono text-sm text-muted"}>
+          {specs
+            .map(([, value]) => value)
+            .filter((value) => value !== "–")
+            .join(" · ")}
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-border pt-4">
           <Pill tone={recalls.length ? "warning" : "neutral"} dot>
             {recalls.length ? tn(c.recallCount, recalls.length, lang) : c.noRecalls}
           </Pill>
-          <Link href={`/${lang}/results/?${search}`} className={button("primary", { small: true })}>
+          {problemCount > 0 && (
+            <a href="#problems" className="text-sm text-accent hover:underline">
+              {tn(c.problemCount, problemCount, lang)}
+            </a>
+          )}
+          <Link href={`/${lang}/results/?${search}`} className={button("primary", { small: true, className: "ml-auto" })}>
             <Search className="size-4" aria-hidden />
             {c.searchEngine}
           </Link>
         </div>
-        {recalls.length > 0 && <p className="mt-3 text-sm text-muted">{c.genRecalls}</p>}
+        {recalls.length > 0 && (
+          <p className="mt-3 text-sm text-muted">
+            {c.genRecalls} {c.recallVin}
+          </p>
+        )}
         <RecallList recalls={recalls} lang={lang} dict={dict} />
+        {!report && <p className="mt-3 text-sm text-muted">{c.soonEngine}</p>}
       </Card>
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">{c.linksTitle}</h2>
-        <CarLinks car={{ makeId: make.id, modelId: model.id, makeName: make.name, modelName: model.name, gen }} dict={dict} />
-      </section>
-      {engineFailures.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">{c.engineFailures}</h2>
-          <FailureList failures={engineFailures} gen={gen} lang={lang} dict={dict} />
-        </section>
-      )}
-      {genFailures.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">{c.genFailures}</h2>
-          <FailureList failures={genFailures} gen={gen} lang={lang} dict={dict} />
-        </section>
+      {problemCount > 0 && (
+        <div id="problems" className="scroll-mt-20 space-y-5">
+          {engineFailures.length > 0 && (
+            <section className="space-y-3">
+              <h2 className="text-lg font-semibold">{c.engineFailures}</h2>
+              <FailureList failures={engineFailures} gen={gen} lang={lang} dict={dict} />
+            </section>
+          )}
+          {genFailures.length > 0 && (
+            <section className="space-y-3">
+              <h2 className="text-lg font-semibold">{c.genFailures}</h2>
+              <FailureList failures={genFailures} gen={gen} lang={lang} dict={dict} />
+            </section>
+          )}
+        </div>
       )}
       {gen.checks.length > 0 && (
         <Card title={c.checksTitle}>
           <CheckList gen={gen} lang={lang} />
         </Card>
       )}
-      {!report && <p className="text-sm text-muted">{c.soonEngine}</p>}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold">{c.linksTitle}</h2>
+        <CarLinks car={{ makeId: make.id, modelId: model.id, makeName: make.name, modelName: model.name, gen }} dict={dict} compact />
+      </section>
       <ReportError dict={dict} generationId={gen.id} engineId={engine.id} />
     </div>
   );
