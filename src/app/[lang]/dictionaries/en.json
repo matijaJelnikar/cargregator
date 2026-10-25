@@ -53,7 +53,10 @@
     "expandRadius": "Expand radius to {radius}",
     "save": "Save search",
     "submitNote": "Each site opens in its own tab with your filters applied. No sign-up.",
-    "locationNote": "Distances are measured from {city}. Sites with nothing inside the radius are skipped."
+    "locationNote": "Distances are measured from {city}. Sites with nothing inside the radius are skipped.",
+    "quickTitle": "Quick pick a car",
+    "quickPlaceholder": "e.g. Golf, Octavia, BMW 3",
+    "quickNoResults": "No make or model matches."
   },
   "fuel": { "petrol": "Petrol", "diesel": "Diesel", "hybrid": "Hybrid", "plugin_hybrid": "Plug-in hybrid", "electric": "Electric", "lpg": "LPG", "cng": "CNG" },
   "gearbox": { "manual": "Manual", "automatic": "Automatic" },

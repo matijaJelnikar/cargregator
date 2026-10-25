@@ -19,6 +19,7 @@ import { useStored } from "@/lib/useStored";
 import { summarize } from "@/lib/summary";
 import { Card, Chip, CountryCode, Eyebrow, Field, NumberInput, Pill, Segmented, Select, Toast, button } from "./ui";
 import { CarInfoHint } from "@/components/CarInfoCard";
+import { CarSearch } from "@/components/CarSearch";
 
 const COUNTRY_ORDER = ["SI", "AT", "DE", "HR", "IT", "HU", "BE", "NL", "LU", "FR", "ES"];
 const YEAR_NOW = new Date().getFullYear();
@@ -45,12 +46,19 @@ function Form({ initial, lang, dict }: { initial: SearchFilters; lang: Locale; d
   const [moreOpen, setMoreOpen] = useState(false);
   const [locating, setLocating] = useState<"idle" | "busy" | "error">("idle");
   const [toast, setToast] = useState<string | null>(null);
+  const [flash, setFlash] = useState(false);
 
   useEffect(() => {
     if (!toast) return;
     const id = setTimeout(() => setToast(null), 2200);
     return () => clearTimeout(id);
   }, [toast]);
+
+  useEffect(() => {
+    if (!flash) return;
+    const id = setTimeout(() => setFlash(false), 1200);
+    return () => clearTimeout(id);
+  }, [flash]);
 
   const set = <K extends keyof SearchFilters>(key: K, value: SearchFilters[K]) =>
     setF((prev) => ({ ...prev, [key]: value }));
@@ -118,6 +126,19 @@ function Form({ initial, lang, dict }: { initial: SearchFilters; lang: Locale; d
         </Eyebrow>
         <h1 className="mt-2 text-[28px] font-bold leading-tight tracking-tight sm:text-4xl">{dict.search.title}</h1>
         <p className="mt-2 max-w-2xl text-muted sm:text-lg">{dict.search.subtitle}</p>
+        <div className="mt-5 max-w-xl">
+          <CarSearch
+            dict={dict}
+            label={dict.search.quickTitle}
+            placeholder={dict.search.quickPlaceholder}
+            noResults={dict.search.quickNoResults}
+            clearOnPick
+            onPick={(hit) => {
+              setF((p) => ({ ...p, makeId: hit.make.id, modelId: hit.model?.id }));
+              setFlash(true);
+            }}
+          />
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start">
@@ -125,24 +146,28 @@ function Form({ initial, lang, dict }: { initial: SearchFilters; lang: Locale; d
           <Card title={dict.search.vehicle} icon={CarFront} aside={<Eyebrow className="hidden sm:inline">01 / 03</Eyebrow>}>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label={dict.search.make} htmlFor="make">
-                <Select
-                  id="make"
-                  value={f.makeId ?? ""}
-                  onChange={(e) => setF((p) => ({ ...p, makeId: e.target.value || undefined, modelId: undefined }))}
-                >
-                  <option value="">{dict.search.anyMake}</option>
-                  {MAKES.map((m) => (
-                    <option key={m.id} value={m.id}>{m.name}</option>
-                  ))}
-                </Select>
+                <div className={flash ? "rounded-[10px] ring-2 ring-accent transition-shadow" : "rounded-[10px] transition-shadow"}>
+                  <Select
+                    id="make"
+                    value={f.makeId ?? ""}
+                    onChange={(e) => setF((p) => ({ ...p, makeId: e.target.value || undefined, modelId: undefined }))}
+                  >
+                    <option value="">{dict.search.anyMake}</option>
+                    {MAKES.map((m) => (
+                      <option key={m.id} value={m.id}>{m.name}</option>
+                    ))}
+                  </Select>
+                </div>
               </Field>
               <Field label={dict.search.model} htmlFor="model">
-                <Select id="model" value={f.modelId ?? ""} disabled={!make} onChange={(e) => set("modelId", e.target.value || undefined)}>
-                  <option value="">{dict.search.anyModel}</option>
-                  {make?.models.map((m) => (
-                    <option key={m.id} value={m.id}>{m.name}</option>
-                  ))}
-                </Select>
+                <div className={flash ? "rounded-[10px] ring-2 ring-accent transition-shadow" : "rounded-[10px] transition-shadow"}>
+                  <Select id="model" value={f.modelId ?? ""} disabled={!make} onChange={(e) => set("modelId", e.target.value || undefined)}>
+                    <option value="">{dict.search.anyModel}</option>
+                    {make?.models.map((m) => (
+                      <option key={m.id} value={m.id}>{m.name}</option>
+                    ))}
+                  </Select>
+                </div>
                 {f.makeId && f.modelId && <CarInfoHint lang={lang} dict={dict} makeId={f.makeId} modelId={f.modelId} />}
               </Field>
               <RangeField label={dict.search.year}
