@@ -1,6 +1,6 @@
-// Search over the car guide's taxonomy (src/data/makes.ts). The guide index is the only place with a search box:
-// typing a make or model narrows the list, and picking a result opens that car's page. Names are matched without
-// case or diacritics, so "skoda octavia" finds "Škoda Octavia" and "id3" finds "ID.3".
+// Search over the car guide's taxonomy (src/data/makes.ts). The guide index and the home page's search form share
+// it: typing a make or model narrows the list, and picking a result either opens that car's page or fills a form.
+// Names are matched without case or diacritics, so "skoda octavia" finds "Škoda Octavia" and "id3" finds "ID.3".
 
 import { MAKES, modelSlug, type Make, type Model } from "@/data/makes";
 import type { Locale } from "./i18n";

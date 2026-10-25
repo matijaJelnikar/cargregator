@@ -53,7 +53,10 @@
     "expandRadius": "Povečaj polmer na {radius}",
     "save": "Shrani iskanje",
     "submitNote": "Vsak oglasnik se odpre v svojem zavihku z vašimi filtri. Brez registracije.",
-    "locationNote": "Razdalje merimo od kraja {city}. Oglasnike brez česar koli v polmeru izpustimo."
+    "locationNote": "Razdalje merimo od kraja {city}. Oglasnike brez česar koli v polmeru izpustimo.",
+    "quickTitle": "Hitro izberite avto",
+    "quickPlaceholder": "npr. Golf, Octavia, BMW 3",
+    "quickNoResults": "Nobena znamka ali model se ne ujema."
   },
   "fuel": { "petrol": "Bencin", "diesel": "Dizel", "hybrid": "Hibrid", "plugin_hybrid": "Priključni hibrid", "electric": "Elektrika", "lpg": "Avtoplin (LPG)", "cng": "Zemeljski plin (CNG)" },
   "gearbox": { "manual": "Ročni", "automatic": "Avtomatski" },
