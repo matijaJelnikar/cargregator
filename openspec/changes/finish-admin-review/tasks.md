@@ -2,18 +2,18 @@
 
 ## 1. Account setup
 
-- [ ] 1.1 (Matija) Supabase → Authentication → Users → add a user with your email
-- [ ] 1.2 (Matija) Supabase → Authentication → URL Configuration: add `http://localhost:3000/admin/auth/callback/`
+- [x] 1.1 (Matija) Supabase → Authentication → Users → add a user with your email
+- [x] 1.2 (Matija) Supabase → Authentication → URL Configuration: add `http://localhost:3000/admin/auth/callback/`
   and `https://cars.jelnikar.dev/admin/auth/callback/`
-- [ ] 1.3 (Matija) Run `insert into carinfo.admins (user_id) select id from auth.users where email = '<email>';`
+- [x] 1.3 (Matija) Run `insert into carinfo.admins (user_id) select id from auth.users where email = '<email>';`
   (**Supabase write**)
 
 ## 2. End-to-end check
 
-- [ ] 2.1 (Matija) Request a link at `/admin/login/`, open it in the same browser, and land on the queue
+- [x] 2.1 (Matija) Request a link at `/admin/login/`, open it in the same browser, and land on the queue
 - [ ] 2.2 Try each action on one generation: save summary, verdict, failure, check, remove link, approve, back to
   queue, withdraw. Confirm the public page reflects each one
-- [ ] 2.3 RLS test via MCP read-only transaction. Read side passed 2026-10-24: a non-admin JWT sees 0 reports,
+- [x] 2.3 RLS test via MCP. Write side passed 2026-10-25 (rolled back): a non-admin JWT updates 0 generations and 0 failures. Read side passed 2026-10-24: a non-admin JWT sees 0 reports,
   0 hidden generations, 0 unsupported failures and 0 admins, and is_admin() is false. Still to do: the write side
   (an update as a non-admin changes 0 rows), inside a rolled-back transaction, with Matija's OK
 - [x] 2.4 `get_advisors` (security), 2026-10-24: only two SECURITY DEFINER warnings. `carinfo.is_admin()` is
