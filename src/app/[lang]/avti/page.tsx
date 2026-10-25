@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GuideSearch } from "@/components/GuideSearch";
 import { MakeLogo } from "@/components/MakeLogo";
 import { Eyebrow } from "@/components/ui";
 import { MAKES } from "@/data/makes";
@@ -21,6 +22,9 @@ export default async function CarInfoIndexPage({ params }: PageProps<"/[lang]/av
         <Eyebrow>{c.eyebrow}</Eyebrow>
         <h1 className="mt-2 text-[28px] font-bold leading-tight tracking-tight sm:text-4xl">{c.title}</h1>
         <p className="mt-3 leading-relaxed text-muted">{c.intro}</p>
+        <div className="mt-5 max-w-xl">
+          <GuideSearch lang={lang} dict={dict} />
+        </div>
       </div>
       <section>
         <h2 className="mb-3 text-lg font-semibold">{c.makesTitle}</h2>

@@ -11,13 +11,16 @@ export interface Model {
 export interface Make {
   id: string;
   name: string;
+  /** Other names people type for the make ("vw"), for the guide's search. */
+  aliases?: string[];
   models: Model[];
 }
 
-function make(id: string, name: string, models: [slug: string, name: string][]): Make {
+function make(id: string, name: string, models: [slug: string, name: string][], aliases?: string[]): Make {
   return {
     id,
     name,
+    ...(aliases ? { aliases } : {}),
     models: models.map(([slug, n]) => ({
       id: `${id}-${slug}`,
       name: n,
@@ -65,7 +68,7 @@ export const MAKES: Make[] = [
   make("suzuki", "Suzuki", [["across", "Across"], ["baleno", "Baleno"], ["grand-vitara", "Grand Vitara"], ["ignis", "Ignis"], ["jimny", "Jimny"], ["s-cross", "S-Cross"], ["sx4", "SX4"], ["swace", "Swace"], ["swift", "Swift"], ["vitara", "Vitara"]]),
   make("tesla", "Tesla", [["model-3", "Model 3"], ["model-s", "Model S"], ["model-x", "Model X"], ["model-y", "Model Y"]]),
   make("toyota", "Toyota", [["auris", "Auris"], ["avensis", "Avensis"], ["aygo", "Aygo"], ["aygo-x", "Aygo X"], ["bz4x", "bZ4X"], ["c-hr", "C-HR"], ["camry", "Camry"], ["corolla", "Corolla"], ["gr86", "GR86"], ["hilux", "Hilux"], ["land-cruiser", "Land Cruiser"], ["prius", "Prius"], ["proace", "Proace"], ["rav4", "RAV4"], ["supra", "Supra"], ["verso", "Verso"], ["yaris", "Yaris"], ["yaris-cross", "Yaris Cross"]]),
-  make("volkswagen", "Volkswagen", [["amarok", "Amarok"], ["arteon", "Arteon"], ["caddy", "Caddy"], ["california", "California"], ["crafter", "Crafter"], ["golf", "Golf"], ["golf-plus", "Golf Plus"], ["golf-sportsvan", "Golf Sportsvan"], ["id-3", "ID.3"], ["id-4", "ID.4"], ["id-5", "ID.5"], ["id-buzz", "ID. Buzz"], ["jetta", "Jetta"], ["multivan", "Multivan"], ["passat", "Passat"], ["polo", "Polo"], ["scirocco", "Scirocco"], ["sharan", "Sharan"], ["t-cross", "T-Cross"], ["t-roc", "T-Roc"], ["taigo", "Taigo"], ["tiguan", "Tiguan"], ["touareg", "Touareg"], ["touran", "Touran"], ["transporter", "Transporter"], ["up", "up!"]]),
+  make("volkswagen", "Volkswagen", [["amarok", "Amarok"], ["arteon", "Arteon"], ["caddy", "Caddy"], ["california", "California"], ["crafter", "Crafter"], ["golf", "Golf"], ["golf-plus", "Golf Plus"], ["golf-sportsvan", "Golf Sportsvan"], ["id-3", "ID.3"], ["id-4", "ID.4"], ["id-5", "ID.5"], ["id-buzz", "ID. Buzz"], ["jetta", "Jetta"], ["multivan", "Multivan"], ["passat", "Passat"], ["polo", "Polo"], ["scirocco", "Scirocco"], ["sharan", "Sharan"], ["t-cross", "T-Cross"], ["t-roc", "T-Roc"], ["taigo", "Taigo"], ["tiguan", "Tiguan"], ["touareg", "Touareg"], ["touran", "Touran"], ["transporter", "Transporter"], ["up", "up!"]], ["vw"]),
   make("volvo", "Volvo", [["c30", "C30"], ["c40", "C40"], ["ex30", "EX30"], ["s60", "S60"], ["s90", "S90"], ["v40", "V40"], ["v50", "V50"], ["v60", "V60"], ["v70", "V70"], ["v90", "V90"], ["xc40", "XC40"], ["xc60", "XC60"], ["xc70", "XC70"], ["xc90", "XC90"]]),
 ];
 
