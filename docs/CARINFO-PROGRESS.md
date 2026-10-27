@@ -1,6 +1,6 @@
 # Car reports: progress
 
-Generated 2026-10-25 13:05 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
+Generated 2026-10-27 07:12 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
 
 **To continue:** rerun the same commands; each skips finished work.
 1. `node scripts/carinfo/report.ts --all` writes reports, most registered first. Claude by default, or
@@ -15,31 +15,20 @@ Loading the SQL into Supabase is Matija's step. "exported" means the SQL was wri
 
 | state | generations |
 |---|---|
-| exported to SQL (handed to Matija to load) | 304 |
-| held back (sources too weak, not exported) | 8 |
+| exported to SQL (handed to Matija to load) | 323 |
+| held back (sources too weak, not exported) | 10 |
 | checked, waiting for import.ts | 0 |
-| written, waiting for verify.ts | 21 |
+| written, waiting for verify.ts | 11 |
 | failed (see reports/errors/, rerun) | 3 |
-| not started | 482 |
+| not started | 471 |
 | **total** | **818** |
 
-Written by: claude/sonnet 279, opencode/opencode-go/kimi-k2.7-code 6, opencode/opencode-go/minimax-m3 48.
+Written by: claude/sonnet 290, opencode/opencode-go/kimi-k2.7-code 6, opencode/opencode-go/minimax-m3 48.
 
 ## Next up (first 30 not started, by registrations)
 
 | rank | generation | registrations | written by |
 |---|---|---|---|
-| 262 | Opel Insignia B (`opel-insignia/b`) | 166,945 |  |
-| 263 | Citroën C1 I (`citroen-c1/mk1`) | 166,223 |  |
-| 264 | MINI Cooper S (F56) (`mini-cooper-s/f56`) | 166,101 |  |
-| 265 | BMW X2 (F39) (`bmw-x2/f39`) | 163,480 |  |
-| 266 | Peugeot 107 (`peugeot-107/mk1`) | 163,299 |  |
-| 267 | Volvo V90 II (`volvo-v90/mk2`) | 162,584 |  |
-| 268 | Renault Zoe II (ZE50) (`renault-zoe/mk2`) | 162,452 |  |
-| 269 | Kia Niro (SG2) (`kia-niro/mk2`) | 161,206 |  |
-| 270 | Porsche Macan (95B) (`porsche-macan/95b`) | 159,972 |  |
-| 271 | Volkswagen Caddy V (`volkswagen-caddy/mk5`) | 159,312 |  |
-| 272 | Renault Trafic III (`renault-trafic/mk3`) | 158,239 |  |
 | 273 | Mazda 3 Mazda3 III (`mazda-3/mk3`) | 157,933 |  |
 | 274 | Toyota Verso (AR20) (`toyota-verso/ar20`) | 157,712 |  |
 | 275 | Citroën C4 Picasso I (`citroen-c4-picasso/mk1`) | 157,498 |  |
@@ -59,6 +48,17 @@ Written by: claude/sonnet 279, opencode/opencode-go/kimi-k2.7-code 6, opencode/o
 | 292 | Volkswagen Arteon (`volkswagen-arteon/mk1`) | 130,682 |  |
 | 293 | Škoda Kodiaq II (`skoda-kodiaq/mk2`) | 130,554 |  |
 | 294 | Renault Zoe I (`renault-zoe/mk1`) | 128,575 |  |
+| 295 | SEAT Mii (`seat-mii/mk1`) | 127,018 |  |
+| 296 | Mazda 3 Mazda3 IV (`mazda-3/mk4`) | 125,033 |  |
+| 297 | Hyundai ix35 (`hyundai-ix35/mk1`) | 122,823 |  |
+| 298 | Ford S-Max II (`ford-s-max/mk2`) | 122,797 |  |
+| 299 | Honda CR-V IV (`honda-cr-v/mk4`) | 122,538 |  |
+| 300 | Porsche Cayenne III (E3) (`porsche-cayenne/e3`) | 121,956 |  |
+| 301 | Volkswagen Multivan T6 (`volkswagen-multivan/t6`) | 121,707 |  |
+| 302 | BMW 2 Series Coupé (F22) (`bmw-2-series/f22`) | 117,351 |  |
+| 303 | Land Rover Discovery Sport (L550) (`land-rover-discovery-sport/l550`) | 117,093 |  |
+| 305 | Peugeot 206 (`peugeot-206/mk1`) | 115,779 |  |
+| 306 | Volvo V70 III (`volvo-v70/p3`) | 115,090 |  |
 
 ## Failed
 
@@ -74,6 +74,8 @@ Written by: claude/sonnet 279, opencode/opencode-go/kimi-k2.7-code 6, opencode/o
 |---|---|---|---|
 | 130 | Citroën C4 II (`citroen-c4/mk2`) | 359,670 | claude/sonnet |
 | 192 | Peugeot 308 I (`peugeot-308/mk1`) | 245,726 | claude/sonnet |
+| 242 | Opel Zafira Tourer C (`opel-zafira/tourer-c`) | 186,280 | claude/sonnet |
+| 261 | Kia Venga (`kia-venga/mk1`) | 167,855 | claude/sonnet |
 | 517 | Hyundai i30 I (FD) (`hyundai-i30/fd`) | 31,864 | claude/sonnet |
 | 767 | Mercedes-Benz SLK (R171) (`mercedes-benz-slk/r171`) | 354 | opencode/opencode-go/kimi-k2.7-code |
 | 771 | Citroën C4 I (`citroen-c4/mk1`) | 235 | opencode/opencode-go/minimax-m3 |
@@ -85,27 +87,17 @@ Written by: claude/sonnet 279, opencode/opencode-go/kimi-k2.7-code 6, opencode/o
 
 | rank | generation | registrations | written by |
 |---|---|---|---|
-| 213 | Renault Arkana I (`renault-arkana/mk1`) | 223,733 | claude/sonnet |
-| 241 | Peugeot Partner II (`peugeot-partner/b9`) | 187,436 | claude/sonnet |
-| 242 | Opel Zafira Tourer C (`opel-zafira/tourer-c`) | 186,280 | claude/sonnet |
-| 243 | Citroën C3 IV (`citroen-c3/mk4`) | 186,098 | claude/sonnet |
-| 244 | Toyota C-HR II (`toyota-c-hr/mk2`) | 183,497 | claude/sonnet |
-| 245 | Ford Ka II (`ford-ka/mk2`) | 183,198 | claude/sonnet |
-| 246 | Opel Karl (`opel-karl/mk1`) | 182,327 | claude/sonnet |
-| 247 | Mazda 2 Mazda 2 (DJ) (`mazda-2/mk3`) | 181,216 | claude/sonnet |
-| 249 | Dacia Spring (`dacia-spring/mk1`) | 180,278 | claude/sonnet |
-| 250 | Toyota Avensis III (T27) (`toyota-avensis/mk3`) | 177,907 | claude/sonnet |
-| 251 | Citroën Berlingo III (`citroen-berlingo/mk3`) | 177,610 | claude/sonnet |
-| 252 | Toyota Aygo I (`toyota-aygo/mk1`) | 177,171 | claude/sonnet |
-| 253 | Audi A5 (8T) (`audi-a5/b8`) | 176,922 | claude/sonnet |
-| 254 | Mazda CX-5 I (`mazda-cx-5/mk1`) | 175,505 | claude/sonnet |
-| 255 | Land Rover Range Rover Evoque I (`land-rover-range-rover-evoque/l538`) | 172,976 | claude/sonnet |
-| 256 | SEAT Alhambra II (`seat-alhambra/mk2`) | 172,698 | claude/sonnet |
-| 257 | Hyundai Kona II (`hyundai-kona/sx2`) | 171,493 | claude/sonnet |
-| 258 | smart forfour II (W453) (`smart-forfour/w453`) | 170,559 | claude/sonnet |
-| 259 | Audi A3 (8P) (`audi-a3/8p`) | 169,711 | claude/sonnet |
-| 260 | Cupra Leon IV (`cupra-leon/mk4`) | 168,923 | claude/sonnet |
-| 261 | Kia Venga (`kia-venga/mk1`) | 167,855 | claude/sonnet |
+| 262 | Opel Insignia B (`opel-insignia/b`) | 166,945 | claude/sonnet |
+| 263 | Citroën C1 I (`citroen-c1/mk1`) | 166,223 | claude/sonnet |
+| 264 | MINI Cooper S (F56) (`mini-cooper-s/f56`) | 166,101 | claude/sonnet |
+| 265 | BMW X2 (F39) (`bmw-x2/f39`) | 163,480 | claude/sonnet |
+| 266 | Peugeot 107 (`peugeot-107/mk1`) | 163,299 | claude/sonnet |
+| 267 | Volvo V90 II (`volvo-v90/mk2`) | 162,584 | claude/sonnet |
+| 268 | Renault Zoe II (ZE50) (`renault-zoe/mk2`) | 162,452 | claude/sonnet |
+| 269 | Kia Niro (SG2) (`kia-niro/mk2`) | 161,206 | claude/sonnet |
+| 270 | Porsche Macan (95B) (`porsche-macan/95b`) | 159,972 | claude/sonnet |
+| 271 | Volkswagen Caddy V (`volkswagen-caddy/mk5`) | 159,312 | claude/sonnet |
+| 272 | Renault Trafic III (`renault-trafic/mk3`) | 158,239 | claude/sonnet |
 
 ## Checked, not exported
 
@@ -325,6 +317,7 @@ _none_
 | 210 | Volvo XC90 II (`volvo-xc90/mk2`) | 225,410 | claude/sonnet |
 | 211 | Mercedes-Benz GLE (V167/C167) (`mercedes-benz-gle/v167`) | 225,118 | claude/sonnet |
 | 212 | Suzuki Swift IV (`suzuki-swift/mk4`) | 224,625 | claude/sonnet |
+| 213 | Renault Arkana I (`renault-arkana/mk1`) | 223,733 | claude/sonnet |
 | 214 | Dacia Duster III (`dacia-duster/mk3`) | 223,177 | claude/sonnet |
 | 215 | Kia Niro (DE) (`kia-niro/mk1`) | 222,776 | claude/sonnet |
 | 216 | Mazda CX-30 (`mazda-cx-30/dm`) | 222,743 | claude/sonnet |
@@ -352,7 +345,25 @@ _none_
 | 238 | Jeep Avenger (`jeep-avenger/mk1`) | 190,664 | claude/sonnet |
 | 239 | Mitsubishi Outlander III (`mitsubishi-outlander/mk3`) | 189,040 | claude/sonnet |
 | 240 | Nissan X-Trail III (T32) (`nissan-x-trail/t32`) | 187,585 | claude/sonnet |
+| 241 | Peugeot Partner II (`peugeot-partner/b9`) | 187,436 | claude/sonnet |
+| 243 | Citroën C3 IV (`citroen-c3/mk4`) | 186,098 | claude/sonnet |
+| 244 | Toyota C-HR II (`toyota-c-hr/mk2`) | 183,497 | claude/sonnet |
+| 245 | Ford Ka II (`ford-ka/mk2`) | 183,198 | claude/sonnet |
+| 246 | Opel Karl (`opel-karl/mk1`) | 182,327 | claude/sonnet |
+| 247 | Mazda 2 Mazda 2 (DJ) (`mazda-2/mk3`) | 181,216 | claude/sonnet |
 | 248 | Opel Astra L (`opel-astra/l`) | 180,458 | claude/sonnet |
+| 249 | Dacia Spring (`dacia-spring/mk1`) | 180,278 | claude/sonnet |
+| 250 | Toyota Avensis III (T27) (`toyota-avensis/mk3`) | 177,907 | claude/sonnet |
+| 251 | Citroën Berlingo III (`citroen-berlingo/mk3`) | 177,610 | claude/sonnet |
+| 252 | Toyota Aygo I (`toyota-aygo/mk1`) | 177,171 | claude/sonnet |
+| 253 | Audi A5 (8T) (`audi-a5/b8`) | 176,922 | claude/sonnet |
+| 254 | Mazda CX-5 I (`mazda-cx-5/mk1`) | 175,505 | claude/sonnet |
+| 255 | Land Rover Range Rover Evoque I (`land-rover-range-rover-evoque/l538`) | 172,976 | claude/sonnet |
+| 256 | SEAT Alhambra II (`seat-alhambra/mk2`) | 172,698 | claude/sonnet |
+| 257 | Hyundai Kona II (`hyundai-kona/sx2`) | 171,493 | claude/sonnet |
+| 258 | smart forfour II (W453) (`smart-forfour/w453`) | 170,559 | claude/sonnet |
+| 259 | Audi A3 (8P) (`audi-a3/8p`) | 169,711 | claude/sonnet |
+| 260 | Cupra Leon IV (`cupra-leon/mk4`) | 168,923 | claude/sonnet |
 | 278 | BMW 3 Series (E90/E91/E92/E93) (`bmw-3-series/e90`) | 146,515 | claude/sonnet |
 | 279 | Škoda Superb II (`skoda-superb/mk2`) | 145,620 | claude/sonnet |
 | 285 | Dacia Sandero I (`dacia-sandero/mk1`) | 140,023 | claude/sonnet |
