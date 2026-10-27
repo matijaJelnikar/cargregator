@@ -59,7 +59,7 @@ Generated ${now.toISOString().slice(0, 16).replace("T", " ")} UTC by \`node scri
 
 **To continue:** rerun the same commands; each skips finished work.
 1. \`node scripts/carinfo/report.ts --all\` writes reports, most registered first. Claude by default, or
-   \`--runner opencode --model opencode-go/<kimi-k2.7-code|minimax-m3>\`.
+   \`--runner opencode --model opencode-go/<kimi-k2.7-code|minimax-m3|gpt-5.6-luna>\`.
 2. \`node scripts/carinfo/verify.ts\` checks them.
 3. \`node scripts/carinfo/import.ts\` writes SQL for new checked reports.
 4. \`node scripts/carinfo/progress.ts\` refreshes this file.

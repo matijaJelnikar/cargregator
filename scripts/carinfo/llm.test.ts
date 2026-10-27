@@ -85,9 +85,10 @@ describe("parseOpencodeEvents", () => {
 });
 
 describe("assertOpencodeModel", () => {
-  it("allows only Kimi K2.7 Code and MiniMax M3", () => {
+  it("allows only Kimi K2.7 Code, MiniMax M3 and GPT-5.6 Luna", () => {
     expect(() => assertOpencodeModel("opencode-go/kimi-k2.7-code")).not.toThrow();
     expect(() => assertOpencodeModel("opencode-go/minimax-m3")).not.toThrow();
+    expect(() => assertOpencodeModel("opencode-go/gpt-5.6-luna")).not.toThrow();
     for (const m of ["opencode-go/kimi-k3", "opencode-go/glm-5.3", "kimi-k2.7-code", "opencode-go/minimax-m3.1-flash"])
       expect(() => assertOpencodeModel(m)).toThrow(/not allowed/);
   });
