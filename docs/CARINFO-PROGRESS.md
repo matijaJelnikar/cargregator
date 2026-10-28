@@ -1,6 +1,6 @@
 # Car reports: progress
 
-Generated 2026-10-28 15:17 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
+Generated 2026-10-28 20:06 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
 
 **To continue:** rerun the same commands; each skips finished work.
 1. `node scripts/carinfo/report.ts --all` writes reports, most registered first. Claude by default, or
@@ -15,57 +15,56 @@ Loading the SQL into Supabase is Matija's step. "exported" means the SQL was wri
 
 | state | generations |
 |---|---|
-| exported to SQL (handed to Matija to load) | 498 |
+| exported to SQL (handed to Matija to load) | 525 |
 | held back (sources too weak, not exported) | 66 |
 | checked, waiting for import.ts | 0 |
 | written, waiting for verify.ts | 0 |
-| failed (see reports/errors/, rerun) | 4 |
-| not started | 250 |
+| failed (see reports/errors/, rerun) | 3 |
+| not started | 224 |
 | **total** | **818** |
 
-Written by: claude/sonnet 423, opencode/opencode-go/gpt-5.6-luna 87, opencode/opencode-go/kimi-k2.7-code 6, opencode/opencode-go/minimax-m3 48.
+Written by: claude/sonnet 450, opencode/opencode-go/gpt-5.6-luna 87, opencode/opencode-go/kimi-k2.7-code 6, opencode/opencode-go/minimax-m3 48.
 
 ## Next up (first 30 not started, by registrations)
 
 | rank | generation | registrations | written by |
 |---|---|---|---|
-| 417 | Toyota Land Cruiser 150 (Prado) (`toyota-land-cruiser/j150`) | 58,675 |  |
-| 418 | BMW 1 Series (E81/E82/E87/E88) (`bmw-1-series/e87`) | 58,528 |  |
-| 419 | Volkswagen Multivan T6.1 (`volkswagen-multivan/t61`) | 58,190 |  |
-| 420 | Toyota bZ4X (`toyota-bz4x/mk1`) | 57,810 |  |
-| 421 | Opel Zafira B (`opel-zafira/zafira-b`) | 57,783 |  |
-| 422 | Subaru Forester IV (`subaru-forester/sj`) | 57,492 |  |
-| 423 | Mercedes-Benz G-Class (W463A) (`mercedes-benz-g-class/w463a`) | 57,168 |  |
-| 424 | Fiat Doblò II (`fiat-doblo/mk2`) | 57,086 |  |
-| 425 | SEAT Altea (`seat-altea/mk1`) | 57,040 |  |
-| 426 | Volvo S60 II (`volvo-s60/y20`) | 56,697 |  |
-| 427 | Toyota RAV4 III (`toyota-rav4/mk3`) | 55,006 |  |
-| 428 | Suzuki Baleno II (`suzuki-baleno/mk2`) | 54,600 |  |
-| 429 | Honda Jazz V (`honda-jazz/mk5`) | 54,361 |  |
-| 430 | Ford Galaxy II (`ford-galaxy/mk2`) | 53,768 |  |
-| 431 | Ford Tourneo Connect II (`ford-tourneo-connect/mk2`) | 53,593 |  |
-| 432 | Fiat Bravo II (`fiat-bravo/mk2`) | 53,199 |  |
-| 433 | Citroën SpaceTourer (`citroen-spacetourer/mk1`) | 52,934 |  |
-| 434 | Ford Mustang VI (S550) (`ford-mustang/s550`) | 52,009 |  |
-| 435 | BMW X6 (G06) (`bmw-x6/g06`) | 51,795 |  |
-| 436 | Land Rover Defender (L663) (`land-rover-defender/l663`) | 51,672 |  |
-| 437 | Audi A5 (B10) (`audi-a5/b10`) | 51,262 |  |
-| 438 | Opel Agila B (`opel-agila/mk2`) | 51,124 |  |
-| 439 | MINI Cooper R56 (R55-R59 family) (`mini-cooper/r56`) | 51,112 |  |
-| 440 | Mercedes-Benz ML (W166) (`mercedes-benz-ml/w166`) | 51,081 |  |
-| 441 | Chevrolet Aveo (T300) (`chevrolet-aveo/t300`) | 50,898 |  |
-| 442 | Audi TT Mk3 (8S) (`audi-tt/8s`) | 50,690 |  |
 | 443 | BMW 7 Series (G11) (`bmw-7-series/g11`) | 50,218 |  |
 | 444 | BMW X2 (U10) (`bmw-x2/u10`) | 49,288 |  |
 | 445 | Land Rover Range Rover IV (L405) (`land-rover-range-rover/l405`) | 48,707 |  |
 | 446 | Renault Koleos I (`renault-koleos/mk1`) | 48,433 |  |
+| 447 | Renault Scénic E-Tech Electric (`renault-scenic/mk5`) | 48,424 |  |
+| 448 | DS DS 4 II (`ds-ds-4/mk2`) | 48,321 |  |
+| 449 | Peugeot Expert III (`peugeot-expert/mk3`) | 48,276 |  |
+| 450 | Toyota Verso-S (`toyota-verso/verso-s`) | 47,764 |  |
+| 451 | Citroën C4 Aircross (`citroen-c4/aircross`) | 47,699 |  |
+| 452 | MINI One (R56) (`mini-one/r56`) | 47,613 |  |
+| 453 | Honda HR-V III (`honda-hr-v/mk3`) | 47,604 |  |
+| 454 | Lexus CT (`lexus-ct/mk1`) | 47,077 |  |
+| 455 | Renault Espace VI (`renault-espace/mk6`) | 46,341 |  |
+| 456 | Audi A4 Allroad (B9) (`audi-a4-allroad/b9`) | 46,293 |  |
+| 457 | Audi A6 Allroad (C7) (`audi-a6-allroad/c7`) | 46,208 |  |
+| 458 | Citroën C3 Aircross II (`citroen-c3-aircross/mk2`) | 45,928 |  |
+| 459 | Renault Trafic II (`renault-trafic/mk2`) | 45,534 |  |
+| 460 | MINI Cooper S (R56/R60) (`mini-cooper-s/r56`) | 45,045 |  |
+| 461 | Toyota Camry VIII (XV70) (`toyota-camry/xv70`) | 43,795 |  |
+| 462 | Audi A7 Sportback (4G) (`audi-a7/c7`) | 43,444 |  |
+| 463 | Volkswagen ID.5 (`volkswagen-id-5/mk1`) | 43,124 |  |
+| 464 | Kia Sorento III (UM) (`kia-sorento/um`) | 42,999 |  |
+| 465 | Mercedes-Benz CLS (C218) (`mercedes-benz-cls/c218`) | 42,945 |  |
+| 466 | BMW Z4 (G29) (`bmw-z4/g29`) | 42,855 |  |
+| 467 | Ford Explorer Electric (`ford-explorer/electric`) | 42,774 |  |
+| 468 | Hyundai Santa Fe IV (`hyundai-santa-fe/tm`) | 42,639 |  |
+| 469 | Subaru XV II (GT) (`subaru-xv/gt`) | 42,588 |  |
+| 470 | Mazda 3 Mazda3 II (`mazda-3/mk2`) | 42,536 |  |
+| 471 | Lancia Delta III (`lancia-delta/mk3`) | 42,410 |  |
+| 472 | Volkswagen Scirocco III (`volkswagen-scirocco/mk3`) | 42,386 |  |
 
 ## Failed
 
 | rank | generation | registrations | written by |
 |---|---|---|---|
-| 415 | Ford Mustang Mach-E (`ford-mustang-mach-e/mk1`) | 59,196 |  |
-| 416 | Opel Vivaro B (`opel-vivaro/mk2`) | 59,043 |  |
+| 441 | Chevrolet Aveo (T300) (`chevrolet-aveo/t300`) | 50,898 |  |
 | 673 | Peugeot Boxer III (`peugeot-boxer/mk3`) | 7,497 |  |
 | 674 | Subaru Levorg I (`subaru-levorg/vm`) | 7,386 |  |
 
@@ -556,6 +555,33 @@ _none_
 | 412 | Mazda 2 Mazda 2 (DE) (`mazda-2/mk2`) | 60,185 | claude/sonnet |
 | 413 | Renault Koleos II (`renault-koleos/mk2`) | 60,124 | claude/sonnet |
 | 414 | Chevrolet Cruze (J300) (`chevrolet-cruze/j300`) | 59,931 | claude/sonnet |
+| 415 | Ford Mustang Mach-E (`ford-mustang-mach-e/mk1`) | 59,196 | claude/sonnet |
+| 416 | Opel Vivaro B (`opel-vivaro/mk2`) | 59,043 | claude/sonnet |
+| 417 | Toyota Land Cruiser 150 (Prado) (`toyota-land-cruiser/j150`) | 58,675 | claude/sonnet |
+| 418 | BMW 1 Series (E81/E82/E87/E88) (`bmw-1-series/e87`) | 58,528 | claude/sonnet |
+| 419 | Volkswagen Multivan T6.1 (`volkswagen-multivan/t61`) | 58,190 | claude/sonnet |
+| 420 | Toyota bZ4X (`toyota-bz4x/mk1`) | 57,810 | claude/sonnet |
+| 421 | Opel Zafira B (`opel-zafira/zafira-b`) | 57,783 | claude/sonnet |
+| 422 | Subaru Forester IV (`subaru-forester/sj`) | 57,492 | claude/sonnet |
+| 423 | Mercedes-Benz G-Class (W463A) (`mercedes-benz-g-class/w463a`) | 57,168 | claude/sonnet |
+| 424 | Fiat Doblò II (`fiat-doblo/mk2`) | 57,086 | claude/sonnet |
+| 425 | SEAT Altea (`seat-altea/mk1`) | 57,040 | claude/sonnet |
+| 426 | Volvo S60 II (`volvo-s60/y20`) | 56,697 | claude/sonnet |
+| 427 | Toyota RAV4 III (`toyota-rav4/mk3`) | 55,006 | claude/sonnet |
+| 428 | Suzuki Baleno II (`suzuki-baleno/mk2`) | 54,600 | claude/sonnet |
+| 429 | Honda Jazz V (`honda-jazz/mk5`) | 54,361 | claude/sonnet |
+| 430 | Ford Galaxy II (`ford-galaxy/mk2`) | 53,768 | claude/sonnet |
+| 431 | Ford Tourneo Connect II (`ford-tourneo-connect/mk2`) | 53,593 | claude/sonnet |
+| 432 | Fiat Bravo II (`fiat-bravo/mk2`) | 53,199 | claude/sonnet |
+| 433 | Citroën SpaceTourer (`citroen-spacetourer/mk1`) | 52,934 | claude/sonnet |
+| 434 | Ford Mustang VI (S550) (`ford-mustang/s550`) | 52,009 | claude/sonnet |
+| 435 | BMW X6 (G06) (`bmw-x6/g06`) | 51,795 | claude/sonnet |
+| 436 | Land Rover Defender (L663) (`land-rover-defender/l663`) | 51,672 | claude/sonnet |
+| 437 | Audi A5 (B10) (`audi-a5/b10`) | 51,262 | claude/sonnet |
+| 438 | Opel Agila B (`opel-agila/mk2`) | 51,124 | claude/sonnet |
+| 439 | MINI Cooper R56 (R55-R59 family) (`mini-cooper/r56`) | 51,112 | claude/sonnet |
+| 440 | Mercedes-Benz ML (W166) (`mercedes-benz-ml/w166`) | 51,081 | claude/sonnet |
+| 442 | Audi TT Mk3 (8S) (`audi-tt/8s`) | 50,690 | claude/sonnet |
 | 483 | Kia Ceed I (`kia-ceed/mk1`) | 40,182 | claude/sonnet |
 | 488 | Ford Focus II (`ford-focus/mk2`) | 38,166 | claude/sonnet |
 | 588 | Opel Astra H (`opel-astra/h`) | 20,696 | claude/sonnet |
