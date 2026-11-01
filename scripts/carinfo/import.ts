@@ -13,10 +13,11 @@
 //   node scripts/carinfo/import.ts --force   # also export reports that would be held back
 //
 // import-report.md starts with the coverage line (written / checked / exported / held back / total generations).
+// An answer whose pros/cons have no short labels is not exported until shorten.ts has written them (unless --force).
 
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
-import { ReportAnswer, VerifyAnswer } from "../../src/lib/carinfo.ts";
+import { ReportAnswer, VerifyAnswer, hasShorts } from "../../src/lib/carinfo.ts";
 import LINK_MAP from "../../src/data/carLinks.json" with { type: "json" };
 import { sqlString as q } from "./sql.ts";
 import { REPORT_DIR, loadGenerations } from "./report.ts";
@@ -34,11 +35,12 @@ const MAX_CHUNK = 300_000;
 export const spaceNumbers = (s: string) => s.replace(/(?<!\p{L})(\p{Ll}{2,})(?=\d)/gu, "$1 ");
 
 /** Applies spaceNumbers to every {sl, en} text in a report; names, engine keys and URLs are left alone. */
-function cleanText<T>(x: T): T {
+export function cleanText<T>(x: T): T {
   if (Array.isArray(x)) return x.map(cleanText) as T;
   if (!x || typeof x !== "object") return x;
   const o = x as Record<string, unknown>;
-  if (typeof o.sl === "string" && typeof o.en === "string") return { ...o, sl: spaceNumbers(o.sl), en: spaceNumbers(o.en) } as T;
+  if (typeof o.sl === "string" && typeof o.en === "string")
+    return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, k === "sl" || k === "en" ? spaceNumbers(v as string) : cleanText(v)])) as T;
   return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, cleanText(v)])) as T;
 }
 
@@ -90,13 +92,14 @@ export interface Coverage {
   checked: number;
   exported: number;
   held: number;
+  unshortened: number;
   previously: number;
 }
 
 export function coverageLine(c: Coverage) {
   return (
     `**Coverage:** ${c.written} of ${c.total} generations written, ${c.checked} checked; this run exported ${c.exported}` +
-    ` and held back ${c.held}; ${c.previously} exported in earlier runs and unchanged.`
+    ` and held back ${c.held}; ${c.previously} exported in earlier runs and unchanged; ${c.unshortened} need shorten.ts.`
   );
 }
 
@@ -114,7 +117,7 @@ async function main() {
   const chunks: string[] = [];
   let chunk = "";
   const rows: string[] = [];
-  const c: Coverage = { total, written: answerIds.length, checked: 0, exported: 0, held: 0, previously: 0 };
+  const c: Coverage = { total, written: answerIds.length, checked: 0, exported: 0, held: 0, unshortened: 0, previously: 0 };
   for (const id of answerIds) {
     const raw = JSON.parse(await readFile(`${ANSWERS}/${id}.json`, "utf8"));
     const label = `${raw.model_id}/${raw.slug}`;
@@ -135,6 +138,11 @@ async function main() {
     if (isHeld(unsupported, a.failures.length) && !force) {
       c.held++;
       rows.push(`| ${label} | HELD | | | ${unsupported}/${a.failures.length} failures unsupported |`);
+      continue;
+    }
+    if (!hasShorts(a) && !force) {
+      c.unshortened++;
+      rows.push(`| ${label} | NEEDS SHORTEN | | | run shorten.ts |`);
       continue;
     }
     const runner = (raw.runner as string | undefined) ?? "claude";

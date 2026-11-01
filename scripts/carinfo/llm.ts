@@ -72,11 +72,11 @@ export function askClaude(
   });
 }
 
-// Matches provider errors only ("Go usage limit exceeded", quota/credit messages). A bare 429 or "limit" is not
+// Matches provider errors only ("Go usage limit exceeded", Claude's "You've hit your 5-hour limit", quota/credit messages). A bare 429 or "limit" is not
 // enough: web pages answer 429 to webfetch all the time, and that must not stop a run.
-const USAGE_LIMIT_RE = /usage limit|quota|insufficient (credits|balance|funds)|rate.?limit/i;
+const USAGE_LIMIT_RE = /usage limit|hit your [\w-]+ limit|quota|insufficient (credits|balance|funds)|rate.?limit/i;
 
-/** True when an OpenCode error message or stderr indicates a subscription/model usage limit. */
+/** True when a Claude Code or OpenCode error message or stderr indicates a subscription/model usage limit. */
 export function isUsageLimitError(message: string): boolean {
   return USAGE_LIMIT_RE.test(message);
 }
@@ -278,15 +278,13 @@ async function runOpencodeOnce(
   });
 }
 
-/**
- * The only OpenCode Go models Matija allows (the Go budget is shared across models and small). Anything else is
- * refused before a call is made; change this list only on his say-so.
- */
+/** The Go models the report benchmark compares (bench.ts). Any Go subscription model may be used for runs. */
 export const OPENCODE_MODELS = ["opencode-go/kimi-k2.7-code", "opencode-go/minimax-m3", "opencode-go/gpt-5.6-luna"] as const;
 
+/** Any model of the OpenCode Go subscription (`opencode-go/<name>`) is allowed; anything else is refused before a call. */
 export function assertOpencodeModel(model: string): void {
-  if (!(OPENCODE_MODELS as readonly string[]).includes(model))
-    throw new Error(`OpenCode model ${model} is not allowed; use one of: ${OPENCODE_MODELS.join(", ")}`);
+  if (!/^opencode-go\/[\w.-]+$/.test(model))
+    throw new Error(`OpenCode model ${model} is not allowed; use an OpenCode Go model (opencode-go/<name>)`);
 }
 
 /** Runs one prompt through `opencode run --format json`, validates the answer, and tries one repair round. */

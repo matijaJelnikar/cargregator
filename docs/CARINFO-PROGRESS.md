@@ -1,13 +1,14 @@
 # Car reports: progress
 
-Generated 2026-10-31 08:46 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
+Generated 2026-10-31 18:11 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
 
 **To continue:** rerun the same commands; each skips finished work.
 1. `node scripts/carinfo/report.ts --all` writes reports, most registered first. Claude by default, or
-   `--runner opencode --model opencode-go/<kimi-k2.7-code|minimax-m3|gpt-5.6-luna>`.
+   `--runner opencode --model opencode-go/<any Go model>`.
 2. `node scripts/carinfo/verify.ts` checks them.
-3. `node scripts/carinfo/import.ts` writes SQL for new checked reports.
-4. `node scripts/carinfo/progress.ts` refreshes this file.
+3. `node scripts/carinfo/shorten.ts` writes the short pros/cons labels (same runner options).
+4. `node scripts/carinfo/import.ts` writes SQL for new checked reports.
+5. `node scripts/carinfo/progress.ts` refreshes this file.
 
 Loading the SQL into Supabase is Matija's step. "exported" means the SQL was written, not that it was loaded.
 

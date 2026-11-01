@@ -37,7 +37,7 @@ You are only running an existing pipeline. Do not write or change code, do not r
 Read docs/CARINFO-PROGRESS.md (summary and "Next up" only) and openspec/config.yaml.
 
 Rules:
-- Allowed report models: opencode-go/minimax-m3 and opencode-go/kimi-k2.7-code only. Use <MODEL>.
+- Any OpenCode Go model (opencode-go/<name>) is allowed. Use <MODEL>.
 - Never write to Supabase. Never touch data-raw/carinfo/reports/answers by hand.
 - Always use --tail (Claude Code works the other end of the list at the same time).
 
@@ -50,4 +50,5 @@ Do this:
 ```
 
 The check pass (`verify.ts`) and the SQL export (`import.ts`) stay with Claude Code, so a different model checks
-what Go wrote.
+what Go wrote. After the check, `shorten.ts` writes the short pros/cons labels (`import.ts` won't export a report
+without them); it takes the same `--runner` / `--model` options.

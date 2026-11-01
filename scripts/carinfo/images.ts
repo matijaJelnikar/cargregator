@@ -128,7 +128,7 @@ function markers(gen: Gen, modelName: string): string[] {
 
 /** File names of detail shots (interior, badge, wheel, engine bay) rather than the whole car. */
 const DETAIL =
-  /interior|innen|cockpit|dashboard|armaturen|engine|motorraum|badge|emblem|logo|schriftzug|lettering|wheel|felge|\brim\b|heck|rear|seats|sitze?\b|boot|trunk|kofferraum|detail|shifter|gear ?(lever|knob|stick)|steering|lenkrad|tail ?light|nameplate|\bkey\b|screen|display|\brally|\bwrc\b|super 2000|s2000/i;
+  /interior|innen|cockpit|dashboard|armaturen|engine|motorraum|badge|emblem|logo|schriftzug|lettering|wheel|felge|\brim\b|heck|rear|seats|sitze?\b|boot|trunk|kofferraum|detail|shifter|gear ?(lever|knob|stick)|steering|lenkrad|tail ?light|nameplate|\bkey\b|screen|display|\brally|\bwrc\b|super 2000|s2000|dakar|\btour\b|feuerwehr|polizei|police|policja|ambulan|taxi|tył|wnętrze|przestrzeń|bagażnik|crash|wreck|unfall|label|airbag|typenschild|\\bplate\\b|line-up|lineup/i;
 
 /** A year in the file name must fall within the generation ("1965 Alfa Romeo Giulia" is not the 2016 Giulia). */
 function yearsFit(file: string, gen: Gen): boolean {
@@ -215,6 +215,22 @@ async function findPhoto(makeName: string, modelName: string, gen: Gen, newest: 
       if (!/\.(jpe?g|png|webp)$/i.test(file) || !norm(file).includes(model) || !tied(norm(file).replace(model, ""))) continue;
       const hit = await save(gen, file, `Commons: ${file}`, exclude);
       if (hit) return hit;
+    }
+  }
+  // Last resort: plain "make model year" queries (the specific ones above often match nothing on Commons), but the
+  // file name must then carry a year inside the generation, since nothing else ties it to this generation.
+  const to = Math.min(gen.year_to ?? new Date().getFullYear(), new Date().getFullYear());
+  const inGen = (file: string) => (file.match(/(?<!\d)(19[5-9]\d|20[0-3]\d)(?!\d)/g) ?? []).map(Number).some((y) => y >= gen.year_from && y <= to);
+  const years = [gen.year_from + 1, gen.year_from + 2, gen.year_from].filter((y) => y <= to);
+  for (const y of years) {
+    for (const query of [`${makeName} ${modelName} ${y}`, `${y} ${makeName} ${modelName}`]) {
+      for (const file of await commonsFiles(query)) {
+        if (tried.has(file)) continue;
+        tried.add(file);
+        if (!/\.(jpe?g|png|webp)$/i.test(file) || !norm(file).includes(model) || !inGen(file)) continue;
+        const hit = await save(gen, file, `Commons (loose): ${file}`, exclude);
+        if (hit) return hit;
+      }
     }
   }
   return { status: "none", note: `no free photo for ${makeName} ${gen.name}` };

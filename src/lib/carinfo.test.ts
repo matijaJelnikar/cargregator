@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { CARINFO_FUELS, SkeletonAnswer, engineSlug } from "./carinfo";
-import type { CarEngine, CarFailure, CarGeneration, CarRecall } from "./carinfoDb";
+import { CARINFO_FUELS, ReportAnswer, ShortText, SkeletonAnswer, engineSlug, hasShorts } from "./carinfo";
+import { allShort, type CarEngine, type CarFailure, type CarGeneration, type CarRecall } from "./carinfoDb";
 import { carLinks } from "./carLinks";
 import { engineFor, generationFor, generationsInRange, recallsFor, recallsInYears, risksFor } from "./carinfoMatch";
 import { FUELS, type Fuel } from "./filters";
@@ -29,6 +29,51 @@ describe("carinfo", () => {
   it("makes engine slugs from name and power", () => {
     expect(engineSlug("1.4 TSI", 92)).toBe("1-4-tsi-92kw");
     expect(engineSlug("Mégane E-Tech", 160)).toBe("megane-e-tech-160kw");
+  });
+});
+
+describe("short pros and cons labels", () => {
+  const text = { sl: "Natančno vodenje in udobna vožnja", en: "Precise handling and a comfortable ride" };
+  const short = { sl: "Natančno vodenje", en: "Precise handling" };
+  const item = { ...text, short };
+  const report = {
+    summary: text,
+    pros: [item, item],
+    cons: [item, item],
+    engines: [],
+    failures: [],
+    checks: [text, text, text],
+    links: [],
+    ncap: null,
+    confidence: 0.8,
+  };
+
+  it("accepts short labels up to 32 characters", () => {
+    expect(ShortText.safeParse(short).success).toBe(true);
+    expect(ShortText.safeParse({ sl: "x".repeat(32), en: "y".repeat(32) }).success).toBe(true);
+  });
+
+  it("rejects empty and too long short labels", () => {
+    expect(ShortText.safeParse({ sl: "", en: "Precise handling" }).success).toBe(false);
+    expect(ShortText.safeParse({ sl: "Natančno vodenje", en: "y".repeat(33) }).success).toBe(false);
+  });
+
+  it("still parses pros and cons without short labels", () => {
+    const answer = { ...report, pros: [text, text], cons: [text, text] };
+    expect(ReportAnswer.parse(answer).pros[0].short).toBeUndefined();
+  });
+
+  it("needs a valid short label on every pro and con", () => {
+    expect(hasShorts(report)).toBe(true);
+    expect(hasShorts({ ...report, pros: [text, report.pros[1]] })).toBe(false);
+    expect(hasShorts({ ...report, cons: [{ ...text, short: { sl: "", en: "Precise handling" } }, report.cons[1]] })).toBe(false);
+  });
+
+  it("treats a list as short-labelled only when every item has both labels", () => {
+    expect(allShort(report.pros)).toBe(true);
+    expect(allShort([])).toBe(true);
+    expect(allShort([text, report.pros[1]])).toBe(false);
+    expect(allShort([{ ...text, short: { sl: "Natančno vodenje", en: "" } }, report.pros[1]])).toBe(false);
   });
 });
 

@@ -41,6 +41,8 @@ describe("isUsageLimitError", () => {
     expect(isUsageLimitError("quota exceeded")).toBe(true);
     expect(isUsageLimitError("rate limit")).toBe(true);
     expect(isUsageLimitError("Go usage limit exceeded")).toBe(true);
+    expect(isUsageLimitError("CLI error: You've hit your 5-hour limit · resets 11:40pm (Europe/Ljubljana)")).toBe(true);
+    expect(isUsageLimitError("You've hit your weekly limit")).toBe(true);
     expect(isUsageLimitError("insufficient credits")).toBe(true);
   });
 
@@ -85,11 +87,10 @@ describe("parseOpencodeEvents", () => {
 });
 
 describe("assertOpencodeModel", () => {
-  it("allows only Kimi K2.7 Code, MiniMax M3 and GPT-5.6 Luna", () => {
-    expect(() => assertOpencodeModel("opencode-go/kimi-k2.7-code")).not.toThrow();
-    expect(() => assertOpencodeModel("opencode-go/minimax-m3")).not.toThrow();
-    expect(() => assertOpencodeModel("opencode-go/gpt-5.6-luna")).not.toThrow();
-    for (const m of ["opencode-go/kimi-k3", "opencode-go/glm-5.3", "kimi-k2.7-code", "opencode-go/minimax-m3.1-flash"])
+  it("allows any OpenCode Go subscription model", () => {
+    for (const m of ["opencode-go/kimi-k2.7-code", "opencode-go/minimax-m3", "opencode-go/gpt-5.6-luna", "opencode-go/glm-5.3"])
+      expect(() => assertOpencodeModel(m)).not.toThrow();
+    for (const m of ["kimi-k2.7-code", "opencode/grok-code-free", "anthropic/claude-sonnet-5-5", "opencode-go/"])
       expect(() => assertOpencodeModel(m)).toThrow(/not allowed/);
   });
 });

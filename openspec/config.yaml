@@ -6,8 +6,8 @@ context: |
   Constraints an agent cannot infer from the code:
   - Supabase writes (data loads, deletes, migrations, admin rows) need Matija's explicit OK every time. Prepare SQL
     files instead; Matija runs them in the SQL editor or tells the agent to load them through the Supabase MCP.
-  - OpenCode Go: only opencode-go/kimi-k2.7-code and opencode-go/minimax-m3 may be used, and only for writing
-    reports (never for coding). The Go budget is one shared pool and runs out fast.
+  - OpenCode Go: any model in the Go subscription (opencode-go/*) may be used, for any work (reports, coding,
+    other). The Go budget is one shared pool and runs out fast.
   - Report run progress is logged in docs/CARINFO-PROGRESS.md (regenerate: node scripts/carinfo/progress.ts after
     each pipeline step). Read it before starting a run. OpenCode runs use --tail (least registered first) so they
     never collide with the Claude run working from the top; see docs/CARINFO-OPENCODE.md.

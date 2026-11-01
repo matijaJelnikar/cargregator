@@ -89,14 +89,18 @@ export const VERDICTS = ["recommended", "ok", "avoid"] as const;
 export const LINK_KINDS = ["test", "safety", "reliability", "review", "forum", "other"] as const;
 
 const Text = z.object({ sl: z.string().min(1), en: z.string().min(1) });
+/** A chip label for one pro or con, shown on the model page instead of the full sentence. */
+export const ShortText = z.object({ sl: z.string().min(1).max(32), en: z.string().min(1).max(32) });
+/** A pro or con: the full sentence, with an optional short label for the collapsed view. */
+export const ProCon = Text.extend({ short: ShortText.optional() });
 const Source = z.object({ url: z.url(), title: z.string().min(1) });
 const Eur = z.number().int().min(0).max(100_000);
 
 export const ReportAnswer = z.object({
   /** 2–4 sentences: what the car is, who it suits, how it has aged. */
   summary: Text,
-  pros: z.array(Text).min(2).max(6),
-  cons: z.array(Text).min(2).max(6),
+  pros: z.array(ProCon).min(2).max(6),
+  cons: z.array(ProCon).min(2).max(6),
   /** One entry per engine name from the prompt ("1.4 TSI"); applies to every power output of that name. */
   engines: z.array(
     z.object({
@@ -133,6 +137,11 @@ export const ReportAnswer = z.object({
   confidence: z.number().min(0).max(1),
 });
 export type ReportAnswer = z.infer<typeof ReportAnswer>;
+
+/** True when every pro and con has a valid short label, so the model page can show chips. */
+export function hasShorts(a: Pick<ReportAnswer, "pros" | "cons">): boolean {
+  return [...a.pros, ...a.cons].every((x) => ShortText.safeParse(x.short).success);
+}
 
 /** The check pass (scripts/carinfo/verify.ts): one verdict per failure, by index, after reading its sources. */
 export const VerifyAnswer = z.object({
