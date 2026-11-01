@@ -1,85 +1,48 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDown, ChevronDown, ChevronUp, ThumbsDown, ThumbsUp } from "lucide-react";
+import { ArrowDown, Check, ChevronDown, ChevronUp, Minus } from "lucide-react";
 import { CarPhoto } from "@/components/CarPhoto";
 import { NcapBadge, ReportBadge, hasReport } from "@/components/CarReport";
 import { useGeneration } from "@/components/GenerationSwitch";
 import { years } from "@/components/RecallList";
 import { Chip } from "@/components/ui";
-import { allShort, pick, type CarGeneration, type ProCon } from "@/lib/carinfoDb";
+import { allShort, pick, type CarGeneration } from "@/lib/carinfoDb";
 import { tn, type Dict, type Locale } from "@/lib/i18n";
 
-function ProsCons({
-  title,
-  items,
-  icon: Icon,
-  tone,
-  lang,
-}: {
-  title: string;
-  items: ProCon[];
-  icon: typeof ThumbsUp;
-  tone: string;
-  lang: Locale;
-}) {
-  return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <h2 className="flex items-center gap-2 font-semibold">
-        <Icon className={`size-4 ${tone}`} aria-hidden />
-        {title}
-      </h2>
-      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
-        {items.map((x) => (
-          <li key={x.en}>{pick(lang, x.sl, x.en)}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-/** Both full-sentence cards: the expanded view, and the only view while a generation has no short labels. */
-function ProsConsCards({ gen, lang, dict }: { gen: CarGeneration; lang: Locale; dict: Dict }) {
+/** Plain lists shared by the concise and expanded views. */
+function ProsConsCards({ gen, lang, dict, concise = false }: { gen: CarGeneration; lang: Locale; dict: Dict; concise?: boolean }) {
   const c = dict.carInfo;
+  const groups = [
+    { title: c.prosTitle, items: gen.pros, icon: Check, tone: "text-success" },
+    { title: c.consTitle, items: gen.cons, icon: Minus, tone: "text-danger" },
+  ];
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
-      {gen.pros.length > 0 && <ProsCons title={c.prosTitle} items={gen.pros} icon={ThumbsUp} tone="text-success" lang={lang} />}
-      {gen.cons.length > 0 && <ProsCons title={c.consTitle} items={gen.cons} icon={ThumbsDown} tone="text-warning" lang={lang} />}
+    <div className="grid gap-6 border-y border-border py-5 sm:grid-cols-2 sm:gap-8">
+      {groups.filter(({ items }) => items.length > 0).map(({ title, items, icon: Icon, tone }) => (
+        <section key={title} className="min-w-0">
+          <h2 className="mb-3 text-sm font-semibold">{title}</h2>
+          <ul className="space-y-3">
+            {items.map((item) => (
+              <li key={item.en} className="flex items-start gap-2.5 text-sm leading-relaxed">
+                <Icon className={`mt-1 size-4 shrink-0 ${tone}`} aria-hidden />
+                <span>{concise && item.short ? pick(lang, item.short.sl, item.short.en) : pick(lang, item.sl, item.en)}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }
 
-/** One row of short-label chips (pros or cons). */
-function ChipRow({ title, items, icon: Icon, tone, chip, lang }: { title: string; items: ProCon[]; icon: typeof ThumbsUp; tone: string; chip: string; lang: Locale }) {
-  return (
-    <div className="flex items-start gap-2">
-      <Icon className={`mt-2 size-4 shrink-0 ${tone}`} aria-hidden />
-      <h2 className="sr-only">{title}</h2>
-      <ul className="flex flex-wrap gap-2">
-        {items.map((x) => (
-          <li key={x.en} className={`inline-flex min-h-8 items-center rounded-lg px-2.5 text-[13px] font-medium ${chip}`}>
-            {pick(lang, x.short!.sl, x.short!.en)}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-/** Short chips by default, with a toggle to the full pros and cons cards. Mounted with key={gen.slug} so the toggle resets per generation. */
+/** Short lists by default; the toggle reveals full descriptions in the same layout. */
 function ProsConsBlock({ gen, lang, dict }: { gen: CarGeneration; lang: Locale; dict: Dict }) {
   const c = dict.carInfo;
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className="space-y-2">
-      {expanded ? (
-        <ProsConsCards gen={gen} lang={lang} dict={dict} />
-      ) : (
-        <div className="space-y-2 rounded-xl border border-border bg-card p-4">
-          {gen.pros.length > 0 && <ChipRow title={c.prosTitle} items={gen.pros} icon={ThumbsUp} tone="text-success" chip="bg-success-soft text-success" lang={lang} />}
-          {gen.cons.length > 0 && <ChipRow title={c.consTitle} items={gen.cons} icon={ThumbsDown} tone="text-warning" chip="bg-warning-soft text-warning" lang={lang} />}
-        </div>
-      )}
+    <div className="space-y-3">
+      <ProsConsCards gen={gen} lang={lang} dict={dict} concise={!expanded} />
       <button
         type="button"
         aria-expanded={expanded}
@@ -92,7 +55,6 @@ function ProsConsBlock({ gen, lang, dict }: { gen: CarGeneration; lang: Locale; 
     </div>
   );
 }
-
 /** The model page's photo, summary and pros/cons with a generation switcher shared with the cards below. */
 export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarGeneration[]; lang: Locale; dict: Dict }) {
   const c = dict.carInfo;
