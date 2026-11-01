@@ -253,6 +253,8 @@
     "link": {"tests": {"label": "Avto magazin", "hint": "Road tests and news (SL)"}, "safety": {"label": "Euro NCAP", "hint": "Crash-test stars"}, "adac": {"label": "ADAC Autokatalog", "hint": "Specs, prices and tests (DE)"}, "tuv": {"label": "TÜV Report", "hint": "Defects found at inspection (DE)"}},
     "prosTitle": "Pros",
     "consTitle": "Cons",
+    "showMore": "Show details",
+    "showLess": "Show less",
     "summarySoon": "A summary, pros and cons, and the common problems of each generation are coming soon. Until then, the sources below are the best place to start.",
     "recallsSection": "Recalls",
     "photoCredit": "Photo: {author}, {license}",

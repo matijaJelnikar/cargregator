@@ -65,6 +65,11 @@ export interface CarLinkRow {
 }
 
 export type Bilingual = { sl: string; en: string };
+/** A pro or con: the full sentence, with an optional short label for the model page chips. */
+export type ProCon = Bilingual & { short?: Bilingual };
+
+/** True when every item has a non-empty short label; an empty list counts as true. */
+export const allShort = (items: ProCon[]): boolean => items.every((x) => !!x.short?.sl && !!x.short?.en);
 
 export interface CarRecall {
   id: string;
@@ -95,8 +100,8 @@ export interface CarGeneration {
   reviewed_at: string | null;
   summary_sl: string | null;
   summary_en: string | null;
-  pros: Bilingual[];
-  cons: Bilingual[];
+  pros: ProCon[];
+  cons: ProCon[];
   ncap_stars: number | null;
   ncap_year: number | null;
   ncap_url: string | null;

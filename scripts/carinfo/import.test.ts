@@ -81,9 +81,10 @@ describe("choosing what to export", () => {
   });
 
   it("states coverage against all generations", () => {
-    const line = coverageLine({ total: 818, written: 300, checked: 250, exported: 40, held: 2, previously: 208 });
+    const line = coverageLine({ total: 818, written: 300, checked: 250, exported: 40, held: 2, unshortened: 3, previously: 208 });
     expect(line).toContain("300 of 818 generations written, 250 checked");
     expect(line).toContain("exported 40 and held back 2");
+    expect(line).toContain("3 need shorten.ts");
   });
 
   it("names batches so they sort by time", () => {

@@ -253,6 +253,8 @@
     "link": {"tests": {"label": "Avto magazin", "hint": "Testi in novice"}, "safety": {"label": "Euro NCAP", "hint": "Zvezdice na trčnih testih"}, "adac": {"label": "ADAC Autokatalog", "hint": "Podatki, cene in testi (DE)"}, "tuv": {"label": "TÜV Report", "hint": "Napake na tehničnem pregledu (DE)"}},
     "prosTitle": "Prednosti",
     "consTitle": "Slabosti",
+    "showMore": "Prikaži podrobnosti",
+    "showLess": "Prikaži manj",
     "summarySoon": "Povzetek, prednosti in slabosti ter pogoste težave vsake generacije pripravljamo. Do takrat so spodnji viri najboljše izhodišče.",
     "recallsSection": "Odpoklici",
     "photoCredit": "Foto: {author}, {license}",

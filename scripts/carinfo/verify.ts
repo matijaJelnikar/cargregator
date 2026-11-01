@@ -148,6 +148,9 @@ ${JSON.stringify({ summary: a.summary, pros: a.pros, cons: a.cons, engines: a.en
     const e = fixed.find((f) => f.name === orig.name) ?? (fixed.length === a.engines.length ? fixed[i] : undefined);
     return e ? { ...e, name: orig.name } : orig;
   });
+  // Sentences may have changed: drop old labels, shorten.ts relabels them.
+  parsed.data.pros = parsed.data.pros.map((p) => ({ sl: p.sl, en: p.en }));
+  parsed.data.cons = parsed.data.cons.map((c) => ({ sl: c.sl, en: c.en }));
   if (!existsSync(`${ANSWERS}/${id}.orig.json`)) await writeFile(`${ANSWERS}/${id}.orig.json`, JSON.stringify(raw, null, 2));
   await writeFile(`${ANSWERS}/${id}.json`, JSON.stringify({ ...raw, ...parsed.data }, null, 2));
 }
