@@ -238,6 +238,7 @@
     "genRecalls": "Odpoklici za to generacijo. Obvestila EU redko navedejo motor, zato preverite, katere izvedbe so zajete.",
     "backTo": "Nazaj na {model}",
     "soonEngine": "Celotno poročilo za ta motor (znane napake, stroški vzdrževanja, na kaj paziti pred nakupom) kmalu.",
+    "searchCar": "Poišči ta avto",
     "searchGen": "Poišči to generacijo",
     "searchEngine": "Poišči ta motor",
     "soon": "Celotno poročilo z napakami in stroški kmalu.",

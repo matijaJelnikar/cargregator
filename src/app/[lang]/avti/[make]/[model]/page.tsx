@@ -168,7 +168,7 @@ export default async function ModelPage({ params }: PageProps<"/[lang]/avti/[mak
       </div>
 
       <GenerationProvider initial={expanded.slug}>
-        <ModelHero key={last.id} name={name} gens={generations} lang={lang} dict={dict} />
+        <ModelHero key={last.id} name={name} makeId={make.id} modelId={model.id} gens={generations} lang={lang} dict={dict} />
 
         <section className="space-y-3">
           <h2 className="text-xl font-semibold">{c.generationsTitle}</h2>

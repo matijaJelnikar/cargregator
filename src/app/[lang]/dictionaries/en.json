@@ -238,6 +238,7 @@
     "genRecalls": "Recalls for this generation. EU notices rarely name the engine, so check which versions are affected.",
     "backTo": "Back to {model}",
     "soonEngine": "The full report for this engine (known failures, running costs, what to check before buying) is coming soon.",
+    "searchCar": "Find this car",
     "searchGen": "Search this generation",
     "searchEngine": "Search this engine",
     "soon": "Full report with failures and costs coming soon.",

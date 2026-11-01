@@ -1,13 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { ArrowDown, Check, ChevronDown, ChevronUp, Minus } from "lucide-react";
+import { ArrowDown, Check, ChevronDown, ChevronUp, Minus, Search } from "lucide-react";
 import { CarPhoto } from "@/components/CarPhoto";
 import { NcapBadge, ReportBadge, hasReport } from "@/components/CarReport";
 import { useGeneration } from "@/components/GenerationSwitch";
 import { years } from "@/components/RecallList";
-import { Chip } from "@/components/ui";
+import { button, Chip } from "@/components/ui";
 import { allShort, pick, type CarGeneration } from "@/lib/carinfoDb";
+import { DEFAULT_FILTERS, toQuery } from "@/lib/filters";
 import { tn, type Dict, type Locale } from "@/lib/i18n";
 
 /** Plain lists shared by the concise and expanded views. */
@@ -56,10 +58,11 @@ function ProsConsBlock({ gen, lang, dict }: { gen: CarGeneration; lang: Locale; 
   );
 }
 /** The model page's photo, summary and pros/cons with a generation switcher shared with the cards below. */
-export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarGeneration[]; lang: Locale; dict: Dict }) {
+export function ModelHero({ name, makeId, modelId, gens, lang, dict }: { name: string; makeId: string; modelId: string; gens: CarGeneration[]; lang: Locale; dict: Dict }) {
   const c = dict.carInfo;
   const { selected, select } = useGeneration();
   const gen = gens.find((g) => g.slug === selected) ?? gens[gens.length - 1];
+  const search = toQuery({ ...DEFAULT_FILTERS, makeId, modelId, yearFrom: gen.year_from, ...(gen.year_to ? { yearTo: gen.year_to } : {}) });
   const report = hasReport(gen);
   const short = allShort(gen.pros) && allShort(gen.cons);
   return (
@@ -94,10 +97,16 @@ export function ModelHero({ name, gens, lang, dict }: { name: string; gens: CarG
             {report && <ReportBadge gen={gen} lang={lang} dict={dict} />}
           </div>
           {report && <p className="text-sm leading-relaxed">{pick(lang, gen.summary_sl, gen.summary_en)}</p>}
+          <div className="flex flex-wrap items-center gap-4">
+            <Link href={`/${lang}/results/?${search}`} className={button("primary", { className: "w-full sm:w-auto" })}>
+              <Search className="size-4" aria-hidden />
+              {c.searchCar}
+            </Link>
           <a href={`#${gen.slug}`} className="inline-flex items-center gap-1 text-sm text-accent hover:underline">
             {gen.name}
             <ArrowDown className="size-3.5" aria-hidden />
           </a>
+          </div>
         </div>
       </div>
       {/* Without a report, one note instead of two empty boxes saying the same thing. */}
