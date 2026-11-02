@@ -56,7 +56,7 @@ export function ReportBadge({ gen, lang, dict }: { gen: Pick<CarGeneration, "sta
   const c = dict.carInfo;
   if (gen.status !== "reviewed") {
     return (
-      <span title={c.aiChecked}>
+      <span>
         <Pill tone="info">
           <Sparkles className="size-3" aria-hidden />
           {c.aiSummary}

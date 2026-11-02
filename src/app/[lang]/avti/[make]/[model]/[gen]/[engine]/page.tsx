@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { CarLinks } from "@/components/CarLinks";
+import { CarTestButton } from "@/components/CarTestButton";
 import { CheckList, FailureList, ReportBadge, VerdictPill, hasReport } from "@/components/CarReport";
 import { RecallList, years } from "@/components/RecallList";
 import { ReportError } from "@/components/ReportError";
@@ -81,6 +82,9 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
           {make.name} {model.name} · {gen.name}
         </Eyebrow>
         <h1 className="mt-2 text-[28px] font-bold leading-tight tracking-tight sm:text-4xl">{engine.name}</h1>
+        <div className="mt-3">
+          <CarTestButton car={{ makeId: make.id, modelId: model.id, makeName: make.name, modelName: model.name, gen }} dict={dict} />
+        </div>
       </div>
       <Card>
         {report && (

@@ -134,9 +134,9 @@ describe("outside links for a car", () => {
   const golf = { makeId: "volkswagen", modelId: "volkswagen-golf", makeName: "Volkswagen", modelName: "Golf" };
   const byId = (links: ReturnType<typeof carLinks>) => Object.fromEntries(links.map((l) => [l.id, l]));
 
-  it("uses the probed Avto magazin and ADAC pages when they exist", () => {
+  it("keeps ADAC model pages but replaces Avto magazin indexes with a search", () => {
     const l = byId(carLinks(golf));
-    expect(l.tests).toEqual({ id: "tests", url: "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/golf/", exact: true });
+    expect(l.tests).toEqual({ id: "tests", url: "https://avto-magazin.metropolitan.si/iskanje/?q=Volkswagen%20Golf", exact: false });
     expect(l.adac.url).toBe("https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/golf/");
   });
 
@@ -151,6 +151,64 @@ describe("outside links for a car", () => {
     const l = byId(carLinks({ ...golf, gen: { name: "Golf VII", year_from: 2012 } }));
     expect(decodeURIComponent(l.safety.url)).toContain("site:euroncap.com Volkswagen Golf 2012");
     expect(decodeURIComponent(l.tuv.url)).toContain("TÜV Report Volkswagen Golf VII Mängel");
+  });
+
+  it("opens verified ADAC and TÜV pages for Allroad C8 even before SQL sources are imported", () => {
+    const allroad = { makeId: "audi", modelId: "audi-a6-allroad", makeName: "Audi", modelName: "A6 Allroad" };
+    const l = byId(carLinks({ ...allroad, gen: { name: "A6 Allroad (C8)", year_from: 2019 } }));
+    expect(l.adac).toEqual({ id: "adac", exact: true, url: "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a6/c8/316770/" });
+    expect(l.tuv).toEqual({ id: "tuv", exact: true, url: "https://www.autobild.de/artikel/audi-a6-a7-im-tuev-check-2026--28174231.html" });
+    const older = byId(carLinks({ ...allroad, gen: { name: "A6 Allroad (C7)", year_from: 2012 } }));
+    expect(older.adac.url).not.toBe(l.adac.url);
+    expect(older.tuv.exact).toBe(false);
+    expect(byId(carLinks(allroad)).tuv.exact).toBe(false);
+  });
+
+  it("prefers a stored generation ADAC catalog source over the model map", () => {
+    const url = "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/vw/golf/vii/";
+    const l = byId(carLinks({ ...golf, gen: {
+      name: "Golf VII", year_from: 2012,
+      links: [{ id: "adac", kind: "other", label: "ADAC", url }],
+    } }));
+    expect(l.adac).toEqual({ id: "adac", exact: true, url });
+  });
+
+  it("uses direct sources from the selected generation and prefers its NCAP rating URL", () => {
+    const am = "https://avto-magazin.metropolitan.si/avtomobilski-testi/test-golf-vii/";
+    const rating = "https://www.euroncap.com/en/results/vw/golf/12345";
+    const tuv = "https://www.autobild.de/artikel/vw-golf-vii-gebrauchtwagen-test-123.html";
+    const l = byId(carLinks({ ...golf, gen: {
+      name: "Golf VII", year_from: 2012, ncap_url: rating,
+      links: [
+        { id: "am", kind: "test", label: "Avto magazin", url: am },
+        { id: "rating", kind: "safety", label: "Euro NCAP", url: "https://www.euroncap.com/assessments/vw/golf/0123/" },
+        { id: "tuv", kind: "reliability", label: "AutoBild TÜV Report: Golf VII", url: tuv },
+      ],
+    } }));
+    expect(l.tests).toEqual({ id: "tests", url: am, exact: true });
+    expect(l.safety).toEqual({ id: "safety", url: rating, exact: true });
+    expect(l.tuv).toEqual({ id: "tuv", url: tuv, exact: true });
+    const other = byId(carLinks({ ...golf, gen: { name: "Golf VIII", year_from: 2019 } }));
+    expect(other.tests.exact).toBe(false);
+    expect(other.safety.exact).toBe(false);
+    expect(other.tuv.exact).toBe(false);
+  });
+
+  it("ignores malformed and search URLs and finds an official NCAP result among report links", () => {
+    const result = "https://www.euroncap.com/assessments/vw/golf/0123/";
+    const l = byId(carLinks({ ...golf, gen: {
+      name: "Golf VII", year_from: 2012, ncap_url: "https://www.google.com/search?q=EuroNCAP",
+      links: [
+        { id: "bad", kind: "safety", label: "Euro NCAP", url: "https://www.euroncap.com.evil.example/en/results/vw/golf/123/" },
+        { id: "invalid", kind: "reliability", label: "TÜV", url: "not a url" },
+        { id: "search", kind: "reliability", label: "TÜV", url: "https://www.google.com/search?q=TUV" },
+        { id: "am", kind: "test", label: "Avto magazin", url: "https://avto-magazin.metropolitan.si/avtomobili/volkswagen/golf/" },
+        { id: "result", kind: "safety", label: "Euro NCAP", url: result },
+      ],
+    } }));
+    expect(l.safety).toEqual({ id: "safety", url: result, exact: true });
+    expect(l.tests.exact).toBe(false);
+    expect(l.tuv.exact).toBe(false);
   });
 });
 

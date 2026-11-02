@@ -15,7 +15,7 @@ export function CarLinks({ car, dict, compact = false }: { car: CarLinkInput; di
           <li key={l.id}>
             <a href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-accent hover:underline">
               {c.link[l.id].label}
-              <ExternalLink className="size-3" aria-hidden />
+              {l.exact ? <ExternalLink className="size-3" aria-hidden /> : <Search className="size-3" aria-label={c.searchLink} />}
             </a>
           </li>
         ))}

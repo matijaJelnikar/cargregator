@@ -56,7 +56,14 @@
   "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a6/"
  },
  "audi-a6-allroad": {
-  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a6-allroad/"
+  "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a6-allroad/",
+  "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a6/",
+  "generations": {
+   "2019": {
+    "adac": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/audi/a6/c8/316770/",
+    "tuv": "https://www.autobild.de/artikel/audi-a6-a7-im-tuev-check-2026--28174231.html"
+   }
+  }
  },
  "audi-a7": {
   "am": "https://avto-magazin.metropolitan.si/avtomobili/audi/a7/",

@@ -292,7 +292,6 @@
     "annualCost": "{min}–{max} per year",
     "annualCostHint": "typical service and repairs, fuel excluded",
     "score": "{n}/10",
-    "aiChecked": "AI-assisted report; every problem was checked against its sources, but not yet reviewed by a person.",
     "reviewed": "Reviewed by our editors.",
     "reviewedOn": "Reviewed by our editors on {date}.",
     "ncap": "Euro NCAP {stars}★ ({year})",

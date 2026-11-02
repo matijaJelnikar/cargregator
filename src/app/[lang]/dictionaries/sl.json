@@ -292,7 +292,6 @@
     "annualCost": "{min}–{max} na leto",
     "annualCostHint": "običajni servisi in popravila, brez goriva",
     "score": "{n}/10",
-    "aiChecked": "Poročilo je pripravljeno s pomočjo umetne inteligence; vsako težavo smo preverili v virih, človek pa ga še ni pregledal.",
     "reviewed": "Pregledalo naše uredništvo.",
     "reviewedOn": "Pregledalo naše uredništvo, {date}.",
     "ncap": "Euro NCAP {stars}★ ({year})",

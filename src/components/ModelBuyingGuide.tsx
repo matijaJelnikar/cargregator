@@ -130,9 +130,9 @@ export function ModelBuyingGuide({ gen, makeId, modelId, makeName, modelName, la
         <details id="guide-sources" className={`${disclosure} scroll-mt-24`}>
           <summary className={disclosureTitle}>{c.sourcesAndReview}<ChevronDown className={chevron} aria-hidden /></summary>
           <div className="mt-4 space-y-4">
-            {report && (
+            {report && gen.status === "reviewed" && (
               <p className="text-sm leading-relaxed text-muted">
-                {gen.status === "reviewed" ? (gen.reviewed_at ? t(c.reviewedOn, { date: formatDate(gen.reviewed_at, lang) }) : c.reviewed) : c.aiChecked}
+                {gen.reviewed_at ? t(c.reviewedOn, { date: formatDate(gen.reviewed_at, lang) }) : c.reviewed}
               </p>
             )}
             {gen.links.length > 0 && <FoundLinks gen={gen} dict={dict} />}

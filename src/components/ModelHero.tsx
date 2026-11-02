@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Check, ChevronDown, ChevronUp, Minus, Search } from "lucide-react";
 import { ModelBuyingGuide } from "@/components/ModelBuyingGuide";
+import { CarTestButton } from "@/components/CarTestButton";
 import { summaryPreview } from "@/lib/buyingGuide";
 import { CarPhoto } from "@/components/CarPhoto";
 import { NcapBadge, ReportBadge, hasReport } from "@/components/CarReport";
@@ -121,6 +122,7 @@ export function ModelHero({ name, makeId, modelId, makeName, modelName, gens, la
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
+              <CarTestButton car={{ makeId, modelId, makeName, modelName, gen }} dict={dict} />
               <NcapBadge gen={gen} dict={dict} />
               {report && <ReportBadge gen={gen} lang={lang} dict={dict} />}
             </div>
