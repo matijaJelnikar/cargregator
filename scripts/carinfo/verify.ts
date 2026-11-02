@@ -10,7 +10,7 @@ import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { ReportAnswer, ReportFix, VerifyAnswer } from "../../src/lib/carinfo.ts";
 import { REPORT_DIR, carName } from "./report.ts";
-import { ask, assertOpencodeModel, type Runner } from "./llm.ts";
+import { ask, assertOpencodeModel, isUsageLimitError, type Runner } from "./llm.ts";
 
 const ANSWERS = `${REPORT_DIR}/answers`;
 const CHECKED = `${REPORT_DIR}/checked`;
@@ -122,7 +122,7 @@ async function main() {
       console.log(`[${n + 1}/${ids.length}] ${raw.model_id}/${raw.slug} ok ${JSON.stringify(c)}, ${v.bad_urls.length} bad urls, ${v.errors.length} errors fixed (${Math.round((Date.now() - started) / 1000)}s)`);
     } catch (e) {
       console.log(`[${n + 1}/${ids.length}] ${raw.model_id}/${raw.slug} FAILED ${(e as Error).message.slice(0, 300)}`);
-      if (/limit|quota|rate|429|insufficient/i.test((e as Error).message)) break;
+      if (isUsageLimitError((e as Error).message)) break;
     }
   }
 }

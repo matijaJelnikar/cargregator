@@ -93,6 +93,9 @@ describe("choosing what to export", () => {
 });
 
 describe("spaceNumbers", () => {
+  it("preserves the EA211 evo2 engine designation while repairing adjacent prose", () => {
+    expect(spaceNumbers("EA211 evo2, motor je razvil200 kW")).toBe("EA211 evo2, motor je razvil 200 kW");
+  });
   it("puts back the space a model dropped before a number", () => {
     expect(spaceNumbers("motor je razvil200 kW, either120 or kot2.4")).toBe("motor je razvil 200 kW, either 120 or kot 2.4");
   });

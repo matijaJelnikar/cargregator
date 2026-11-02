@@ -51,6 +51,8 @@ describe("isUsageLimitError", () => {
     expect(isUsageLimitError("JSON parse error")).toBe(false);
     expect(isUsageLimitError("StatusCode: non 2xx status code (429 GET https://autohub.de/magazin/x)")).toBe(false);
     expect(isUsageLimitError("speed limit 130 km/h")).toBe(false);
+    expect(isUsageLimitError("Could not generate a valid report")).toBe(false);
+    expect(isUsageLimitError("insufficient engine coverage")).toBe(false);
   });
 });
 

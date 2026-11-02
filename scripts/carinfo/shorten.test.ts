@@ -83,6 +83,15 @@ describe("shortsSql", () => {
       '"short":{"sl":"motor 1","en":"engine 1"}',
     );
   });
+
+  it("keeps evo2 intact in labels and in the stored-sentence guard", () => {
+    const withCode = structuredClone(labelled);
+    withCode.pros[0] = { sl: "Motor EA211 evo2", en: "EA211 evo2 engine", short: { sl: "EA211 evo2", en: "EA211 evo2" } };
+    const sql = shortsSql("00000000-0000-0000-0000-000000000001", withCode);
+    expect(sql).toContain('"sl":"Motor EA211 evo2","en":"EA211 evo2 engine"');
+    expect(sql).toContain('"short":{"sl":"EA211 evo2","en":"EA211 evo2"}');
+    expect(sql).not.toContain("evo 2");
+  });
 });
 
 describe("shortenPrompt", () => {

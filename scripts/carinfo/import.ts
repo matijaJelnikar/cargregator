@@ -32,8 +32,8 @@ const EXPORTED = `${REPORT_DIR}/exported.json`;
 const MAX_CHUNK = 300_000;
 
 /** MiniMax often drops the space before a number ("razvil200 kW", "either120"). Only lowercase words get the space
- * back, so names like Mazda5, Euro6 or Hybrid4 stay as written. */
-export const spaceNumbers = (s: string) => s.replace(/(?<!\p{L})(\p{Ll}{2,})(?=\d)/gu, "$1 ");
+ * back. Preserve names like Mazda5, Euro6, Hybrid4 and the engine designation evo2. */
+export const spaceNumbers = (s: string) => s.replace(/(?<!\p{L})(?!evo2\b)(\p{Ll}{2,})(?=\d)/gu, "$1 ");
 
 /** Applies spaceNumbers to every {sl, en} text in a report; names, engine keys and URLs are left alone. */
 export function cleanText<T>(x: T): T {

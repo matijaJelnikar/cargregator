@@ -17,7 +17,6 @@ const PROMPTS = `${SKELETON_DIR}/prompts`;
 const ANSWERS = `${SKELETON_DIR}/answers`;
 const ERRORS = `${SKELETON_DIR}/errors`;
 const TIMEOUT_MS = 15 * 60_000;
-const SYSTEM = "You are a careful automotive data analyst. Answer with JSON matching the given schema only.";
 const SCHEMA = jsonSchema(SkeletonAnswer);
 
 // Re-export for callers that only need the Claude helper.
