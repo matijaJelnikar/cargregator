@@ -235,6 +235,8 @@
     "vinNote": "Obvestila EU navajajo modele in leta, ne posameznih vozil: VIN preverite pri proizvajalcu.",
     "sizeCol": "Delovna prostornina",
     "codeCol": "Oznaka motorja",
+    "alsoFoundIn": "Tudi v teh avtih…",
+    "alsoFoundInHint": "Drugi avti z oznako {code}, enakim gorivom in prostornino. Oznaka lahko zajema družino motorjev; izvedbe in sestavni deli se lahko razlikujejo.",
     "genRecalls": "Odpoklici za to generacijo. Obvestila EU redko navedejo motor, zato preverite, katere izvedbe so zajete.",
     "backTo": "Nazaj na {model}",
     "soonEngine": "Celotno poročilo za ta motor (znane napake, stroški vzdrževanja, na kaj paziti pred nakupom) kmalu.",

@@ -235,6 +235,8 @@
     "vinNote": "EU notices name models and years, not individual cars: check the VIN with the manufacturer.",
     "sizeCol": "Engine size",
     "codeCol": "Engine code",
+    "alsoFoundIn": "Also found in…",
+    "alsoFoundInHint": "Other cars listed with {code}, the same fuel and displacement. Codes may cover an engine family; versions and components can differ.",
     "genRecalls": "Recalls for this generation. EU notices rarely name the engine, so check which versions are affected.",
     "backTo": "Back to {model}",
     "soonEngine": "The full report for this engine (known failures, running costs, what to check before buying) is coming soon.",

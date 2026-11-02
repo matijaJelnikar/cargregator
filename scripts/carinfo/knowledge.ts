@@ -12,6 +12,7 @@ import { MAKES } from "../../src/data/makes.ts";
 import { KnowledgeAnswer, engineSlug } from "../../src/lib/carinfo.ts";
 import { SKELETON_DIR } from "./skeleton-prompt.ts";
 import { ask, jsonSchema } from "./run-claude.ts";
+import { correctedEngineCode, engineIdentityIssues } from "./engine-codes.ts";
 
 const DIR = `${SKELETON_DIR}/knowledge`;
 const SCHEMA = jsonSchema(KnowledgeAnswer);
@@ -85,7 +86,9 @@ async function main() {
       let slug = engineSlug(e.name, e.kw);
       for (let n = 2; slugs.has(`${e.generation}/${slug}`); n++) slug = `${engineSlug(e.name, e.kw)}-${n}`;
       slugs.add(`${e.generation}/${slug}`);
-      return [e.generation, slug, e.name, e.engine_code, e.fuel, e.kw, e.ccm, e.year_from, e.year_to, 0];
+      const code = correctedEngineCode({ model: m.id, generation: e.generation, name: e.name, code: e.engine_code, fuel: e.fuel, kw: e.kw, ccm: e.ccm });
+      for (const issue of engineIdentityIssues({ code, fuel: e.fuel, ccm: e.ccm })) console.warn(`${m.id}/${e.generation} ${e.name}: ${issue}`);
+      return [e.generation, slug, e.name, code, e.fuel, e.kw, e.ccm, e.year_from, e.year_to, 0];
     });
     const generations = a.generations.map((g) => [g.slug, g.name, g.code, g.year_from, g.year_to, 0]);
     payloads.push(JSON.stringify({ model_id: m.id, generations, engines }));

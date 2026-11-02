@@ -3,6 +3,7 @@
 // client library is bundled into the worker.
 
 import type { Fuel } from "./filters";
+import { MAKES } from "@/data/makes";
 import { publicVerdict } from "./reportPolicy";
 
 export const REST = "https://wblmhgmotllxffpwsmhb.supabase.co/rest/v1";
@@ -126,6 +127,35 @@ async function get<T>(path: string, tags: string[] = []): Promise<T> {
 
 /** "volkswagen-golf" under make "volkswagen" → "golf" (the URL segment). */
 export const modelSlug = (makeId: string, modelId: string) => modelId.slice(makeId.length + 1);
+
+type RelatedEngineRow = Pick<CarEngine, "id" | "slug" | "name" | "kw" | "year_from" | "year_to"> & {
+  generations: { slug: string; name: string; model_id: string };
+};
+
+/** Match the stored code, fuel and displacement; codes can describe whole families. */
+export async function getRelatedEngines(engine: CarEngine, modelId: string) {
+  if (!engine.engine_code?.trim() || !engine.ccm) return [];
+  const query = new URLSearchParams({
+    select: "id,slug,name,kw,year_from,year_to,generations!inner(slug,name,model_id)",
+    engine_code: `eq.${engine.engine_code}`,
+    fuel: `eq.${engine.fuel}`,
+    ccm: `eq.${engine.ccm}`,
+    "generations.model_id": `neq.${modelId}`,
+    order: "registrations.desc,id.asc",
+    limit: "100",
+  });
+  const rows = await get<RelatedEngineRow[]>(`engines?${query}`);
+  return rows.flatMap((row) => {
+    const make = MAKES.find((m) => m.models.some((model) => model.id === row.generations.model_id));
+    const model = make?.models.find((m) => m.id === row.generations.model_id);
+    if (!make || !model) return [];
+    return [{
+      ...row,
+      carName: `${make.name} ${model.name}`,
+      path: `/avti/${make.id}/${modelSlug(make.id, model.id)}/${row.generations.slug}/${row.slug}/`,
+    }];
+  });
+}
 
 export interface ModelSummary {
   generations: number;

@@ -9,7 +9,7 @@ import { RecallList, years } from "@/components/RecallList";
 import { ReportError } from "@/components/ReportError";
 import { Card, Eyebrow, Pill } from "@/components/ui";
 import { MAKES } from "@/data/makes";
-import { getGenerations, modelSlug, pick } from "@/lib/carinfoDb";
+import { getGenerations, getRelatedEngines, modelSlug, pick } from "@/lib/carinfoDb";
 import { recallsInYears } from "@/lib/carinfoMatch";
 import { alternates, formatEur, t, tn } from "@/lib/i18n";
 import { getDictionary } from "../../../../../dictionaries";
@@ -51,6 +51,8 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
   if (!found) notFound();
   const { make, model, gen, engine } = found;
   const c = dict.carInfo;
+  // An optional discovery section must not make the report unavailable.
+  const related = await getRelatedEngines(engine, model.id).catch(() => []);
 
   // Notices that name only a few years apply to the engine only if those years overlap its own.
   const recalls = recallsInYears(gen.recalls, engine.year_from, engine.year_to);
@@ -104,6 +106,25 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
             .filter((value) => value !== "–")
             .join(" · ")}
         </p>
+        {related.length > 0 && (
+          <details className="mt-4 border-t border-border pt-4">
+            <summary className="cursor-pointer text-sm font-medium">{c.alsoFoundIn}</summary>
+            <p className="mt-2 text-xs text-muted">{t(c.alsoFoundInHint, { code: engine.engine_code! })}</p>
+            <ul className="mt-3 max-h-80 space-y-3 overflow-y-auto text-sm">
+              {related.map((other) => (
+                <li key={other.id}>
+                  <Link href={`/${lang}${other.path}`} className="text-accent hover:underline">
+                    {other.carName} · {other.generations.name} · {other.name}
+                  </Link>
+                  <p className="mt-0.5 font-mono text-xs text-muted">
+                    {years(other.year_from, other.year_to, dict)}
+                    {other.kw != null && ` · ${powerLabel(other.kw, lang)}`}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
         <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-border pt-4">
           <Pill tone={recalls.length ? "warning" : "neutral"} dot>
             {recalls.length ? tn(c.recallCount, recalls.length, lang) : c.noRecalls}

@@ -9,6 +9,7 @@ import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { MAKES } from "../../src/data/makes.ts";
 import { SkeletonAnswer, engineSlug } from "../../src/lib/carinfo.ts";
 import { SKELETON_DIR, type Variant } from "./skeleton-prompt.ts";
+import { correctedEngineCode, engineIdentityIssues } from "./engine-codes.ts";
 
 const SQL_DIR = "data-raw/carinfo/sql";
 /** Bytes of payload per SQL file, so each file fits one execute_sql call. */
@@ -84,7 +85,10 @@ function build(modelId: string, answer: SkeletonAnswer, list: Variant[], issues:
     const cars = [...years.values()].reduce((a, b) => a + b, 0);
     const solid = [...years].filter(([, n]) => n >= MIN_YEAR_CARS).map(([y]) => y);
     const span = solid.length ? solid : [...years.keys()];
-    engines.push([e.generation, slug, e.name, e.engine_code, top(fuel), power, top(cc), Math.min(...span), Math.max(...span), cars]);
+    const identity = { model: modelId, generation: e.generation, name: e.name, code: e.engine_code, fuel: top(fuel), kw: power, ccm: top(cc) };
+    const code = correctedEngineCode(identity);
+    issues.push(...engineIdentityIssues({ ...identity, code }).map((issue) => `${e.generation} ${e.name}: ${issue}`));
+    engines.push([e.generation, slug, e.name, code, top(fuel), power, top(cc), Math.min(...span), Math.max(...span), cars]);
     genCars.set(e.generation, (genCars.get(e.generation) ?? 0) + cars);
   }
 
