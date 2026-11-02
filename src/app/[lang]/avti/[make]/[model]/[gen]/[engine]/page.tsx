@@ -1,16 +1,16 @@
+import { powerLabel } from "@/lib/buyingGuide";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { CarLinks } from "@/components/CarLinks";
 import { CheckList, FailureList, ReportBadge, VerdictPill, hasReport } from "@/components/CarReport";
 import { RecallList, years } from "@/components/RecallList";
 import { ReportError } from "@/components/ReportError";
-import { Card, Eyebrow, Pill, button } from "@/components/ui";
+import { Card, Eyebrow, Pill } from "@/components/ui";
 import { MAKES } from "@/data/makes";
 import { getGenerations, modelSlug, pick } from "@/lib/carinfoDb";
 import { recallsInYears } from "@/lib/carinfoMatch";
-import { DEFAULT_FILTERS, toQuery } from "@/lib/filters";
 import { alternates, formatEur, t, tn } from "@/lib/i18n";
 import { getDictionary } from "../../../../../dictionaries";
 
@@ -54,15 +54,6 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
 
   // Notices that name only a few years apply to the engine only if those years overlap its own.
   const recalls = recallsInYears(gen.recalls, engine.year_from, engine.year_to);
-  const search = toQuery({
-    ...DEFAULT_FILTERS,
-    makeId: make.id,
-    modelId: model.id,
-    yearFrom: engine.year_from ?? gen.year_from,
-    ...((engine.year_to ?? gen.year_to) ? { yearTo: (engine.year_to ?? gen.year_to)! } : {}),
-    fuel: [engine.fuel],
-    ...(engine.kw ? { powerFromKw: engine.kw } : {}),
-  });
   // A failure tied to one power output of this engine name applies to all of them.
   const sameName = new Set(gen.engines.filter((e) => e.name === engine.name).map((e) => e.id));
   const engineFailures = gen.failures.filter((f) => f.engine_id && sameName.has(f.engine_id));
@@ -71,7 +62,7 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
   const report = hasReport(gen) && engine.verdict !== null;
   const specs: [string, string][] = [
     [c.fuelCol, dict.fuel[engine.fuel]],
-    [c.powerCol, engine.kw ? `${engine.kw} kW` : "–"],
+    [c.powerCol, engine.kw != null ? powerLabel(engine.kw, lang) : "–"],
     [c.sizeCol, engine.ccm ? `${engine.ccm} cm³` : "–"],
     [c.yearsCol, years(engine.year_from, engine.year_to, dict)],
     ...(engine.engine_code ? ([[c.codeCol, engine.engine_code]] as [string, string][]) : []),
@@ -122,10 +113,6 @@ export default async function EnginePage({ params }: PageProps<"/[lang]/avti/[ma
               {tn(c.problemCount, problemCount, lang)}
             </a>
           )}
-          <Link href={`/${lang}/results/?${search}`} className={button("primary", { small: true, className: "ml-auto" })}>
-            <Search className="size-4" aria-hidden />
-            {c.searchEngine}
-          </Link>
         </div>
         {recalls.length > 0 && (
           <p className="mt-3 text-sm text-muted">

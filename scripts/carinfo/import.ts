@@ -21,6 +21,7 @@ import { ReportAnswer, VerifyAnswer, hasShorts } from "../../src/lib/carinfo.ts"
 import LINK_MAP from "../../src/data/carLinks.json" with { type: "json" };
 import { sqlString as q } from "./sql.ts";
 import { REPORT_DIR, loadGenerations } from "./report.ts";
+import { EngineMatchError, matchReportEngines, type EngineIdentity } from "./engine-names.ts";
 import { isDead } from "./verify.ts";
 
 const ANSWERS = `${REPORT_DIR}/answers`;
@@ -59,7 +60,7 @@ export function checkConfidence(v: Pick<VerifyAnswer, "failures" | "errors">, fa
   return Math.round(Math.max(0, Math.min(1, score)) * 100) / 100;
 }
 
-export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { http?: Record<string, number> }, generatedBy: string, modelId = "") {
+export function reportPayload(a: ReportAnswer, v: VerifyAnswer & { http?: Record<string, number> }, modelId = "") {
   // The model pages we already link to for every generation (src/lib/carLinks.ts) are not repeated.
   const known = (LINK_MAP as Record<string, { am?: string; adac?: string }>)[modelId] ?? {};
   const bad = new Set([...v.bad_urls, ...(known.am ? [known.am] : []), ...(known.adac ? [known.adac] : [])]);
@@ -75,9 +76,16 @@ export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { h
   const ncap = a.ncap && ok(a.ncap.url) ? a.ncap : null;
   const confidence = checkConfidence(v, a.failures.length, failures.flatMap((f) => f.sources.map((s) => s.url)));
   const payload = cleanText({ summary: a.summary, pros: a.pros, cons: a.cons, confidence, ncap, engines: a.engines, failures, checks: a.checks, links });
-  // carinfo.load_report (migration 20261022000400) writes everything for the generation in one call.
-  const sql = `select * from carinfo.load_report(${q(id)}::uuid, ${q(JSON.stringify(payload))}::jsonb, ${q(generatedBy)});`;
-  return { sql, kept: failures.length, dropped: a.failures.length - failures.length, links: links.length, droppedLinks: a.links.length - links.length };
+  return { payload, kept: failures.length, dropped: a.failures.length - failures.length, links: links.length, droppedLinks: a.links.length - links.length };
+}
+
+export function generationSql(id: string, a: ReportAnswer, v: VerifyAnswer & { http?: Record<string, number> }, generatedBy: string, modelId = "", catalogue?: EngineIdentity[], scope = "") {
+  if (!catalogue) throw new EngineMatchError("Engine catalogue required for a checked import");
+  const matched = matchReportEngines(a, catalogue, scope);
+  if (matched.issues.length) throw new EngineMatchError(matched.issues.join("; "));
+  const result = reportPayload(matched.answer, v, modelId);
+  const sql = `select * from carinfo.load_report(${q(id)}::uuid, ${q(JSON.stringify(result.payload))}::jsonb, ${q(generatedBy)});`;
+  return { ...result, sql };
 }
 
 /** More than half of a report's failures unsupported: too weak to publish without --force. */
@@ -94,12 +102,14 @@ export interface Coverage {
   held: number;
   unshortened: number;
   previously: number;
+  unmatched?: number;
 }
 
 export function coverageLine(c: Coverage) {
   return (
     `**Coverage:** ${c.written} of ${c.total} generations written, ${c.checked} checked; this run exported ${c.exported}` +
-    ` and held back ${c.held}; ${c.previously} exported in earlier runs and unchanged; ${c.unshortened} need shorten.ts.`
+    ` and held back ${c.held}; ${c.previously} exported in earlier runs and unchanged; ${c.unshortened} need shorten.ts.` +
+    (c.unmatched ? ` ${c.unmatched} need engine-name/coverage fixes.` : "")
   );
 }
 
@@ -112,7 +122,9 @@ async function main() {
   await mkdir(SQL_DIR, { recursive: true });
   const exported: Record<string, number> = existsSync(EXPORTED) ? JSON.parse(await readFile(EXPORTED, "utf8")) : {};
   const answerIds = (await readdir(ANSWERS)).filter((f) => !f.endsWith(".orig.json")).map((f) => f.replace(/\.json$/, ""));
-  const total = (await loadGenerations([])).length;
+  const generations = await loadGenerations([]);
+  const catalogues = new Map(generations.map((g) => [g.id, g.engines]));
+  const total = generations.length;
 
   const chunks: string[] = [];
   let chunk = "";
@@ -147,7 +159,15 @@ async function main() {
     }
     const runner = (raw.runner as string | undefined) ?? "claude";
     const model = (raw.model as string | undefined) ?? "sonnet";
-    const g = generationSql(id, a, v, `${runner}/${model} report`, raw.model_id);
+    let g: ReturnType<typeof generationSql>;
+    try {
+      g = generationSql(id, a, v, `${runner}/${model} report`, raw.model_id, catalogues.get(id), label);
+    } catch (error) {
+      if (!(error instanceof EngineMatchError)) throw error;
+      c.unmatched = (c.unmatched ?? 0) + 1;
+      rows.push(`| ${label} | ENGINE MATCH ERROR | | | ${error.message.replaceAll("|", "/")} |`);
+      continue;
+    }
     rows.push(`| ${label} | exported | ${g.kept}/${g.dropped} | ${g.links}/${g.droppedLinks} | ${checked.fixed ? `${v.errors.length} errors fixed` : ""} |`);
     const stmt = `-- ${label}\n${g.sql}\n\n`;
     if (chunk.length + stmt.length > MAX_CHUNK && chunk) {

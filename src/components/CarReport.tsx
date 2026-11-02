@@ -1,3 +1,4 @@
+import { powerLabel } from "@/lib/buyingGuide";
 import { BadgeCheck, Check, ChevronDown, ExternalLink, ShieldCheck, Sparkles } from "lucide-react";
 import { years } from "@/components/RecallList";
 import { Pill, type Tone } from "@/components/ui";
@@ -89,7 +90,7 @@ export function EngineVerdicts({ engines, lang, dict, hrefFor }: { engines: CarE
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
               <a href={hrefFor(e)} className="font-medium hover:text-accent">
                 {name}
-                {kw.length > 0 && <span className="ml-2 font-mono text-xs font-normal text-subtle">{Math.min(...kw) === Math.max(...kw) ? `${kw[0]} kW` : `${Math.min(...kw)}–${Math.max(...kw)} kW`}</span>}
+                {kw.length > 0 && <span className="ml-2 font-mono text-xs font-normal text-subtle">{Math.min(...kw) === Math.max(...kw) ? powerLabel(kw[0], lang) : `${powerLabel(Math.min(...kw), lang)}–${powerLabel(Math.max(...kw), lang)}`}</span>}
               </a>
               <span className="flex items-center gap-2">
                 {e.score != null && <span className="font-mono text-xs text-muted">{t(c.score, { n: e.score })}</span>}
@@ -110,7 +111,7 @@ export function EngineVerdicts({ engines, lang, dict, hrefFor }: { engines: CarE
 }
 
 /** Repair costs: the exact range once the generation is reviewed, a low/medium/high band before (lib/reportPolicy.ts). */
-export function FailureList({ failures, gen, lang, dict }: { failures: CarFailure[]; gen: Pick<CarGeneration, "engines" | "status">; lang: Locale; dict: Dict }) {
+export function FailureList({ failures, gen, lang, dict, expanded = false }: { failures: CarFailure[]; gen: Pick<CarGeneration, "engines" | "status">; lang: Locale; dict: Dict; expanded?: boolean }) {
   const engines = gen.engines;
   const exact = showExactCost(gen);
   const c = dict.carInfo;
@@ -124,7 +125,7 @@ export function FailureList({ failures, gen, lang, dict }: { failures: CarFailur
         const engine = f.engine_id ? engineName.get(f.engine_id) : undefined;
         return (
           <li key={f.id} id={`problem-${f.id}`} className="scroll-mt-20">
-            <details className="group/problem">
+            <details className="group/problem" open={expanded || undefined}>
               <summary className="block cursor-pointer list-none p-3 [&::-webkit-details-marker]:hidden">
                 <span className="flex items-start gap-2">
                   <span className="min-w-0 flex-1 font-medium">{pick(lang, f.title_sl, f.title_en)}</span>

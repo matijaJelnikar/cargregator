@@ -83,7 +83,7 @@ export function engineNames(gen: DbGen) {
   }
   return [...by].map(([name, x]) => ({
     name,
-    line: `- ${name}${x.codes.size ? ` (${[...x.codes].join("/")})` : ""}: ${[...x.fuel].join("/")}, ${x.kw.length ? `${Math.min(...x.kw)}–${Math.max(...x.kw)} kW` : "power unknown"}, ${x.from}–${x.to}`,
+    line: `- name: ${JSON.stringify(name)}; codes: ${x.codes.size ? [...x.codes].join("/") : "unknown"}; ${[...x.fuel].join("/")}, ${x.kw.length ? `${Math.min(...x.kw)}–${Math.max(...x.kw)} kW` : "power unknown"}, ${x.from}–${x.to}`,
   }));
 }
 
@@ -135,7 +135,7 @@ ${startingPoints(gen.model_id)}
 ## What to write
 - summary: 2–4 sentences: what the car is, who it suits, how it has aged as a used buy.
 - pros / cons: 3–5 each, short, specific to this generation (not generic "good handling").
-- engines: one entry per engine name above, using exactly the name given. verdict: "avoid" only for engines with a
+- engines: one entry per engine name above, copying only the quoted name field (never append codes, fuel, power or years). verdict: "avoid" only for engines with a
   documented pattern of expensive failures; "recommended" for the best choices. score 1–10. annual_cost_min/max:
   typical yearly service + repairs in EUR for a 6–10 year old car in Slovenia (fuel and insurance excluded), null if
   you cannot estimate. summary: one or two sentences.

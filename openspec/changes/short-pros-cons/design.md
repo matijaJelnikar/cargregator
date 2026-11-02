@@ -63,3 +63,6 @@ backfill that needs no regeneration of reports.
 ## Open Questions
 
 None.
+
+## Display update — 2026-11-01
+Matija prefers plain two-column lists to badges. Collapsed and expanded states now share the list layout, with green checks and red minus signs. The buying-guide reframe is tracked in ../reframe-car-guide/.

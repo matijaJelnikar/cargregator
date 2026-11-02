@@ -44,7 +44,7 @@ const verify: VerifyAnswer & { http: Record<string, number> } = {
 };
 
 describe("importing a checked report", () => {
-  const g = generationSql("00000000-0000-0000-0000-000000000001", answer, verify, "test");
+  const g = generationSql("00000000-0000-0000-0000-000000000001", answer, verify, "test", "", [{ name: "1.4 TSI" }]);
 
   it("keeps supported failures and drops unsupported ones and ones whose only source is dead", () => {
     expect(g.kept).toBe(1);
@@ -118,5 +118,21 @@ describe("checkConfidence", () => {
   it("subtracts fixed prose errors and counts one site once", () => {
     const errors = [{ claim: "a", fix: "b" }, { claim: "c", fix: "d" }];
     expect(checkConfidence({ failures: check("supported"), errors }, 1, ["https://a.example/1", "https://www.a.example/2"])).toBe(0.68);
+  });
+});
+
+
+describe("canonical names in exported payloads", () => {
+  it("repairs assessment and failure keys together without changing the answer", () => {
+    const source = structuredClone(answer);
+    source.engines[0].name = "1.4 TSI (EA211)";
+    source.failures[0].engine = "1.4 TSI (EA211)";
+    const result = generationSql("00000000-0000-0000-0000-000000000001", source, verify, "test", "", [{ name: "1.4 TSI", engine_code: "EA211" }]);
+    expect(result.payload.engines[0].name).toBe("1.4 TSI");
+    expect(result.payload.failures[0].engine).toBe("1.4 TSI");
+    expect(source.engines[0].name).toBe("1.4 TSI (EA211)");
+  });
+  it("requires a catalogue even for otherwise valid reports", () => {
+    expect(() => generationSql("id", answer, verify, "test")).toThrow(/catalogue required/);
   });
 });
