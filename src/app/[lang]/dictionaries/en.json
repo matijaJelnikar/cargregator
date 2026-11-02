@@ -296,6 +296,7 @@
     "reviewedOn": "Reviewed by our editors on {date}.",
     "ncap": "Euro NCAP {stars}★ ({year})",
     "foundLinks": "Found for this generation",
+    "readTest": "Read the road test (Slovenian)",
     "linkKind": {"test": "Road test", "safety": "Safety", "reliability": "Reliability", "review": "Review", "forum": "Owners", "other": "More"},
     "engineFailures": "Known problems with this engine",
     "genFailures": "Problems that affect the whole generation"

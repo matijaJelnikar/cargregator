@@ -1,7 +1,7 @@
 import { powerLabel } from "@/lib/buyingGuide";
 import { BadgeCheck, Check, ChevronDown, ExternalLink, ShieldCheck, Sparkles } from "lucide-react";
 import { years } from "@/components/RecallList";
-import { Pill, type Tone } from "@/components/ui";
+import { button, Pill, type Tone } from "@/components/ui";
 import { pick, type CarEngine, type CarFailure, type CarGeneration } from "@/lib/carinfoDb";
 import { formatDate, formatEur, t, type Dict, type Locale } from "@/lib/i18n";
 import { costBand, showExactCost } from "@/lib/reportPolicy";
@@ -44,9 +44,10 @@ export function VerdictPill({ verdict, dict }: { verdict: NonNullable<CarEngine[
 export function NcapBadge({ gen, dict }: { gen: Pick<CarGeneration, "ncap_stars" | "ncap_year" | "ncap_url">; dict: Dict }) {
   if (gen.ncap_stars == null || !gen.ncap_url) return null;
   return (
-    <a href={gen.ncap_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-xs font-medium hover:border-accent">
+    <a href={gen.ncap_url} target="_blank" rel="noopener noreferrer" className={button("secondary", { small: true })}>
       <ShieldCheck className="size-3.5 text-accent" aria-hidden />
       {t(dict.carInfo.ncap, { stars: gen.ncap_stars, year: gen.ncap_year ?? "" })}
+      <ExternalLink className="size-3.5" aria-hidden />
     </a>
   );
 }

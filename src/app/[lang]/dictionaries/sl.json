@@ -296,6 +296,7 @@
     "reviewedOn": "Pregledalo naše uredništvo, {date}.",
     "ncap": "Euro NCAP {stars}★ ({year})",
     "foundLinks": "Najdeno za to generacijo",
+    "readTest": "Preberi test",
     "linkKind": {"test": "Test", "safety": "Varnost", "reliability": "Zanesljivost", "review": "Ocena", "forum": "Lastniki", "other": "Več"},
     "engineFailures": "Znane težave tega motorja",
     "genFailures": "Težave, ki zadevajo celo generacijo"

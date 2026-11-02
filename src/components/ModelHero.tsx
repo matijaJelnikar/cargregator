@@ -124,8 +124,8 @@ export function ModelHero({ name, makeId, modelId, makeName, modelName, gens, la
             <div className="flex flex-wrap items-center gap-2">
               <CarTestButton car={{ makeId, modelId, makeName, modelName, gen }} dict={dict} />
               <NcapBadge gen={gen} dict={dict} />
-              {report && <ReportBadge gen={gen} lang={lang} dict={dict} />}
             </div>
+            {report && <div><ReportBadge gen={gen} lang={lang} dict={dict} /></div>}
             {report && <Overview key={gen.slug} text={pick(lang, gen.summary_sl, gen.summary_en)} lang={lang} dict={dict} />}
             <Link href={`/${lang}/results/?${search}`} className={button("primary", { className: "w-full sm:w-auto" })}>
               <Search className="size-4" aria-hidden />{c.searchCar}

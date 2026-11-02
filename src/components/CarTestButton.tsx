@@ -26,9 +26,9 @@ export function CarTestButton({ car, dict }: { car: CarLinkInput; dict: Dict }) 
 
   if (!test || !inSlovenia) return null;
   return (
-    <a href={test.url} target="_blank" rel="noopener noreferrer" className={button("secondary", { small: true })} title={dict.carInfo.link.tests.label}>
-      <Newspaper className="size-4" aria-hidden />
-      {dict.carInfo.linkKind.test} · {dict.carInfo.link.tests.label}
+    <a href={test.url} target="_blank" rel="noopener noreferrer" className={button("secondary", { small: true })} title={dict.carInfo.readTest}>
+      <Newspaper className="size-3.5 text-accent" aria-hidden />
+      {dict.carInfo.link.tests.label}
       <ExternalLink className="size-3.5" aria-hidden />
     </a>
   );
