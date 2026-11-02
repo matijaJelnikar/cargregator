@@ -21,10 +21,11 @@
   - Fixed: a model without a report showed the same placeholder in both the pros and the cons box; now one note
   - Fixed: the model page repeated the selected generation (photo and summary in the hero, then again in its
     generation card); Golf is ~16,000 px tall at 390 px with three generations fully expanded
-  - Open: `/admin` uses the system font, not the site's (cosmetic, admin only)
+  - Fixed and browser-confirmed (2026-11-02): `/admin` loads the same Plus Jakarta Sans and JetBrains Mono variables as the public root layout; computed body font is Plus Jakarta Sans and the font loads successfully.
   - Not bugs: the fixed bottom nav and the Next dev badge appear mid-page in full-page shots; lazy photos below the
     fold can show as empty boxes
 
 ## 3. Fixes
 
-- [ ] 3.1 Fix the layout issues found; re-shoot to confirm
+- [x] 3.1 Fix the layout issues found; re-shoot to confirm
+  - 2026-11-02: all 32 screenshots re-shot with HTTP 200 and no horizontal overflow. Admin font confirmed; model-state screenshots at 360/1280 in both themes reviewed. Evidence: `data-raw/screens/`, `data-raw/screens/model-states/`; reproducible interaction checks: `node scripts/model-qa.ts`.

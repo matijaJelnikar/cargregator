@@ -17,4 +17,4 @@
 ## 3. Production checks
 
 - [ ] 3.1 `/admin` on Workers: login link, callback, refresh route, one save action, logout
-- [ ] 3.2 Production callback URL added in Supabase Auth (finish-admin-review 1.2)
+- [x] 3.2 Production callback URL added in Supabase Auth (finish-admin-review 1.2) — reconciled 2026-11-02 with that already-completed setup task. Production callback round-trip verification is still tracked in 3.1.

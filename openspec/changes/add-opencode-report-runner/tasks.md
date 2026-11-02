@@ -20,6 +20,7 @@
 - [x] 2.3 Unit tests for JSON extraction and event parsing, using the fixtures from 1.2
 - [x] 2.4 Tighten usage-limit detection with the real Go message; test it
 - [x] 2.5 Tool errors (a page answering 429) no longer count as usage limits; only provider error events do
+  - 2026-11-02: `report.ts` and `verify.ts` now also use the shared narrow `isUsageLimitError` classifier. Their previous broad `/limit|quota|rate|429|insufficient/` checks could stop the entire batch on a source's HTTP 429, the word "generate", or insufficient engine coverage. Shared classifier regressions cover those false positives and real subscription-limit messages.
 - [x] 2.6 Answers save `cost_usd` and `seconds`, which the benchmark table reads
 - [x] 2.7 Allow only `opencode-go/kimi-k2.7-code` and `opencode-go/minimax-m3` (`OPENCODE_MODELS`); refuse others
   before any call

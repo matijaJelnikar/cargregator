@@ -1,5 +1,7 @@
 # Car reports on OpenCode Go
 
+**Current status, 2026-11-02:** all 818 generations have been written and checked; 796 are published and 22 held back. The commands and trial notes below are historical run instructions, not a remaining generation backlog. The final comparison in `openspec/changes/complete-report-coverage/design.md` rejected both MiniMax and Kimi for report writing; Sonnet finished the run. Use `docs/CARINFO-PROGRESS.md` for current counts and `docs/QUESTIONS-FOR-MATIJA.md` for unresolved work.
+
 How to run the long tail of car reports on the OpenCode Go plan. Claude Code keeps the most-registered generations
 on Sonnet. OpenCode works from the least-registered end (`--tail`), so the two runs meet in the middle and never write
 the same generation.

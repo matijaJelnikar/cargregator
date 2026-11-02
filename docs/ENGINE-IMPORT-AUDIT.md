@@ -1,5 +1,7 @@
 # Engine report import audit — 2026-11-01
 
+**Applied and verified, 2026-11-02:** the loader and 21 repair batches are archived in `data-raw/carinfo/sql/done/`. Read-only production verification finds all 3,553 target assessments equal to the intended checked values, all 1,262 exact failure-to-engine associations restored, and all six affected Touareg 3.0 V6 TDI variants recommended. The installed loader body matches the local migration apart from outer whitespace. Evidence: `data-raw/carinfo/engine-audit/production-check-20261102.json` and `production-loader-body-20261102.sql`. No database writes were performed during this verification. The four genuinely omitted engine names remain separate; research is in `docs/MISSING-ENGINE-ASSESSMENTS.md`.
+
 ## Result
 Read-only audit of all 796 exported reports against 818 public generations.
 2,493 report assessment names did not match the stored engine names.
@@ -18,9 +20,9 @@ The new loader migration validates all keys before any write, counts changed row
 and returns without touching anything for a reviewed generation. This also fixes the old reviewed-generation
 guard, which protected its summary but still allowed changes to its children and source links.
 
-## Apply in Supabase
+## Application record
 Project policy requires Matija's explicit approval for database writes.
-All files below are in data-raw/carinfo/sql/:
+All files below are now archived in data-raw/carinfo/sql/done/:
 1. engine-import-guards-20261101.sql (same contents as supabase/migrations/20261101000000_carinfo_report_import_guards.sql).
    Run this copy OR apply the migration through your normal migration workflow, not both.
 2. The 21 engine-repair-20261101-2019-NNN.sql files, 000 through 020, in numeric order.

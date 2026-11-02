@@ -4,16 +4,18 @@
 
 ### Requirement: Pros and cons collapse to short labels
 When every pros/cons item of the shown generation has a short label in the page language, the model page SHALL show
-the items as short-label chips (pros in the success tone, cons in the warning tone) and SHALL NOT show the full
+the items as plain short-label lists (pros with green checks, cons with red minus signs) and SHALL NOT show the full
 sentences until the reader expands them.
+
+This follows Matija's 2026-11-01 display decision recorded in design.md; it replaces the original chip layout.
 
 #### Scenario: Generation with labels
 - **WHEN** a model page shows a generation whose pros and cons all have `short` labels
-- **THEN** each item appears as one chip with its label in the page language, pros and cons in separate rows
+- **THEN** each item appears as one list item with its label in the page language, pros and cons in separate groups
 
 #### Scenario: Switching generation
 - **WHEN** the reader selects another generation with the generation switcher
-- **THEN** the chips show that generation's labels and the block is collapsed
+- **THEN** the lists show that generation's labels and the block is collapsed
 
 ### Requirement: One toggle reveals the full text
 The block SHALL have a single "Show more" / "Show less" toggle that switches all items between labels and the
@@ -25,7 +27,7 @@ full-sentence lists. It SHALL be keyboard-operable and expose its state with `ar
 
 #### Scenario: Collapse
 - **WHEN** the reader activates "Show less"
-- **THEN** the block returns to chips
+- **THEN** the block returns to short-label lists
 
 ### Requirement: No partial labels
 If any pros/cons item of the shown generation lacks a short label, the page SHALL show the full-sentence lists for

@@ -21,15 +21,15 @@
 
 ## 3. Full run (repeat per subscription window)
 
-- [ ] 3.0 Clear the unchecked backlog with `verify.ts`; compare MiniMax with Sonnet (held-back and unsupported
-  rates, see design "Go model")
+- [x] 3.0 Clear the unchecked backlog with `verify.ts`; compare MiniMax with Sonnet (held-back and unsupported
+  rates, see design "Go model") — reconciled 2026-11-02: no unchecked reports remain; the 2026-10-25 comparison and rejection of both Go candidates are recorded in design.md.
 - [x] 3.0a `import.ts`: derive `confidence` from the check results instead of the model's own number; test it
-- [ ] 3.1 Sonnet: `report.ts --all` from the top, until it meets the Go run
-- [ ] 3.2 OpenCode Go: `report.ts --all --tail --runner opencode --model <chosen>` for the rest (docs/CARINFO-OPENCODE.md)
-- [ ] 3.3 Retry the failures listed in `reports/errors/` (smart-fortwo/c453 and any others)
-- [ ] 3.4 `verify.ts` on all unchecked answers; retry `FAILED` ones
-- [ ] 3.5 `import.ts` (new reports only); (Matija) load the batch (**Supabase write**)
-- [ ] 3.6 Repeat 3.1–3.5 until all 818 generations are imported or listed as held back
+- [x] 3.1 Sonnet: `report.ts --all` from the top, until it meets the Go run — all 818 generations have answers; 727 were written by Claude/Sonnet. Confirmed by refreshed progress log, 2026-11-02.
+- [x] 3.2 ~~OpenCode Go tail run~~ — completed/replaced under design.md's 2026-10-25 decision: both Go candidates failed the quality threshold; Sonnet finished the remaining reports. No further Go writing run is needed.
+- [x] 3.3 Retry the failures listed in `reports/errors/` (smart-fortwo/c453 and any others) — refreshed progress has zero failed generations and zero not started, 2026-11-02.
+- [x] 3.4 `verify.ts` on all unchecked answers; retry `FAILED` ones — refreshed progress has zero written-but-unchecked generations, 2026-11-02.
+- [x] 3.5 `import.ts` (new reports only); (Matija) load the batch (**Supabase write**) — read-only public snapshot, 2026-11-02: the exact 796 exported generation IDs are public with `ai_checked` status. This does not close the separate child-row repairs in `fix-report-engine-matching`.
+- [x] 3.6 Repeat 3.1–3.5 until all 818 generations are imported or listed as held back — 796 published and 22 held back; exported IDs match public AI-checked IDs exactly, 2026-11-02.
 
 ## 4. Wrap-up
 
