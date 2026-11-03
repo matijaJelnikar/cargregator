@@ -1,0 +1,1378 @@
+[
+  {
+    "model_id": "audi-a3",
+    "slug": "8l",
+    "name": "A3 I (8L)",
+    "year_from": 1996,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-a4",
+    "slug": "b5",
+    "name": "A4 B5",
+    "year_from": 1994,
+    "year_to": 2001,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-a4",
+    "slug": "b6",
+    "name": "A4 B6",
+    "year_from": 2000,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-a4",
+    "slug": "b7",
+    "name": "A4 B7",
+    "year_from": 2004,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-a6",
+    "slug": "c5",
+    "name": "A6 C5",
+    "year_from": 1997,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-a6-allroad",
+    "slug": "c5",
+    "name": "A6 Allroad C5",
+    "year_from": 2000,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-a8",
+    "slug": "d2",
+    "name": "A8 D2",
+    "year_from": 1994,
+    "year_to": 2002,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-a8",
+    "slug": "d3",
+    "name": "A8 D3",
+    "year_from": 2002,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-rs4",
+    "slug": "b5",
+    "name": "RS4 B5",
+    "year_from": 1999,
+    "year_to": 2001,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-rs4",
+    "slug": "b7",
+    "name": "RS4 B7",
+    "year_from": 2005,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-rs6",
+    "slug": "c5",
+    "name": "RS6 C5",
+    "year_from": 2002,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-rs6",
+    "slug": "c6",
+    "name": "RS6 C6",
+    "year_from": 2008,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-s3",
+    "slug": "8l",
+    "name": "S3 8L",
+    "year_from": 1999,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "audi-tt",
+    "slug": "8n",
+    "name": "TT I (8N)",
+    "year_from": 1998,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-3-series",
+    "slug": "e46",
+    "name": "3 Series E46",
+    "year_from": 1998,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-5-series",
+    "slug": "e39",
+    "name": "5 Series E39",
+    "year_from": 1995,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-5-series",
+    "slug": "e60",
+    "name": "5 Series E60/E61",
+    "year_from": 2003,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-6-series",
+    "slug": "e63",
+    "name": "6 Series E63/E64",
+    "year_from": 2003,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-7-series",
+    "slug": "e38",
+    "name": "7 Series E38",
+    "year_from": 1994,
+    "year_to": 2001,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-7-series",
+    "slug": "e65",
+    "name": "7 Series E65/E66",
+    "year_from": 2001,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-m3",
+    "slug": "e46",
+    "name": "M3 E46",
+    "year_from": 2000,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-m5",
+    "slug": "e39",
+    "name": "M5 E39",
+    "year_from": 1998,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-m5",
+    "slug": "e60",
+    "name": "M5 E60/E61",
+    "year_from": 2005,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-x3",
+    "slug": "e83",
+    "name": "X3 I (E83)",
+    "year_from": 2003,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-x5",
+    "slug": "e53",
+    "name": "X5 I (E53)",
+    "year_from": 1999,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "bmw-z4",
+    "slug": "e85",
+    "name": "Z4 E85/E86",
+    "year_from": 2002,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "chevrolet-spark",
+    "slug": "m200",
+    "name": "Spark M200/M250",
+    "year_from": 2005,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "citroen-berlingo",
+    "slug": "mk1",
+    "name": "Berlingo I",
+    "year_from": 1996,
+    "year_to": 2012,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "citroen-c3",
+    "slug": "mk1",
+    "name": "C3 I",
+    "year_from": 2002,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "citroen-c5",
+    "slug": "mk1",
+    "name": "C5 I",
+    "year_from": 2001,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "citroen-jumpy",
+    "slug": "mk1",
+    "name": "Jumpy I",
+    "year_from": 1995,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "fiat-bravo",
+    "slug": "mk1",
+    "name": "Bravo I",
+    "year_from": 1995,
+    "year_to": 2001,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "fiat-doblo",
+    "slug": "mk1",
+    "name": "Doblo I",
+    "year_from": 2000,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "fiat-ducato",
+    "slug": "230",
+    "name": "Ducato II (230/244)",
+    "year_from": 1994,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "fiat-panda",
+    "slug": "mk1",
+    "name": "Panda I",
+    "year_from": 1980,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "ford-focus",
+    "slug": "mk1",
+    "name": "Focus I",
+    "year_from": 1998,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "ford-galaxy",
+    "slug": "mk1",
+    "name": "Galaxy I",
+    "year_from": 1995,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "ford-ka",
+    "slug": "mk1",
+    "name": "Ka I",
+    "year_from": 1996,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "ford-mondeo",
+    "slug": "mk3",
+    "name": "Mondeo III",
+    "year_from": 2000,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "ford-puma",
+    "slug": "mk1",
+    "name": "Puma coupe",
+    "year_from": 1997,
+    "year_to": 2002,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "ford-transit",
+    "slug": "mk6",
+    "name": "Transit Mk6",
+    "year_from": 2000,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "ford-transit-connect",
+    "slug": "mk1",
+    "name": "Transit Connect I",
+    "year_from": 2002,
+    "year_to": 2013,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "honda-accord",
+    "slug": "mk7",
+    "name": "Accord VII (Europe)",
+    "year_from": 2002,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "honda-civic",
+    "slug": "mk7",
+    "name": "Civic VII",
+    "year_from": 2000,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "honda-cr-v",
+    "slug": "mk2",
+    "name": "CR-V II",
+    "year_from": 2001,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "honda-hr-v",
+    "slug": "mk1",
+    "name": "HR-V I",
+    "year_from": 1999,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "honda-jazz",
+    "slug": "gd",
+    "name": "Jazz GD (Europe first generation)",
+    "year_from": 2002,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "hyundai-santa-fe",
+    "slug": "sm",
+    "name": "Santa Fe I (SM)",
+    "year_from": 2000,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "hyundai-tucson",
+    "slug": "jm",
+    "name": "Tucson I (JM)",
+    "year_from": 2004,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "jaguar-xj",
+    "slug": "x350",
+    "name": "XJ X350/X358",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "jeep-cherokee",
+    "slug": "kj",
+    "name": "Cherokee KJ",
+    "year_from": 2001,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "jeep-grand-cherokee",
+    "slug": "wj",
+    "name": "Grand Cherokee II (WJ/WG)",
+    "year_from": 1999,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "jeep-wrangler",
+    "slug": "tj",
+    "name": "Wrangler TJ",
+    "year_from": 1996,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "kia-carens",
+    "slug": "mk2",
+    "name": "Carens II",
+    "year_from": 2002,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "kia-rio",
+    "slug": "mk1",
+    "name": "Rio I",
+    "year_from": 2000,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "kia-sportage",
+    "slug": "km",
+    "name": "Sportage II (KM/JE)",
+    "year_from": 2004,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "land-rover-discovery",
+    "slug": "mk2",
+    "name": "Discovery 2",
+    "year_from": 1998,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "land-rover-discovery",
+    "slug": "mk3",
+    "name": "Discovery 3",
+    "year_from": 2004,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "land-rover-freelander",
+    "slug": "mk1",
+    "name": "Freelander I",
+    "year_from": 1997,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "lexus-is",
+    "slug": "xe10",
+    "name": "IS I (XE10)",
+    "year_from": 1999,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "lexus-rx",
+    "slug": "xu10",
+    "name": "RX I (XU10)",
+    "year_from": 1998,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "lexus-rx",
+    "slug": "xu30",
+    "name": "RX II (XU30)",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mazda-2",
+    "slug": "dy",
+    "name": "Mazda2 I (DY)",
+    "year_from": 2002,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mazda-3",
+    "slug": "bk",
+    "name": "Mazda3 I (BK)",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mazda-6",
+    "slug": "gg",
+    "name": "Mazda6 I (GG/GY)",
+    "year_from": 2002,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mazda-mx-5",
+    "slug": "nb",
+    "name": "MX-5 II (NB)",
+    "year_from": 1998,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-a-class",
+    "slug": "w168",
+    "name": "A-Class W168",
+    "year_from": 1997,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-c-class",
+    "slug": "w203",
+    "name": "C-Class W203",
+    "year_from": 2000,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-e-class",
+    "slug": "w211",
+    "name": "E-Class W211",
+    "year_from": 2002,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-ml",
+    "slug": "w163",
+    "name": "ML W163",
+    "year_from": 1997,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-s-class",
+    "slug": "w220",
+    "name": "S-Class W220",
+    "year_from": 1998,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-slk",
+    "slug": "r170",
+    "name": "SLK R170",
+    "year_from": 1996,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-sprinter",
+    "slug": "w901",
+    "name": "Sprinter I W901-W905",
+    "year_from": 1995,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mercedes-benz-vito",
+    "slug": "w638",
+    "name": "Vito W638",
+    "year_from": 1996,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mini-cabrio",
+    "slug": "r52",
+    "name": "MINI Cabrio R52",
+    "year_from": 2004,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mini-cooper",
+    "slug": "r50",
+    "name": "MINI Cooper R50",
+    "year_from": 2001,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mini-cooper-s",
+    "slug": "r53",
+    "name": "MINI Cooper S R53",
+    "year_from": 2002,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mini-one",
+    "slug": "r50",
+    "name": "MINI One R50",
+    "year_from": 2001,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mitsubishi-l200",
+    "slug": "mk5",
+    "name": "L200 V",
+    "year_from": 2015,
+    "year_to": 2023,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mitsubishi-lancer",
+    "slug": "cs",
+    "name": "Lancer CS",
+    "year_from": 2003,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mitsubishi-outlander",
+    "slug": "mk1",
+    "name": "Outlander I",
+    "year_from": 2001,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mitsubishi-pajero",
+    "slug": "mk3",
+    "name": "Pajero III",
+    "year_from": 1999,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mitsubishi-space-star",
+    "slug": "mk1",
+    "name": "Space Star I MPV",
+    "year_from": 1998,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "nissan-navara",
+    "slug": "d22",
+    "name": "Navara D22",
+    "year_from": 1997,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "nissan-navara",
+    "slug": "d40",
+    "name": "Navara D40",
+    "year_from": 2005,
+    "year_to": 2015,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "nissan-x-trail",
+    "slug": "t30",
+    "name": "X-Trail I (T30)",
+    "year_from": 2001,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "opel-agila",
+    "slug": "mk1",
+    "name": "Agila A",
+    "year_from": 2000,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "opel-astra",
+    "slug": "g",
+    "name": "Astra G",
+    "year_from": 1998,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "opel-corsa",
+    "slug": "c",
+    "name": "Corsa C",
+    "year_from": 2000,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "opel-frontera",
+    "slug": "b",
+    "name": "Frontera B",
+    "year_from": 1998,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "opel-zafira",
+    "slug": "a",
+    "name": "Zafira A",
+    "year_from": 1999,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "peugeot-partner",
+    "slug": "m59",
+    "name": "Partner I (M49/M59)",
+    "year_from": 1996,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "porsche-911",
+    "slug": "996",
+    "name": "911 (996)",
+    "year_from": 1997,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "porsche-boxster",
+    "slug": "986",
+    "name": "Boxster (986)",
+    "year_from": 1996,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "porsche-cayenne",
+    "slug": "955",
+    "name": "Cayenne I (955/957)",
+    "year_from": 2002,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-clio",
+    "slug": "mk2",
+    "name": "Clio II",
+    "year_from": 1998,
+    "year_to": 2012,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-espace",
+    "slug": "mk3",
+    "name": "Espace III",
+    "year_from": 1996,
+    "year_to": 2002,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-grand-scenic",
+    "slug": "mk2",
+    "name": "Grand Scenic II",
+    "year_from": 2004,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-kangoo",
+    "slug": "mk1",
+    "name": "Kangoo I",
+    "year_from": 1997,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-laguna",
+    "slug": "mk2",
+    "name": "Laguna II",
+    "year_from": 2001,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-megane",
+    "slug": "mk2",
+    "name": "Megane II",
+    "year_from": 2002,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-scenic",
+    "slug": "mk2",
+    "name": "Scenic II",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-twingo",
+    "slug": "mk1",
+    "name": "Twingo I",
+    "year_from": 1993,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "saab-9-3",
+    "slug": "mk1",
+    "name": "9-3 I",
+    "year_from": 1998,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "saab-9-5",
+    "slug": "mk1",
+    "name": "9-5 I",
+    "year_from": 1997,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "seat-alhambra",
+    "slug": "mk1",
+    "name": "Alhambra I",
+    "year_from": 1996,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "seat-ibiza",
+    "slug": "mk3",
+    "name": "Ibiza III (6L)",
+    "year_from": 2002,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "seat-leon",
+    "slug": "mk1",
+    "name": "Leon I",
+    "year_from": 1999,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "seat-toledo",
+    "slug": "mk2",
+    "name": "Toledo II",
+    "year_from": 1998,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "seat-toledo",
+    "slug": "mk3",
+    "name": "Toledo III",
+    "year_from": 2004,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "skoda-superb",
+    "slug": "mk1",
+    "name": "Superb I",
+    "year_from": 2001,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "smart-forfour",
+    "slug": "w454",
+    "name": "forfour I (W454)",
+    "year_from": 2004,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "smart-fortwo",
+    "slug": "w450",
+    "name": "fortwo I (W450)",
+    "year_from": 1998,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "subaru-forester",
+    "slug": "sg",
+    "name": "Forester II (SG)",
+    "year_from": 2002,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "subaru-impreza",
+    "slug": "gd",
+    "name": "Impreza II (GD/GG)",
+    "year_from": 2000,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "subaru-legacy",
+    "slug": "bl-bp",
+    "name": "Legacy IV (BL/BP)",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "pilot-sourced"
+  },
+  {
+    "model_id": "subaru-outback",
+    "slug": "mk3",
+    "name": "Outback III (BP)",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "suzuki-grand-vitara",
+    "slug": "mk1",
+    "name": "Grand Vitara I",
+    "year_from": 1998,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "suzuki-ignis",
+    "slug": "mk2",
+    "name": "Ignis II",
+    "year_from": 2003,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-avensis",
+    "slug": "t25",
+    "name": "Avensis II (T25)",
+    "year_from": 2003,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-corolla",
+    "slug": "e120",
+    "name": "Corolla E120/E130",
+    "year_from": 2001,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-land-cruiser",
+    "slug": "j100",
+    "name": "Land Cruiser 100",
+    "year_from": 1998,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-land-cruiser",
+    "slug": "j120",
+    "name": "Land Cruiser 120",
+    "year_from": 2002,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-prius",
+    "slug": "xw20",
+    "name": "Prius II (XW20)",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-rav4",
+    "slug": "mk2",
+    "name": "RAV4 II (XA20)",
+    "year_from": 2000,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-yaris",
+    "slug": "mk1",
+    "name": "Yaris I (XP10)",
+    "year_from": 1999,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volkswagen-golf",
+    "slug": "mk4",
+    "name": "Golf IV",
+    "year_from": 1997,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volkswagen-golf",
+    "slug": "mk5",
+    "name": "Golf V",
+    "year_from": 2003,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volkswagen-passat",
+    "slug": "b5",
+    "name": "Passat B5/B5.5",
+    "year_from": 1996,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volkswagen-passat",
+    "slug": "b6",
+    "name": "Passat B6",
+    "year_from": 2005,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volkswagen-polo",
+    "slug": "mk4",
+    "name": "Polo IV (9N)",
+    "year_from": 2001,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volkswagen-sharan",
+    "slug": "mk1",
+    "name": "Sharan I",
+    "year_from": 1995,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volkswagen-touareg",
+    "slug": "7l",
+    "name": "Touareg I (7L)",
+    "year_from": 2002,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volvo-s60",
+    "slug": "p2",
+    "name": "S60 I",
+    "year_from": 2000,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volvo-v40",
+    "slug": "mk1",
+    "name": "V40 I",
+    "year_from": 1995,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volvo-v70",
+    "slug": "p2",
+    "name": "V70 II",
+    "year_from": 2000,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volvo-xc70",
+    "slug": "p2",
+    "name": "XC70 II",
+    "year_from": 2000,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "subaru-tribeca",
+    "slug": null,
+    "name": "Subaru Tribeca",
+    "year_from": 2006,
+    "year_to": 2014,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "subaru-justy",
+    "slug": null,
+    "name": "Subaru Justy",
+    "year_from": 1995,
+    "year_to": 2011,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mazda-rx-8",
+    "slug": null,
+    "name": "Mazda RX-8",
+    "year_from": 2003,
+    "year_to": 2012,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mazda-323",
+    "slug": null,
+    "name": "Mazda 323 BJ",
+    "year_from": 1998,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mitsubishi-galant",
+    "slug": null,
+    "name": "Mitsubishi Galant VIII",
+    "year_from": 1996,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "mitsubishi-grandis",
+    "slug": null,
+    "name": "Mitsubishi Grandis",
+    "year_from": 2004,
+    "year_to": 2011,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "nissan-almera",
+    "slug": null,
+    "name": "Nissan Almera N16",
+    "year_from": 2000,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "nissan-primera",
+    "slug": null,
+    "name": "Nissan Primera P12",
+    "year_from": 2001,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "nissan-tino",
+    "slug": null,
+    "name": "Nissan Almera Tino",
+    "year_from": 2000,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "opel-omega",
+    "slug": null,
+    "name": "Opel Omega B",
+    "year_from": 1994,
+    "year_to": 2003,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "opel-signum",
+    "slug": null,
+    "name": "Opel Signum",
+    "year_from": 2003,
+    "year_to": 2008,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "fiat-croma",
+    "slug": null,
+    "name": "Fiat Croma II",
+    "year_from": 2005,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "fiat-multipla",
+    "slug": null,
+    "name": "Fiat Multipla",
+    "year_from": 1998,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "fiat-idea",
+    "slug": null,
+    "name": "Fiat Idea",
+    "year_from": 2003,
+    "year_to": 2012,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "citroen-xsara",
+    "slug": null,
+    "name": "Citroen Xsara",
+    "year_from": 1997,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "citroen-xsara-picasso",
+    "slug": null,
+    "name": "Citroen Xsara Picasso",
+    "year_from": 1999,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "peugeot-406",
+    "slug": null,
+    "name": "Peugeot 406",
+    "year_from": 1995,
+    "year_to": 2004,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "renault-modus",
+    "slug": null,
+    "name": "Renault Modus / Grand Modus",
+    "year_from": 2004,
+    "year_to": 2012,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-celica",
+    "slug": null,
+    "name": "Toyota Celica T23",
+    "year_from": 1999,
+    "year_to": 2006,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-mr2",
+    "slug": null,
+    "name": "Toyota MR2 W30",
+    "year_from": 1999,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "toyota-corolla-verso",
+    "slug": null,
+    "name": "Toyota Corolla Verso AR10",
+    "year_from": 2004,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volvo-s40",
+    "slug": null,
+    "name": "Volvo S40 II",
+    "year_from": 2004,
+    "year_to": 2012,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volvo-s80",
+    "slug": null,
+    "name": "Volvo S80 II",
+    "year_from": 2006,
+    "year_to": 2016,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "volvo-c70",
+    "slug": null,
+    "name": "Volvo C70 II",
+    "year_from": 2006,
+    "year_to": 2013,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "honda-fr-v",
+    "slug": null,
+    "name": "Honda FR-V",
+    "year_from": 2004,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "hyundai-matrix",
+    "slug": null,
+    "name": "Hyundai Matrix",
+    "year_from": 2001,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "hyundai-terracan",
+    "slug": null,
+    "name": "Hyundai Terracan",
+    "year_from": 2001,
+    "year_to": 2007,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "hyundai-coupe",
+    "slug": null,
+    "name": "Hyundai Coupe GK",
+    "year_from": 2002,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "kia-magentis",
+    "slug": null,
+    "name": "Kia Magentis II",
+    "year_from": 2005,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "kia-cerato",
+    "slug": null,
+    "name": "Kia Cerato LD",
+    "year_from": 2004,
+    "year_to": 2009,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "alfa-romeo-gt",
+    "slug": null,
+    "name": "Alfa Romeo GT",
+    "year_from": 2003,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "alfa-romeo-brera",
+    "slug": null,
+    "name": "Alfa Romeo Brera",
+    "year_from": 2005,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "alfa-romeo-spider",
+    "slug": null,
+    "name": "Alfa Romeo Spider 939",
+    "year_from": 2006,
+    "year_to": 2010,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "lancia-lybra",
+    "slug": null,
+    "name": "Lancia Lybra",
+    "year_from": 1999,
+    "year_to": 2005,
+    "research": "needs-sources"
+  },
+  {
+    "model_id": "lancia-thesis",
+    "slug": null,
+    "name": "Lancia Thesis",
+    "year_from": 2002,
+    "year_to": 2009,
+    "research": "needs-sources"
+  }
+]
