@@ -2,6 +2,7 @@
 // Cloudflare R2 and writes the SQL that points carinfo.generations at it. Photos never go into the repo or Supabase.
 // Every step is resumable: it skips work whose output already exists.
 //
+//   node scripts/carinfo/images.ts fetch-additions <additions-root> # local photo.webp + credited photo.json before DB insertion
 //   node scripts/carinfo/images.ts fetch [modelIds...]   # → data-raw/carinfo/images/{manifest.json,*.webp,report.md}
 //   node scripts/carinfo/images.ts recheck [--none] [genIds...]  # drop rejected/duplicate/hand-picked photos (and
 //                                                        # with --none the misses), search again
@@ -17,7 +18,7 @@ import sharp from "sharp";
 import { MAKES } from "../../src/data/makes.ts";
 import { sqlString as q } from "./sql.ts";
 
-const DIR = "data-raw/carinfo/images";
+let DIR = "data-raw/carinfo/images";
 const MANIFEST = `${DIR}/manifest.json`;
 /** Photos rejected by hand (recheck with generation ids), never picked again for that generation. */
 const REJECTED = `${DIR}/rejected.json`;
@@ -341,9 +342,32 @@ where g.id = v.id;
   console.log(`${rows.length} photos → ${SQL_DIR}/images-*.sql`);
 }
 
+/** Fetch generation-matched photos before a new generation has a database UUID. */
+async function fetchAdditions(root: string) {
+  if (!root?.startsWith("data-raw/carinfo/additions/")) throw new Error("Expected a local additions directory");
+  const { readdir } = await import("node:fs/promises");
+  const { NewGeneration } = await import("./new-generation.ts");
+  for (const entry of await readdir(root, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const dir = `${root}/${entry.name}`;
+    const g = NewGeneration.parse(JSON.parse(await readFile(`${dir}/skeleton.json`, "utf8")));
+    if (existsSync(`${dir}/photo.json`)) continue;
+    const make = MAKES.find((m) => m.models.some((model) => model.id === g.model_id));
+    const model = make?.models.find((m) => m.id === g.model_id);
+    if (!make || !model) throw new Error(`Unknown model ${g.model_id}`);
+    DIR = dir;
+    const rejectedPath = `${dir}/photo-rejected.json`;
+    const rejected: string[] = existsSync(rejectedPath) ? JSON.parse(await readFile(rejectedPath, "utf8")) : [];
+    const photo = await findPhoto(make.name, model.name, { ...g, id: "photo" }, false, new Set(rejected));
+    await writeFile(`${dir}/photo.json`, JSON.stringify({ model_id: g.model_id, slug: g.slug, ...photo, visually_checked: false }, null, 2) + "\n");
+    console.log(`${g.model_id}/${g.slug}: ${photo.status} ${photo.file ?? photo.note}`);
+  }
+}
+
 const [step, ...args] = process.argv.slice(2);
-if (step === "fetch") await fetchStep(args);
+if (step === "fetch-additions") await fetchAdditions(args[0]);
+else if (step === "fetch") await fetchStep(args);
 else if (step === "recheck") await recheckStep(args);
 else if (step === "upload") await uploadStep();
 else if (step === "sql") await sqlStep();
-else console.error("usage: images.ts fetch [modelIds...] | recheck [generationIds...] | upload | sql");
+else console.error("usage: images.ts fetch-additions <additions-root> | fetch [modelIds...] | recheck [generationIds...] | upload | sql");
