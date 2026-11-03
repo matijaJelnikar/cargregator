@@ -81,6 +81,18 @@ describe("parseOpencodeEvents", () => {
     expect(parsed.error).toBeUndefined();
   });
 
+  it("retains evidence of successful headless search and fetch with restricted tools", async () => {
+    const raw = await readFixture("opencode-websearch-success.jsonl");
+    const events = raw.trim().split("\n").map((line) => JSON.parse(line));
+    for (const tool of ["websearch", "webfetch"]) {
+      expect(events.some((e) => e.type === "tool_use" && e.part.tool === tool && e.part.state.status === "completed")).toBe(true);
+    }
+    const parsed = parseOpencodeEvents(raw);
+    expect(JSON.parse(parsed.text)).toEqual({ searchWorked: true, fetchWorked: true, shellAvailable: false, editAvailable: false });
+    expect(parsed.error).toBeUndefined();
+  });
+
+
   it("parses a provider error fixture", async () => {
     const raw = '{"type":"error","timestamp":1,"sessionID":"ses_x","error":{"type":"provider.no-route","message":"Model unavailable: opencode-go/nonexistent-model"}}';
     const parsed = parseOpencodeEvents(raw);

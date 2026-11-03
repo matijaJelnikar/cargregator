@@ -95,7 +95,7 @@ async function main() {
 
   await mkdir(checkedDir, { recursive: true });
   const ids = (await readdir(answersDir))
-    .filter((f) => !f.endsWith(".orig.json"))
+    .filter((f) => f.endsWith(".json") && !f.endsWith(".orig.json"))
     .map((f) => f.replace(/\.json$/, ""))
     .filter((id) => (only.length ? only.includes(id) : !existsSync(`${checkedDir}/${id}.json`)));
   for (const [n, id] of ids.entries()) {
@@ -116,7 +116,7 @@ async function main() {
       const v = checked!;
       for (let i = 0; i < a.failures.length; i++)
         if (!v.failures.some((f) => f.index === i)) v.failures.push({ index: i, check: "weak", note: "not checked" });
-      if (v.errors.length && !outDir) await fix(id, raw, a, v);
+      if (v.errors.length) await fix(id, raw, a, v, answersDir);
       await writeFile(`${checkedDir}/${id}.json`, JSON.stringify({ ...v, fixed: v.errors.length > 0, http: Object.fromEntries(status) }, null, 2));
       const c = v.failures.reduce<Record<string, number>>((m, f) => ((m[f.check] = (m[f.check] ?? 0) + 1), m), {});
       console.log(`[${n + 1}/${ids.length}] ${raw.model_id}/${raw.slug} ok ${JSON.stringify(c)}, ${v.bad_urls.length} bad urls, ${v.errors.length} errors fixed (${Math.round((Date.now() - started) / 1000)}s)`);
@@ -128,7 +128,7 @@ async function main() {
 }
 
 /** Rewrites the prose the checker flagged (no tools), keeping the original answer as <id>.orig.json. */
-async function fix(id: string, raw: Record<string, unknown>, a: ReportAnswer, v: VerifyAnswer) {
+export async function fix(id: string, raw: Record<string, unknown>, a: ReportAnswer, v: VerifyAnswer, answersDir = ANSWERS) {
   const prompt = `Correct this used-car report for the ${raw.name ?? raw.slug}. Apply every correction below, keep
 everything else as it is (same engines, same names, both languages), and do not add new claims.
 
@@ -151,8 +151,8 @@ ${JSON.stringify({ summary: a.summary, pros: a.pros, cons: a.cons, engines: a.en
   // Sentences may have changed: drop old labels, shorten.ts relabels them.
   parsed.data.pros = parsed.data.pros.map((p) => ({ sl: p.sl, en: p.en }));
   parsed.data.cons = parsed.data.cons.map((c) => ({ sl: c.sl, en: c.en }));
-  if (!existsSync(`${ANSWERS}/${id}.orig.json`)) await writeFile(`${ANSWERS}/${id}.orig.json`, JSON.stringify(raw, null, 2));
-  await writeFile(`${ANSWERS}/${id}.json`, JSON.stringify({ ...raw, ...parsed.data }, null, 2));
+  if (!existsSync(`${answersDir}/${id}.orig.json`)) await writeFile(`${answersDir}/${id}.orig.json`, JSON.stringify(raw, null, 2));
+  await writeFile(`${answersDir}/${id}.json`, JSON.stringify({ ...raw, ...parsed.data }, null, 2));
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();

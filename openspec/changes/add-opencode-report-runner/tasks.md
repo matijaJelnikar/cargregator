@@ -7,9 +7,7 @@
 - [x] 1.2 Run one `opencode run --format json -m opencode-go/<model>` call by hand. Save a sample of its events
   (the success event, the error event, a usage-limit message if one can be triggered) in
   `scripts/carinfo/fixtures/`
-- [ ] 1.3 Confirm `websearch` (with `OPENCODE_ENABLE_EXA=true`) and `webfetch` work headless, and that a shell or
-  edit request is denied by the agent config. Status: webfetch works and shell is unavailable (fixtures), but the
-  only websearch sample is "Web search cancelled", so it needs one more real call once the Go limit resets
+- [x] 1.3 Confirm `websearch` and `webfetch` work headless, with shell/edit requests denied or unavailable. Verified 2026-11-03: an unset search provider caused "Web search cancelled" even with `OPENCODE_ENABLE_EXA=true`. Explicit `websearch.provider = "exa"` fixes the headless call. Search and fetch completed; shell/edit tools were not exposed. Minimal event evidence: `scripts/carinfo/fixtures/opencode-websearch-success.jsonl`; raw local events: `data-raw/carinfo/reports/held-retry-20261103-evidence/opencode-smoke-exa.jsonl`.
 
 ## 2. Runner wrapper
 

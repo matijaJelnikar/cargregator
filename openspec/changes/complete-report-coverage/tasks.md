@@ -34,4 +34,5 @@
 ## 4. Wrap-up
 
 - [ ] 4.1 Re-run held-back generations once with Sonnet (preferred-sources prompt); accept the rest as having no report
+  - 2026-11-03: stopped after 13/22 isolated retry answers when Matija directed Codex to check facts itself and leave Claude alone. No Claude verification was started. Direct inspection found engine/date errors, US recall material and unsupported source attributions. Three local drafts corrected bilingually, originals retained; no retries approved for export. Continue through direct source research, without Claude. Evidence and remaining work: `docs/HELD-REPORT-FACT-CHECK.md`.
 - [x] ~~4.2~~ (dropped) Engine-level reports: revisit after launch
