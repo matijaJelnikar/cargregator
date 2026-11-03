@@ -2,6 +2,8 @@
 
 Prepared 2026-11-03 at Matija's request. One car only; further report writing and insertions wait for his comparison with the Sonnet content. Research, writing and checking were performed directly by Codex, without Claude or OpenCode model calls for this pilot.
 
+**Review complete, 2026-11-03:** Matija approved the text and requested continued additions. A fresh read-only production snapshot confirms Legacy IV is loaded with `ai_checked` status. The original insertion details below are retained for reproducibility; no agent executed the remote write.
+
 ## Files to review and insert
 
 - Full Slovenian/English text: `data-raw/carinfo/pilots/subaru-legacy-iv/preview.md`.

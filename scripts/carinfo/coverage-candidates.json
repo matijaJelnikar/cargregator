@@ -909,7 +909,7 @@
     "name": "Forester II (SG)",
     "year_from": 2002,
     "year_to": 2008,
-    "research": "needs-sources"
+    "research": "batch-001-sourced"
   },
   {
     "model_id": "subaru-impreza",
@@ -917,7 +917,7 @@
     "name": "Impreza II (GD/GG)",
     "year_from": 2000,
     "year_to": 2007,
-    "research": "needs-sources"
+    "research": "batch-001-sourced"
   },
   {
     "model_id": "subaru-legacy",
@@ -933,7 +933,7 @@
     "name": "Outback III (BP)",
     "year_from": 2003,
     "year_to": 2009,
-    "research": "needs-sources"
+    "research": "batch-001-sourced"
   },
   {
     "model_id": "suzuki-grand-vitara",
