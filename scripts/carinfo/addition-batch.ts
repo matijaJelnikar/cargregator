@@ -4,9 +4,10 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { MAKES } from "../../src/data/makes.ts";
 import { NewGeneration, newGenerationSql } from "./new-generation.ts";
+import { additionPhoto } from "./addition-photo.ts";
 import { ReportAnswer } from "../../src/lib/carinfo.ts";
 
-export interface AdditionInput { skeleton: unknown; answer: unknown; checked: unknown }
+export interface AdditionInput { skeleton: unknown; answer: unknown; checked: unknown; photo: unknown }
 export interface ExistingGeneration { model_id: string; slug: string; code?: string | null }
 
 export function buildAdditionBatch(inputs: AdditionInput[], existing: ExistingGeneration[]) {
@@ -33,7 +34,7 @@ export function buildAdditionBatch(inputs: AdditionInput[], existing: ExistingGe
     if (typeof answer.generated_by !== "string" || !answer.generated_by.startsWith("codex/direct-source")) {
       throw new Error(`Direct-research provenance required: ${target}`);
     }
-    const sql = newGenerationSql(g, input.answer, input.checked, answer.generated_by);
+    const sql = newGenerationSql(g, input.answer, input.checked, answer.generated_by, additionPhoto(input.photo, g));
     // Each validated insertion is a DO block plus a receipt SELECT. Keep a single transaction for the entire batch.
     statements.push(sql.replace(/^begin;\n/m, "").replace(/^commit;\n/m, ""));
     included.push(target);
@@ -76,8 +77,8 @@ async function main() {
     if (!entry.isDirectory()) continue;
     const dir = `${root}/${entry.name}`;
     const read = async (name: string) => JSON.parse(await readFile(`${dir}/${name}.json`, "utf8"));
-    const [skeleton, answer, checked] = await Promise.all([read("skeleton"), read("answer"), read("checked")]);
-    inputs.push({ skeleton, answer, checked });
+    const [skeleton, answer, checked, photo] = await Promise.all([read("skeleton"), read("answer"), read("checked"), read("photo")]);
+    inputs.push({ skeleton, answer, checked, photo });
   }
   const existing = JSON.parse(await readFile(snapshotPath, "utf8")) as ExistingGeneration[];
   const batch = buildAdditionBatch(inputs, existing);
@@ -85,7 +86,8 @@ async function main() {
   await writeFile(`${out}.manifest.json`, JSON.stringify({ included: batch.included, skipped: batch.skipped, sha256: batch.sha256 }, null, 2) + "\n");
   for (const input of inputs) {
     const g = NewGeneration.parse(input.skeleton);
-    await writeFile(`${root}/${g.model_id}--${g.slug}/preview.md`, additionPreview(g, input.answer));
+    const photo = additionPhoto(input.photo, g);
+    await writeFile(`${root}/${g.model_id}--${g.slug}/preview.md`, additionPreview(g, input.answer) + `\n## Generation photograph\n\n![${g.name}](photo.webp)\n\n${photo.credit} · ${photo.license} · [Source](${photo.source_url})\n`);
   }
   console.log(`${batch.included.length} additions, ${batch.skipped.length} already present → ${out}; no database writes.`);
 }

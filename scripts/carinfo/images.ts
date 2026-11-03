@@ -2,6 +2,7 @@
 // Cloudflare R2 and writes the SQL that points carinfo.generations at it. Photos never go into the repo or Supabase.
 // Every step is resumable: it skips work whose output already exists.
 //
+//   IMG_BASE=https://img.example.com node scripts/carinfo/images.ts upload-additions <additions-root> # publish before SQL export
 //   node scripts/carinfo/images.ts fetch-additions <additions-root> # local photo.webp + credited photo.json before DB insertion
 //   node scripts/carinfo/images.ts fetch [modelIds...]   # → data-raw/carinfo/images/{manifest.json,*.webp,report.md}
 //   node scripts/carinfo/images.ts recheck [--none] [genIds...]  # drop rejected/duplicate/hand-picked photos (and
@@ -364,10 +365,52 @@ async function fetchAdditions(root: string) {
   }
 }
 
+/** Publish reviewed photos using keys available before database insertion. */
+async function uploadAdditions(root: string) {
+  if (!root?.startsWith("data-raw/carinfo/additions/")) throw new Error("Expected a local additions directory");
+  const base = process.env.IMG_BASE?.replace(/\/$/, "");
+  if (!base?.startsWith("https://")) throw new Error("Set IMG_BASE to the public R2 image URL");
+  const { readdir } = await import("node:fs/promises");
+  const { createHash } = await import("node:crypto");
+  const { NewGeneration } = await import("./new-generation.ts");
+  const { additionPhoto } = await import("./addition-photo.ts");
+  const manifest = await loadManifest();
+  for (const entry of await readdir(root, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const dir = `${root}/${entry.name}`;
+    const g = NewGeneration.parse(JSON.parse(await readFile(`${dir}/skeleton.json`, "utf8")));
+    const photo = JSON.parse(await readFile(`${dir}/photo.json`, "utf8"));
+    // Validate all metadata before any upload. A candidate URL is used only for schema validation here.
+    additionPhoto({ ...photo, uploaded: true, public_url: `${base}/candidate.webp` }, g);
+    let url = photo.uploaded ? photo.public_url as string | undefined : undefined;
+    if (!url) {
+      const previous = Object.entries(manifest).find(([, e]) => e.uploaded && e.status === "ok" &&
+        e.file === photo.file && e.source_url === photo.source_url && e.license === photo.license && e.credit === photo.credit);
+      if (previous) {
+        url = `${base}/gen/${previous[0]}.webp`;
+      } else {
+        const digest = createHash("sha256").update(await readFile(`${dir}/photo.webp`)).digest("hex").slice(0, 20);
+        const key = `additions/${g.model_id}/${g.slug}-${digest}.webp`;
+        execFileSync("npx", ["wrangler", "r2", "object", "put", `${BUCKET}/${key}`, "--file", `${dir}/photo.webp`,
+          "--content-type", "image/webp", "--cache-control", "public, max-age=31536000, immutable", "--remote"], { stdio: "inherit" });
+        url = `${base}/${key}`;
+      }
+    }
+    const response = await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(30000) });
+    if (!response.ok || !response.headers.get("content-type")?.startsWith("image/")) {
+      throw new Error(`Uploaded photo is not publicly available: ${url} (${response.status})`);
+    }
+    additionPhoto({ ...photo, uploaded: true, public_url: url }, g);
+    await writeFile(`${dir}/photo.json`, JSON.stringify({ ...photo, uploaded: true, public_url: url }, null, 2) + "\n");
+    console.log(`${g.model_id}/${g.slug}: published ${url}`);
+  }
+}
+
 const [step, ...args] = process.argv.slice(2);
-if (step === "fetch-additions") await fetchAdditions(args[0]);
+if (step === "upload-additions") await uploadAdditions(args[0]);
+else if (step === "fetch-additions") await fetchAdditions(args[0]);
 else if (step === "fetch") await fetchStep(args);
 else if (step === "recheck") await recheckStep(args);
 else if (step === "upload") await uploadStep();
 else if (step === "sql") await sqlStep();
-else console.error("usage: images.ts fetch-additions <additions-root> | fetch [modelIds...] | recheck [generationIds...] | upload | sql");
+else console.error("usage: images.ts upload-additions <additions-root> | fetch-additions <additions-root> | fetch [modelIds...] | recheck [generationIds...] | upload | sql");

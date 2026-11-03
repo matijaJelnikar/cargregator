@@ -16,7 +16,9 @@ const answer = {
   checks: [text, text, text], links: [], ncap: null, confidence: 0.5,
 };
 const checked = { failures: [{ index: 0, check: "supported", note: "Source checked" }], bad_urls: [], errors: [], unsourced: [] };
-const exportSql = (s = skeleton, a = answer, c: unknown = checked) => newGenerationSql(s, a, c, "codex/test");
+const photo = { model_id: skeleton.model_id, slug: skeleton.slug, status: "ok", visually_checked: true, uploaded: true,
+  public_url: "https://images.example.com/car.webp", credit: "Author", license: "CC BY 4.0", source_url: "https://commons.wikimedia.org/wiki/File:Car.jpg" };
+const exportSql = (s = skeleton, a = answer, c: unknown = checked) => newGenerationSql(s, a, c, "codex/test", photo);
 
 describe("missing-generation export validation", () => {
   it("refuses unassessed engines and unknown failure engine references", () => {

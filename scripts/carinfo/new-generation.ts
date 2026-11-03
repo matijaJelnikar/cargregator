@@ -6,6 +6,7 @@ import { z } from "zod";
 import { CARINFO_FUELS, ReportAnswer, VerifyAnswer, hasShorts, engineSlug } from "../../src/lib/carinfo.ts";
 import { reportPayload, isHeld } from "./import.ts";
 import { matchReportEngines } from "./engine-names.ts";
+import { additionPhoto } from "./addition-photo.ts";
 import { sqlString as q } from "./sql.ts";
 
 export const NewGeneration = z.object({
@@ -22,8 +23,9 @@ export const NewGeneration = z.object({
 });
 export type NewGeneration = z.infer<typeof NewGeneration>;
 
-export function newGenerationSql(raw: unknown, rawReport: unknown, rawCheck: unknown, provenance: string) {
+export function newGenerationSql(raw: unknown, rawReport: unknown, rawCheck: unknown, provenance: string, rawPhoto: unknown) {
   const g = NewGeneration.parse(raw);
+  const photo = additionPhoto(rawPhoto, g);
   const a = ReportAnswer.parse(rawReport);
   const v = VerifyAnswer.extend({ http: z.record(z.string(), z.number().int()).optional() }).parse(rawCheck);
   if (g.year_to < g.year_from) throw new Error("Generation years are reversed");
@@ -65,8 +67,8 @@ begin
     and (slug = any(array[${aliases.map(q).join(",")}])${g.code ? ` or lower(code) = lower(${q(g.code)})` : ""})) then
     raise exception 'Possible generation alias exists; reconcile identity before inserting';
   end if;
-  insert into carinfo.generations (model_id, slug, name, code, year_from, year_to, registrations)
-  values (${q(g.model_id)}, ${q(g.slug)}, ${q(g.name)}, ${q(g.code)}, ${g.year_from}, ${g.year_to}, 0)
+  insert into carinfo.generations (model_id, slug, name, code, year_from, year_to, registrations, image_url, image_credit, image_license, image_source_url)
+  values (${q(g.model_id)}, ${q(g.slug)}, ${q(g.name)}, ${q(g.code)}, ${g.year_from}, ${g.year_to}, 0, ${q(photo.public_url)}, ${q(photo.credit)}, ${q(photo.license)}, ${q(photo.source_url)})
   returning id into gid;
 
   insert into carinfo.engines (generation_id, slug, name, engine_code, fuel, kw, ccm, year_from, year_to, registrations)
@@ -93,8 +95,8 @@ async function main() {
   if (!dir || !out) throw new Error("usage: new-generation.ts <pilot-directory> data-raw/carinfo/sql/<file.sql>");
   if (!/^data-raw\/carinfo\/sql\/[^/]+\.sql$/.test(out)) throw new Error("Ad hoc SQL belongs in data-raw/carinfo/sql/");
   const read = async (name: string) => JSON.parse(await readFile(`${dir}/${name}.json`, "utf8"));
-  const [skeleton, report, check] = await Promise.all([read("skeleton"), read("answer"), read("checked")]);
-  await writeFile(out, newGenerationSql(skeleton, report, check, report.generated_by ?? "codex/direct-source-pilot"));
+  const [skeleton, report, check, photo] = await Promise.all([read("skeleton"), read("answer"), read("checked"), read("photo")]);
+  await writeFile(out, newGenerationSql(skeleton, report, check, report.generated_by ?? "codex/direct-source-pilot", photo));
   console.log(`Prepared ${out}; no database writes performed.`);
 }
 

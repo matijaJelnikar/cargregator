@@ -36,7 +36,7 @@ export function coverageMarkdown(generations: CatalogueGeneration[], rows: Retur
   const missing = rows.filter((r) => r.state !== "present");
   const models = new Set(generations.map((g) => g.model_id));
   const section = (state: string) => missing.filter((r) => r.state === state).map((r) =>
-    `| ${r.name} | ${r.year_from}–${r.year_to} | \`${r.model_id}${r.slug ? `/${r.slug}` : ""}\` | ${r.research === "batch-001-sourced" ? "Batch 001 sourced; SQL prepared, not loaded" : r.research === "pilot-sourced" ? "Pilot researched; SQL prepared, not loaded" : "Absent in snapshot; identity/years/engines need sources"} |`,
+    `| ${r.name} | ${r.year_from}–${r.year_to} | \`${r.model_id}${r.slug ? `/${r.slug}` : ""}\` | ${r.research === "batch-002-sourced" ? "Batch 002 sourced; image included in prepared SQL, not loaded" : r.research === "batch-001-sourced" ? "Batch 001 sourced; SQL prepared, not loaded" : r.research === "pilot-sourced" ? "Pilot researched; SQL prepared, not loaded" : "Absent in snapshot; identity/years/engines need sources"} |`,
   ).join("\n");
   return `# Missing car catalogue backlog
 
