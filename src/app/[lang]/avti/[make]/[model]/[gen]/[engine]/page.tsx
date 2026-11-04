@@ -15,9 +15,9 @@ import { recallsInYears } from "@/lib/carinfoMatch";
 import { alternates, formatEur, t, tn } from "@/lib/i18n";
 import { getDictionary } from "../../../../../dictionaries";
 
-// Rendered on demand and cached, like the model page.
+// Too many to prerender (Workers asset file limit): rendered on demand, then served from the regional cache.
 export const dynamicParams = true;
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function generateStaticParams() {
   return [];
