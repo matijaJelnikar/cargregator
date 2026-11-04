@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "websearch": { "provider": "exa" },
   "agents": {
     "carinfo-report": {
       "mode": "primary",

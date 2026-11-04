@@ -1,5 +1,7 @@
 # Car guide: open questions (2026-10-22 night session)
 
+Historical session record. Current unresolved questions and production steps are collected in `docs/QUESTIONS-FOR-MATIJA.md`; current implementation status is in OpenSpec and `docs/CARINFO-PROGRESS.md`.
+
 **Answered 2026-10-24:** 3–10 are decided; see `openspec/changes/set-report-content-policy/design.md` (content) and
 `openspec/changes/complete-report-coverage/design.md` (models: Sonnet from the top, `minimax-m3` from the tail, no
 cut-off, no second verdict run). 0–2 and 6 were done earlier.

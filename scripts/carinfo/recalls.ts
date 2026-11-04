@@ -16,8 +16,6 @@ const SQL_DIR = "data-raw/carinfo/sql";
 const CHUNK = 60_000;
 const ALERT_URL =
   "https://ec.europa.eu/safety-gate-alerts/screen/webReport/alertDetail/";
-const FIRST_YEAR = 2005;
-const LAST_YEAR = 2026;
 const JOBS = 4;
 const ATTEMPTS = 6;
 /** Safety Gate reports before this year don't matter for cars on the market since 2011. */

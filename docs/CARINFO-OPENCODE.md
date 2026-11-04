@@ -1,5 +1,11 @@
 # Car reports on OpenCode Go
 
+**Current status, 2026-11-02:** all 818 generations have been written and checked; 796 are published and 22 held back. The commands and trial notes below are historical run instructions, not a remaining generation backlog. The final comparison in `openspec/changes/complete-report-coverage/design.md` rejected both MiniMax and Kimi for report writing; Sonnet finished the run. Use `docs/CARINFO-PROGRESS.md` for current counts and `docs/QUESTIONS-FOR-MATIJA.md` for unresolved work.
+
+**Headless search fix, 2026-11-03:** `scripts/carinfo/opencode.json` now selects `websearch.provider: "exa"` explicitly, using the [current config schema's provider selection](https://opencode.ai/config.json). `OPENCODE_ENABLE_EXA=true` alone left searches cancelled in the installed CLI. A live smoke call with the explicit provider completed both search and fetch, while shell/edit tools were unavailable. Minimal events are retained in `scripts/carinfo/fixtures/opencode-websearch-success.jsonl`. Raw events are local under `data-raw/carinfo/reports/held-retry-20261103-evidence/`.
+
+**Current held-report work:** Matija instructed Codex to perform fact checks directly and leave Claude alone. Do not run the historical Claude verification commands to continue this pass. The stopped retry produced 13 isolated, unapproved drafts; findings and remaining checks are in `docs/HELD-REPORT-FACT-CHECK.md`.
+
 How to run the long tail of car reports on the OpenCode Go plan. Claude Code keeps the most-registered generations
 on Sonnet. OpenCode works from the least-registered end (`--tail`), so the two runs meet in the middle and never write
 the same generation.

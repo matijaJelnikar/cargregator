@@ -18,7 +18,7 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import { ReportAnswer } from "../../src/lib/carinfo.ts";
 import { MAKES } from "../../src/data/makes.ts";
 import LINK_MAP from "../../src/data/carLinks.json" with { type: "json" };
-import { ask, assertOpencodeModel, type Runner } from "./llm.ts";
+import { ask, assertOpencodeModel, isUsageLimitError, type Runner } from "./llm.ts";
 
 export const REPORT_DIR = "data-raw/carinfo/reports";
 const ANSWERS = `${REPORT_DIR}/answers`;
@@ -227,7 +227,7 @@ async function main() {
       const secs = Math.round((Date.now() - started) / 1000);
       console.log(`[${done}/${total}] ${label} ${why ? `FAILED ${why.slice(0, 200)}` : "ok"} (${secs}s, ~$${cost.toFixed(2)} equiv)`);
       // A usage-limit answer means every further call fails too: stop and let the user rerun later.
-      if (why && /limit|quota|rate|429|insufficient/i.test(why)) {
+      if (why && isUsageLimitError(why)) {
         queue.length = 0;
         console.log("Stopping: subscription limit reached. Rerun the same command later to resume.");
       }

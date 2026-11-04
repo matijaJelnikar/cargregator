@@ -1,0 +1,4 @@
+{"type":"tool_use","part":{"tool":"webfetch","state":{"status":"completed","input":{"url":"https://www.skoda.co.uk/news/details/efficient-evo-engines-increase-fabia-range"}}}}
+{"type":"tool_use","part":{"tool":"websearch","state":{"status":"completed","input":{"query":"Skoda Fabia 2021 official engines"}}}}
+{"type":"step_finish","part":{"cost":0.00055236,"tokens":{"input":1469,"output":85,"reasoning":0,"cache":{"read":161,"write":0}}}}
+{"type":"text","part":{"text":"{\"searchWorked\":true,\"fetchWorked\":true,\"shellAvailable\":false,\"editAvailable\":false}"}}

@@ -15,7 +15,7 @@ const PAGES: Record<string, string> = {
   makes: "/sl/avti/",
   make: "/sl/avti/dacia/",
   golf: "/sl/avti/volkswagen/golf/",
-  "no-report": "/sl/avti/dacia/jogger/",
+  "no-report": "/sl/avti/audi/a6/#c9",
   engine: "/sl/avti/volkswagen/golf/mk7/1-2-tsi-63kw/",
   results: "/sl/results/?make=volkswagen&model=volkswagen-golf&yf=2014&yt=2016",
   check: "/sl/check/?manual&make=volkswagen&model=volkswagen-golf&yf=2015",

@@ -1,6 +1,6 @@
 # Car reports: progress
 
-Generated 2026-10-31 18:11 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
+Generated 2026-11-02 20:10 UTC by `node scripts/carinfo/progress.ts`. Do not edit by hand.
 
 **To continue:** rerun the same commands; each skips finished work.
 1. `node scripts/carinfo/report.ts --all` writes reports, most registered first. Claude by default, or

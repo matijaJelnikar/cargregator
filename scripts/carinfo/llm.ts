@@ -12,8 +12,9 @@ export const OPENCODE_CONFIG_PATH = resolve(__dirname, "opencode.json");
 
 // The CLI's validator doesn't know the draft 2020-12 meta-schema that zod names in "$schema".
 export function jsonSchema(schema: z.ZodType): string {
-  const { $schema: _, ...rest } = z.toJSONSchema(schema) as Record<string, unknown>;
-  return JSON.stringify(rest);
+  const result = z.toJSONSchema(schema) as Record<string, unknown>;
+  delete result.$schema;
+  return JSON.stringify(result);
 }
 
 export interface AskOptions {

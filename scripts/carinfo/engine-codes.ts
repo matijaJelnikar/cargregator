@@ -6,6 +6,7 @@ export interface CodeFix {
 }
 
 export const CODE_FIXES: CodeFix[] = [
+  { model: "renault-megane", generation: "mk4", name: "1.0 TCe", fuel: "petrol", kw: 84, ccm: 999, oldCode: null, code: "H5D" },
   { model: "dacia-jogger", generation: "mk1", name: "1.0 TCe 110", fuel: "petrol", kw: 81, ccm: 999, oldCode: null, code: "H5D" },
   { model: "dacia-sandero", generation: "mk3", name: "1.0 TCe 110", fuel: "petrol", kw: 81, ccm: 999, oldCode: "HR10", code: "H5D" },
   { model: "dacia-sandero", generation: "mk3", name: "1.0 TCe 90", fuel: "petrol", kw: 67, ccm: 999, oldCode: "HR10", code: "H4Dt" },

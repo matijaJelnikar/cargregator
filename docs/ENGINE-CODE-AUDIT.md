@@ -1,12 +1,22 @@
 # Engine identity audit — 2026-11-02
 
+## Autonomous-pass supplement
+
+Read-only production verification confirms that all ten original Dacia corrections are already present with the expected displacement; the original SQL is archived in `data-raw/carinfo/sql/done/repair-engine-codes-20261102.sql`.
+
+One new verified correction is prepared: Megane IV `1.0 TCe`, petrol, registered 84 kW, 999 cc, currently code null → `H5D`. Renault's [Megane 4 phase 2 manual](https://www.user-manual.renault.com/en/section-6-technical-specifications/engine-specifications-12) identifies the 999 cc 1.0 TCe as H5D Turbo. The registered power is preserved; no nominal-power conversion or unverified engine suffix is introduced. See `docs/MISSING-ENGINE-ASSESSMENTS.md` for the distinction from the older 1.2 TCe.
+
+The registry now has eleven corrections. The newly generated `data-raw/carinfo/sql/repair-engine-codes-20261102.sql` includes all eleven; against the observed production state, ten should report `already_correct` and only the Megane row should report `updated`. This new file has not been executed remotely and requires Matija's explicit approval. It changes engine identity metadata only, without adding a verdict, score or reliability claim.
+
+The new file passed isolated UTF-8 PostgreSQL validation: exactly one new Megane correction, no changes to the ten already-correct targets, a repeat no-op, and preservation of reviewed rows, hidden parents, manual engine-code suffixes and unexpected displacement. Log: `data-raw/carinfo/engine-code-audit/supplement-validation-20261102.log`.
+
 ## Run in Supabase SQL Editor
 
 1. Execute the entire `data-raw/carinfo/sql/repair-engine-codes-20261102.sql` file.
-2. Check its ten result rows: `updated` or `already_correct` means success. `blocked: …` means the live row differs or is protected; inspect it before changing it.
+2. Check its eleven result rows: `updated` or `already_correct` means success. `blocked: …` means the live row differs or is protected; inspect it before changing it.
 3. Execute `data-raw/carinfo/sql/audit-engine-identities.sql` to obtain the remaining live research queue. Export the results if reviewing them outside the SQL Editor.
 
-No remote database writes were performed. Network/DNS access to Supabase was unavailable.
+No remote database writes were performed. Network/DNS access to Supabase was unavailable during the original audit; the later supplement above uses fresh read-only verification.
 The repair is transactional and safe to repeat. It checks model, generation, engine name,
 fuel, power, old code and displacement. Reviewed/hidden engines and generations are protected.
 Only `engine_code` and a missing `ccm` are assigned; existing report text, names, slugs,
@@ -21,6 +31,7 @@ normal cache-purge process before judging the public page.
 
 | Model / generation | Stored engine | Rows | Before | After |
 | --- | --- | ---: | --- | --- |
+| Megane / mk4 | 1.0 TCe, petrol, 84 kW, 999 cc | 1 | null | H5D |
 | Jogger / mk1 | 1.0 TCe 110, petrol, 81 kW, 999 cc | 1 | null | H5D |
 | Sandero / mk3 | 1.0 TCe 110, petrol, 81 kW, 999 cc | 1 | HR10 | H5D |
 | Sandero / mk3 | 1.0 TCe 90 / 100, petrol, 67 / 74 kW, 999 cc | 2 | HR10 | H4Dt |

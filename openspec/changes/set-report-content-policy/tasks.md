@@ -16,4 +16,5 @@
 
 - [x] 3.1 Prompt: prefer Avto magazin, Honest John and What Car? where they cover the generation
 - [x] 3.2 `carLinks.ts`: drop the ADAC breakdown link; keep Google as the fallback search
-- [ ] 3.3 Periodic link check: hide failures whose sources all died (script plus SQL; **Supabase write**, Matija OK)
+- [x] 3.3 Implement source-link audit and guarded candidate SQL — `scripts/carinfo/check-links.ts`; see `docs/SOURCE-LINK-AUDIT.md`. Full read-only run, 2026-11-02: 5,334 failures, 2,353 unique URLs, 2,208 reachable, 0 confirmed dead, 145 unknown; no SQL candidates and no Supabase writes. Unit tests and isolated PostgreSQL 16 validation cover reviewed/hidden content, intervening edits, and idempotency.
+- [ ] 3.4 (Matija) Choose monitoring cadence/host; review future dead-source candidates and authorize any hiding SQL (**Supabase write**, explicit OK required). No recurring job is installed. Question recorded in `docs/QUESTIONS-FOR-MATIJA.md`.

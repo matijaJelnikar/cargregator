@@ -8,7 +8,7 @@ import { years } from "@/components/RecallList";
 import { Eyebrow } from "@/components/ui";
 import { MAKES } from "@/data/makes";
 import { modelSlug, modelSummaries } from "@/lib/carinfoDb";
-import { alternates, t, tn } from "@/lib/i18n";
+import { alternates, tn } from "@/lib/i18n";
 import { getDictionary } from "../../dictionaries";
 
 // Rendered on demand and cached, like the model pages.

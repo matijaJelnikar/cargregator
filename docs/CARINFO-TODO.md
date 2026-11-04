@@ -1,6 +1,10 @@
 # Car guide: what is still to do
 
-Status on 2026-10-24. Open content/product questions are in `docs/CARINFO-QUESTIONS.md`; this file is the
+Historical status below is from 2026-10-24; it is not the current backlog.
+
+**Current audit (2026-11-02):** 796 published reports and 22 held back, all 818 written and checked; R2 photos and the admin setup are in place. Current owner questions: `docs/QUESTIONS-FOR-MATIJA.md`. Current tasks: `openspec/changes/*`. Source monitoring: `docs/SOURCE-LINK-AUDIT.md`.
+
+Historical status on 2026-10-24. Open content/product questions are in `docs/CARINFO-QUESTIONS.md`; this file is the
 task list. **The working plan is now OpenSpec:** `openspec/changes/*` (one change per area below, with spec,
 design and tasks); run `npx @fission-ai/openspec list` for progress. This file stays as the short overview. Report run progress: `docs/CARINFO-PROGRESS.md`; OpenCode instructions:
 `docs/CARINFO-OPENCODE.md`. **You** = needs Matija, **Claude** = can run on its own.

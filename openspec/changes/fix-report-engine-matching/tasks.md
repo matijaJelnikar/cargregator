@@ -11,6 +11,7 @@
 - [x] Check idempotency and protection of reviewed/hidden/edited rows.
 - [x] Typecheck, lint and 174 unit tests.
 - [x] Document the four genuinely omitted engine names.
-- [ ] (Matija) Apply the loader migration and 21 repair batches — Supabase write; explicit approval required.
-- [ ] Verify production recommendations and failure associations after application.
+- [x] (Matija) Apply the loader migration and 21 repair batches — Supabase write; explicit approval required. Applied before this audit: all batches are archived in `data-raw/carinfo/sql/done/`; the installed loader body matches the local guarded migration apart from outer whitespace (read-only verification, 2026-11-02).
+- [x] Verify production recommendations and failure associations after application — 2026-11-02: all 3,553 targeted assessments match the checked source values, all 1,262 failure links match the exact intended engine IDs, and all six affected Touareg 3.0 V6 TDI variants are recommended. No differences. Evidence: `data-raw/carinfo/engine-audit/production-check-20261102.json`. No database writes performed during verification.
 - [ ] Add sourced assessments for the four omitted engine names.
+  - 2026-11-02: primary-source identity research and bilingual factual drafts retained in `docs/MISSING-ENGINE-ASSESSMENTS.md`. Public snapshot confirms five empty rows. Superb/Qashqai petrol-versus-mild-hybrid classification and the requirement for a numeric score/verdict prevent treating these factual drafts as checked reliability assessments. Owner questions are in `docs/QUESTIONS-FOR-MATIJA.md`.
