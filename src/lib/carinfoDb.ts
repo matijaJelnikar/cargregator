@@ -9,7 +9,7 @@ import { publicVerdict } from "./reportPolicy";
 export const REST = "https://wblmhgmotllxffpwsmhb.supabase.co/rest/v1";
 export const PUBLISHABLE_KEY = "sb_publishable_f3QEE0kxL0E7HqB2CWMRTg_-Dc-aOb4";
 /** Car data changes when we load or review content, not per visit. */
-const REVALIDATE_S = 3600;
+const REVALIDATE_S = 86400;
 
 export interface CarEngine {
   id: string;

@@ -11,12 +11,12 @@ import { modelSlug, modelSummaries } from "@/lib/carinfoDb";
 import { alternates, tn } from "@/lib/i18n";
 import { getDictionary } from "../../dictionaries";
 
-// Rendered on demand and cached, like the model pages.
+// Prerendered at build so the worker serves them without rendering (free-plan CPU limit).
 export const dynamicParams = true;
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function generateStaticParams() {
-  return [];
+  return MAKES.map((make) => ({ make: make.id }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/avti/[make]">): Promise<Metadata> {

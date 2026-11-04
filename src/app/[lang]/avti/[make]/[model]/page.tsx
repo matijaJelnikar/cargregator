@@ -12,12 +12,12 @@ import { getGenerations, modelSlug, pick } from "@/lib/carinfoDb";
 import { alternates, tn } from "@/lib/i18n";
 import { getDictionary } from "../../../dictionaries";
 
-// New or reviewed content shows up without a redeploy: pages are rendered on demand and cached.
+// Prerendered at build so the worker serves them without rendering (free-plan CPU limit).
 export const dynamicParams = true;
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function generateStaticParams() {
-  return [];
+  return MAKES.flatMap((make) => make.models.map((m) => ({ make: make.id, model: modelSlug(make.id, m.id) })));
 }
 
 function find(makeParam: string, modelParam: string) {
